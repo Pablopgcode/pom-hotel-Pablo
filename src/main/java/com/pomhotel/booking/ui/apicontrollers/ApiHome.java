@@ -1,11 +1,15 @@
-package com.pomhotel.booking.ui.controllers.apicontrollers;
+package com.pomhotel.booking.ui.apicontrollers;
 
 import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.application.models.RoomtypesModel;
 import com.pomhotel.booking.application.services.RoomTypesService;
 import com.pomhotel.booking.application.services.RoomsService;
+import com.pomhotel.booking.ui.dto.SearchDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -37,7 +41,17 @@ public class ApiHome {
     }
 
 
-    //@PostMapping("/apirooms")
+    @PostMapping("/apirooms")  // ???????????????????????????????
+    public String roomsList(@Valid SearchDTO dto, Model model) {
+        if ( ( dto.minprice==null) && (dto.maxprice==null) && (dto.type==null) ) {
+            dto.minprice = "1";
+            dto.maxprice = "1000";
+            dto.type = "0";
+        }
+        List<RoomsModel> rooms = roomsService.findApplyingFilter(Integer.parseInt(dto.guests),Integer.parseInt(dto.minprice),Integer.parseInt(dto.maxprice), Long.parseLong(dto.type));
+        List<RoomtypesModel> types = roomTypesService.findAll();
+        return types.toString();
+    }
 
 
 }

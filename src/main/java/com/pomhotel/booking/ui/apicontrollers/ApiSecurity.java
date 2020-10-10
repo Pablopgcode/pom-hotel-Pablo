@@ -1,4 +1,4 @@
-package com.pomhotel.booking.ui.controllers.apicontrollers;
+package com.pomhotel.booking.ui.apicontrollers;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,7 +1,12 @@
-package com.pomhotel.booking.ui.controllers.apicontrollers;
+package com.pomhotel.booking.ui.apicontrollers;
 
+import com.pomhotel.booking.application.domain.entities.BookingsEntity;
+import com.pomhotel.booking.application.models.BookingsModel;
 import com.pomhotel.booking.application.models.RoomsModel;
+import com.pomhotel.booking.application.repositories.BookingsRepository;
+import com.pomhotel.booking.application.repositories.BookingsRepositoryImplementation;
 import com.pomhotel.booking.application.services.BookingsService;
+import com.pomhotel.booking.application.services.BookingsServiceImplementation;
 import com.pomhotel.booking.application.services.ClientLoginService;
 import com.pomhotel.booking.application.services.RoomsService;
 import com.pomhotel.booking.ui.controllers.SecurityController;
@@ -11,6 +16,8 @@ import com.pomhotel.booking.ui.servicies.BookingLogicalServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @RestController
@@ -46,8 +53,25 @@ public class ApiBookings {
         return roomSelected;
     }
 
+    /*@PostMapping("/bookroomnow")
+    public String bookroomnow(@Valid NewBookingDTO dto) {
+        BookingsModel model = new BookingsModel();
+        try {
+            model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
+            model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
+            model.roomsByFKRoomId = roomSelected;
+            model.clientsByFkClientId = clientsService.findClientByUsername(securityController.currentUsername());
+            model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, roomSelected.pricePerNight);
+            bookingsService.saveOrUpdate(model);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return model.toString();
+    }*/
 
-    // @PostMapping("/bookingnow")
-
-
+    @PostMapping("/apibookroomnow")  // ?????????????????????????????
+    public void bookRoomNow(@RequestBody BookingsModel bookingRoom) {
+        bookingsService.saveOrUpdate(bookingRoom);
+    }
 }
