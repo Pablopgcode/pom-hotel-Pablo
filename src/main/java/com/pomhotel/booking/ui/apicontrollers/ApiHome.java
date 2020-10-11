@@ -1,5 +1,6 @@
 package com.pomhotel.booking.ui.apicontrollers;
 
+import com.pomhotel.booking.application.models.BookingsModel;
 import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.application.models.RoomtypesModel;
 import com.pomhotel.booking.application.services.RoomTypesService;
@@ -27,33 +28,31 @@ public class ApiHome {
     }
 
     //--- Rooms Mappings -----------------------------------------------------
-    @GetMapping("/apirooms")
+    @GetMapping("/apicontrollers/apirooms")
     public List roomsList(){
         List<RoomsModel> rooms = roomsService.findAll();
         return rooms;
     }
 
     //--- RoomsType Mappings -----------------------------------------------------
-    @GetMapping("/apitypes")
+    @GetMapping("/apicontrollers/apitypes")
     public List roomsTypes(){
         List<RoomtypesModel> types = roomTypesService.findAll();
         return types;
     }
 
 
-    @PostMapping("/apirooms")  // ???????????????????????????????
-    public String roomsList(@Valid SearchDTO dto, Model model) {
+    @PostMapping("/apicontrollers/apirooms")  // ???????????????????????????????
+    public List<RoomsModel> apirooms(@RequestBody SearchDTO dto) {
+        System.out.println("apirooms: " + dto.toString());
         if ( ( dto.minprice==null) && (dto.maxprice==null) && (dto.type==null) ) {
             dto.minprice = "1";
             dto.maxprice = "1000";
             dto.type = "0";
         }
         List<RoomsModel> rooms = roomsService.findApplyingFilter(Integer.parseInt(dto.guests),Integer.parseInt(dto.minprice),Integer.parseInt(dto.maxprice), Long.parseLong(dto.type));
-        List<RoomtypesModel> types = roomTypesService.findAll();
-        return types.toString();
+        return rooms;
     }
-
-
 }
 
 

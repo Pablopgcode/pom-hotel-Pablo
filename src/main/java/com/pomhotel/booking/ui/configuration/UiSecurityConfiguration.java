@@ -80,7 +80,7 @@ public class UiSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                     .logoutSuccessUrl("/signin?logout") //no lo entiendo...
                     .permitAll();
-        //http.csrf().disable();
+        http.csrf().disable();
     }
 
     @Bean

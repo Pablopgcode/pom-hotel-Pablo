@@ -41,7 +41,7 @@ public class ApiBookings {
         this.bookingLogicalService = bookingLogicalService;
     }
 
-    @GetMapping("/bookingnow/{id}")
+    @GetMapping("/apicontrollers/bookingnow/{id}")
     public RoomsModel bookroomnow(@PathVariable("id") long id, @CookieValue("Checkin") String checkin,@CookieValue("Checkout") String checkout, Model model) {
         BookingLogicalService calculadora = new BookingLogicalServiceImplementation();
         roomSelected = roomsService.findById(id);
@@ -53,25 +53,9 @@ public class ApiBookings {
         return roomSelected;
     }
 
-    /*@PostMapping("/bookroomnow")
-    public String bookroomnow(@Valid NewBookingDTO dto) {
-        BookingsModel model = new BookingsModel();
-        try {
-            model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
-            model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
-            model.roomsByFKRoomId = roomSelected;
-            model.clientsByFkClientId = clientsService.findClientByUsername(securityController.currentUsername());
-            model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, roomSelected.pricePerNight);
-            bookingsService.saveOrUpdate(model);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return model.toString();
-    }*/
-
-    @PostMapping("/apibookroomnow")  // ?????????????????????????????
-    public void bookRoomNow(@RequestBody BookingsModel bookingRoom) {
-        bookingsService.saveOrUpdate(bookingRoom);
+    @PostMapping("/apicontrollers/bookingnow")  // ?????????????????????????????
+    public BookingsModel bookRoomNow(@Valid @RequestBody BookingsModel roomSelected) {
+        bookingsService.saveOrUpdate(roomSelected);
+        return roomSelected;
     }
 }
