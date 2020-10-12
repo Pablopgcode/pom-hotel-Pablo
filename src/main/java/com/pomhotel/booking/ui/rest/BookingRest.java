@@ -35,9 +35,7 @@ public class BookingRest {
         this.bookingLogicalService = bookingLogicalService;
     }
 
-
-
-    @GetMapping("/bookingnow/{id}")   // ????????
+    @GetMapping("/bookingnow/{id}")
     public NewBookingDTO bookroomnow(@PathVariable("id") long id, @CookieValue("Checkin") String checkin, @CookieValue("Checkout") String checkout) {
         BookingLogicalService calculadora = new BookingLogicalServiceImplementation();
         roomSelected = roomsService.findById(id);
@@ -50,10 +48,21 @@ public class BookingRest {
         return newBookingDTO;
     }
 
-    @PostMapping("/bookingnow")  // ?????????????????????????????
-    public BookingsModel bookRoomNow(@Valid @RequestBody BookingsModel roomSelected) {
-        bookingsService.saveOrUpdate(roomSelected);
-        return roomSelected;
+    @PostMapping("/bookingnow")
+    public BookingsModel bookingnow(@Valid NewBookingDTO dto) {
+        BookingsModel model = new BookingsModel();
+        try {
+            model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
+            model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
+            model.roomsByFKRoomId = roomSelected;
+            model.clientsByFkClientId = clientsService.findClientByUsername(securityController.currentUsername());
+            model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, roomSelected.pricePerNight);
+            bookingsService.saveOrUpdate(model);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return model;
     }
 }
    
