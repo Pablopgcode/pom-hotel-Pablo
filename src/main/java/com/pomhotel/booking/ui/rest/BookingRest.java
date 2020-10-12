@@ -1,12 +1,8 @@
-package com.pomhotel.booking.ui.apicontrollers;
+package com.pomhotel.booking.ui.rest;
 
-import com.pomhotel.booking.application.domain.entities.BookingsEntity;
 import com.pomhotel.booking.application.models.BookingsModel;
 import com.pomhotel.booking.application.models.RoomsModel;
-import com.pomhotel.booking.application.repositories.BookingsRepository;
-import com.pomhotel.booking.application.repositories.BookingsRepositoryImplementation;
 import com.pomhotel.booking.application.services.BookingsService;
-import com.pomhotel.booking.application.services.BookingsServiceImplementation;
 import com.pomhotel.booking.application.services.ClientLoginService;
 import com.pomhotel.booking.application.services.RoomsService;
 import com.pomhotel.booking.ui.controllers.SecurityController;
@@ -14,14 +10,12 @@ import com.pomhotel.booking.ui.dto.NewBookingDTO;
 import com.pomhotel.booking.ui.servicies.BookingLogicalService;
 import com.pomhotel.booking.ui.servicies.BookingLogicalServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 
-
 @RestController
-public class ApiBookings {
+@RequestMapping("rest")
+public class BookingRest {
 
     //--- Services & Variables used ---------------------------------------
     RoomsService roomsService;
@@ -33,7 +27,7 @@ public class ApiBookings {
 
     //--- Constructor --------------------------------------------------
     @Autowired
-    public ApiBookings(RoomsService roomsService, BookingsService bookingsService, ClientLoginService clientsService, SecurityController securityController, BookingLogicalService bookingLogicalService) {
+    public BookingRest(RoomsService roomsService, BookingsService bookingsService, ClientLoginService clientsService, SecurityController securityController, BookingLogicalService bookingLogicalService) {
         this.roomsService = roomsService;
         this.bookingsService = bookingsService;
         this.clientsService = clientsService;
@@ -41,8 +35,10 @@ public class ApiBookings {
         this.bookingLogicalService = bookingLogicalService;
     }
 
-    @GetMapping("/apicontrollers/bookingnow/{id}")
-    public RoomsModel bookroomnow(@PathVariable("id") long id, @CookieValue("Checkin") String checkin,@CookieValue("Checkout") String checkout, Model model) {
+
+
+    @GetMapping("/bookingnow/{id}")   // ????????
+    public NewBookingDTO bookroomnow(@PathVariable("id") long id, @CookieValue("Checkin") String checkin, @CookieValue("Checkout") String checkout) {
         BookingLogicalService calculadora = new BookingLogicalServiceImplementation();
         roomSelected = roomsService.findById(id);
         NewBookingDTO newBookingDTO = new NewBookingDTO();
@@ -50,12 +46,14 @@ public class ApiBookings {
         newBookingDTO.checkIn = checkin;
         newBookingDTO.checkOut = checkout;
         newBookingDTO.totalPrice = (int) calculadora.calculateTotalPrice(calculadora.stringToDate(checkin),calculadora.stringToDate(checkout),roomSelected.pricePerNight);
-        return roomSelected;
+
+        return newBookingDTO;
     }
 
-    @PostMapping("/apicontrollers/bookingnow")  // ?????????????????????????????
+    @PostMapping("/bookingnow")  // ?????????????????????????????
     public BookingsModel bookRoomNow(@Valid @RequestBody BookingsModel roomSelected) {
         bookingsService.saveOrUpdate(roomSelected);
         return roomSelected;
     }
 }
+   

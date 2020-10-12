@@ -33,7 +33,6 @@ public class NewBookingDTO {
 
 
     //--- Getters & Setters ----------------------------------------
-    //Note: Spring hace su magia a traves de los Getters y los Setters. Se tienen que poner si o si.
     public RoomsModel getRoom() {
         return room;
     }

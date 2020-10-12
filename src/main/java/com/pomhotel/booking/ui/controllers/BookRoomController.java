@@ -69,7 +69,7 @@ public class BookRoomController {
             model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
             model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
 
-            model.roomsByFKRoomId = roomSelected; //no se como pasar bien los datos que no se editan... a ser felices así
+            model.roomsByFKRoomId = roomSelected;
             model.clientsByFkClientId = clientsService.findClientByUsername(securityController.currentUsername()); //esto es una porqueria: ineficiente e inadecuado... aunque sea funcional -.-
             model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, roomSelected.pricePerNight);
             bookingsService.saveOrUpdate(model);

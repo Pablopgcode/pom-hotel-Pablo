@@ -1,11 +1,11 @@
-package com.pomhotel.booking.ui.apicontrollers;
+package com.pomhotel.booking.ui.rest;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ApiSecurity {
+public class SecurityRest {
 
     public class SecurityController {
 

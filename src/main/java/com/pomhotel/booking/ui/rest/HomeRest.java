@@ -1,20 +1,17 @@
-package com.pomhotel.booking.ui.apicontrollers;
+package com.pomhotel.booking.ui.rest;
 
-import com.pomhotel.booking.application.models.BookingsModel;
 import com.pomhotel.booking.application.models.RoomsModel;
-import com.pomhotel.booking.application.models.RoomtypesModel;
 import com.pomhotel.booking.application.services.RoomTypesService;
 import com.pomhotel.booking.application.services.RoomsService;
 import com.pomhotel.booking.ui.dto.SearchDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-public class ApiHome {
+@RequestMapping("rest")
+public class HomeRest {
 
     //--- Services & Variables used ---------------------------------------
     RoomsService roomsService;
@@ -22,29 +19,21 @@ public class ApiHome {
 
     //--- Constructor -----------------------------------------------------
     @Autowired
-    public ApiHome(RoomsService roomsService, RoomTypesService roomTypesService) {
+    public HomeRest(RoomsService roomsService, RoomTypesService roomTypesService) {
         this.roomsService = roomsService;
         this.roomTypesService = roomTypesService;
     }
 
     //--- Rooms Mappings -----------------------------------------------------
-    @GetMapping("/apicontrollers/apirooms")
+    @GetMapping("/apirooms")
     public List roomsList(){
         List<RoomsModel> rooms = roomsService.findAll();
         return rooms;
     }
 
-    //--- RoomsType Mappings -----------------------------------------------------
-    @GetMapping("/apicontrollers/apitypes")
-    public List roomsTypes(){
-        List<RoomtypesModel> types = roomTypesService.findAll();
-        return types;
-    }
 
-
-    @PostMapping("/apicontrollers/apirooms")  // ???????????????????????????????
+    @PostMapping("/apirooms")
     public List<RoomsModel> apirooms(@RequestBody SearchDTO dto) {
-        System.out.println("apirooms: " + dto.toString());
         if ( ( dto.minprice==null) && (dto.maxprice==null) && (dto.type==null) ) {
             dto.minprice = "1";
             dto.maxprice = "1000";
