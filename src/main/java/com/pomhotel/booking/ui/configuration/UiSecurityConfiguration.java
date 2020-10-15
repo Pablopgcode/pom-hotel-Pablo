@@ -62,6 +62,8 @@ public class UiSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/admin/**").hasRole("ADMIN")
                     .antMatchers("/book/**").hasRole("CLIENT") //protegido por el role
                     .antMatchers("/rooms/**").permitAll()
+                    .antMatchers("/apirooms/**").permitAll()  ///////////////////////
+                    .antMatchers("/bookingnow/**").hasRole("CLIENT")  //////////////////////
                     .antMatchers("/bookroomnow/**").hasRole("CLIENT") //protegido por el role
                     .antMatchers("/finalbooking/**").hasRole("CLIENT")
                 .antMatchers(resources).permitAll()
@@ -78,9 +80,9 @@ public class UiSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     .and()
                 .logout()
-                    .logoutSuccessUrl("/signin?logout") //no lo entiendo...
+                    .logoutSuccessUrl("/signin?logout")
                     .permitAll();
-        http.csrf().disable();
+        //http.csrf().disable();
     }
 
     @Bean

@@ -32,6 +32,7 @@ public class LoginRest {
         this.clientLoginService = clientLoginService;
     }
 
+    /*
     //--- Sign In & Log Out Mappings --------------------------------------
     @GetMapping("/restlogin")   //// NI IDEA
     public NewClientDTO signIn(WebRequest request, Model model){
@@ -62,6 +63,5 @@ public class LoginRest {
         } else {
             return "registerfail";
         }
-    }
-
+    }*/
 }
