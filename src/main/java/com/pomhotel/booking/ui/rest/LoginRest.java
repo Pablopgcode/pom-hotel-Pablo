@@ -10,10 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +18,7 @@ import javax.validation.Valid;
 
 //--- Controller ----------------------------------------------------------
 @RestController
+@RequestMapping("rest")
 public class LoginRest {
 
     //--- Services & Variables used ---------------------------------------
@@ -32,7 +30,7 @@ public class LoginRest {
         this.clientLoginService = clientLoginService;
     }
 
-    /*
+
     //--- Sign In & Log Out Mappings --------------------------------------
     @GetMapping("/restlogin")   //// NI IDEA
     public NewClientDTO signIn(WebRequest request, Model model){
@@ -40,7 +38,7 @@ public class LoginRest {
         return newclient;
     }
 
-    @GetMapping(value="/restlogout")   /// NI IDEA
+    /*@GetMapping(value="/restlogout")   /// NI IDEA
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 

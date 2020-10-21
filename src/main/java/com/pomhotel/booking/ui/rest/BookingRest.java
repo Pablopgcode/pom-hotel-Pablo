@@ -76,4 +76,21 @@ public class BookingRest {
             e.printStackTrace();
         }
     }
+
+    @PutMapping("/bookingnow/{id}")
+    public BookingsModel updateBooking(@RequestBody @Valid NewBookingDTO dto) {
+        BookingsModel model = new BookingsModel();
+        try {
+            model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
+            model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
+            model.roomsByFKRoomId = roomsService.findById(dto.roomId);
+            model.clientsByFkClientId = clientsService.findClientByUsername(securityController.currentUsername());
+            model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, model.roomsByFKRoomId.pricePerNight);
+            bookingsService.saveOrUpdate(model);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return model;
+    }
+
 }
