@@ -1,51 +1,45 @@
 # Change Log
 
-## [1.1.0] 2020-05-08
+## [1.4.0] 2019-06-15
 ### Bug fixing
-- `https://github.com/creativetimofficial/nextjs-material-kit/issues/10` (changed the `title`, from simple `string` to `node`, so now, you can pass a title like so `title={<Link href="/"><a>Free Chat</a></Link>}` if you want to have link functionality - NOTE: the `node` that you pass to the `InfoArea` component will have to be styled)
-- `https://github.com/creativetimofficial/nextjs-material-kit/issues/6` (check `https://github.com/creativetimofficial/nextjs-material-kit/pull/7` for more info)
-- `https://github.com/creativetimofficial/nextjs-material-kit/issues/5`
-- `https://github.com/creativetimofficial/nextjs-material-kit/issues/4`
-- `https://github.com/creativetimofficial/nextjs-material-kit/issues/2`
+- Other Now UI React products
+  - https://github.com/creativetimofficial/ct-now-ui-dashboard-pro-react/issues/10 (added `window.scrollTo(0, 0)` and `document.body.scrollTop = 0` to all pages so when you navigate to new page you are sent to the first line of the page)
+  - https://github.com/creativetimofficial/ct-now-ui-dashboard-pro-react/issues/31 (changed the fonts import to `~assets/fonts` and also added assets path inside `jsconfig.json` file)
+  - https://github.com/creativetimofficial/ct-now-ui-kit-pro-react/issues/2 (added warnings on the documentation about this issue - unfortunately, we need to keep our own homepage prop inside the package.json for copyright issues)
+  - https://github.com/creativetimofficial/now-ui-dashboard-react/issues/10
 ### Major style changes
-- `assets/jss/nextjs-material-kit.js`
-- `assets/jss/nextjs-material-kit/components/buttonStyle.js`
-- `assets/jss/nextjs-material-kit/components/headerStyle.js`
-- `assets/jss/nextjs-material-kit/components/navPillsStyle.js`
-- `assets/jss/nextjs-material-kit/components/paginationStyle.js`
-- `assets/jss/nextjs-material-kit/components/paginationStyle.js`
+- `src/assets/scss/now-ui-kit/_nucleo-outline.scss` (changed the fonts import to `~assets/fonts` and also added assets path inside `jsconfig.json` file)
+- `src/assets/scss/now-ui-kit/_variables.scss` (changed the fonts import to `~assets/fonts` and also added assets path inside `jsconfig.json` file)
+- `src/assets/scss/react/now-ui-kit/_popovers.scss` (because of new bootstrap and reactstrap versions)
+- `src/assets/scss/react/now-ui-kit/_tooltips.scss` (because of new bootstrap and reactstrap versions)
+- `src/assets/scss/react/react-differences.scss` (to add the new tootlips styles)
 ### Deleted components
 ### Added components
 ### Deleted dependencies
 ### Added dependencies
++ gulp@4.0.2 (for Creative Tim copyrights)
++ gulp-append-prepend@1.0.8 (for Creative Tim copyrights)
 ### Updated dependencies
 ```
-@material-ui/core        4.3.2   →    4.9.13
-@material-ui/icons       4.2.1   →     4.9.1
-moment                  2.24.0   →    2.25.3
-next                     9.0.5   →     9.3.6
-next-images              1.1.2   →     1.3.1
-nextjs-redirect          1.0.2   →     2.0.2
-node-sass               4.12.0   →    4.14.1
-nouislider              14.0.2   →    14.4.0
-react                   16.9.0   →   16.13.1
-react-dom               16.9.0   →   16.13.1
-react-swipeable-views   0.13.3   →    0.13.9
-styled-components        4.3.2   →     5.1.0
-webpack                 4.39.3   →    4.43.0
+moment             2.24.0   →    2.26.0
+node-sass          4.12.0   →    4.14.1
+nouislider         14.0.2   →    14.5.0
+react              16.8.6   →   16.13.1
+react-dom          16.8.6   →   16.13.1
+react-router        5.0.1   →     5.2.0
+react-router-dom    5.0.1   →     5.2.0
+react-scripts       3.0.1   →     3.4.1
+reactstrap          8.0.1   →     8.4.1
+typescript          3.5.3   →     3.9.5
 ```
 ### Warning
-_The following warnings come from some of our dependencies, however they do not affect the UI or the functionality of the product - if the issues will persist and will change into errors in the next version of React (v17), we will drop their usage and replace with other dependencies:_
-```
-npm WARN deprecated popper.js@1.16.1: Popper changed home, find its new releases at @popperjs/core
-npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
-npm WARN deprecated mkdirp@0.5.3: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
-```
-_The following dependencies raise warnings (of deprecation or renamed) in development mode: DateTime, ReactSwipableView. If the warnings will persist, and will become errors in React 17, we will drop their usage and replace them with other plugins._
+_All the following products: Now UI Kit React, Now UI Dashboard React, Now UI Kit PRO React and Now UI Dashboard PRO React have been updated together, and thus, we've added to all of them the same version of 1.4.0 - we may have skipped some versions for some of the above products, we've done so, since we want all Now UI & React products to share the same versions._
+_While in development some of the plugins that were used for this product will throw some warnings - note, this only happens in development, the UI or the functionality of the product is not affected, also, if the issues will persist in React 17, we'll drop usage of those plugins, and replace them with other ones._
+_Warnings might appear while doing an npm install - they do not affect the UI or the functionality of the product, and they appear because of NodeJS and not from the product itself._
 
-## [1.0.0] 2019-09-13
+## [1.0.0] 2019-07-23
 ### Original Release
-- Started project with NextJS
-- Added Material-UI as base framework
-- Added design from Material Kit by Creative Tim
-- Added components from Material Kit React by Creative Tim
+- Started project with create-react-app
+- Added Reactstrap as base framework
+- Added design from Now UI Kit by Creative Tim
+- Added React Hooks
