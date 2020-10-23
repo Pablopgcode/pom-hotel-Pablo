@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReservaService from '../services/bookingService.js'
+import BookService from '../services/bookingService.js'
 
-class ListReservaComponent extends Component {
+class ListBookingComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -9,7 +9,7 @@ class ListReservaComponent extends Component {
         }
     }
     componentDidMount(){
-        ReservaService.getReservas().then((res) => {
+        BookService.getReservas().then((res) => {
             this.setState({ reservas : res.data });
         });
     }
@@ -30,12 +30,12 @@ class ListReservaComponent extends Component {
                     <tbody>
                                 {
                                     this.state.reservas.map(
-                                        reservas => 
-                                        <tr key = {reservas.id}>
-                                             <td> {reservas.checkIn} </td>   
-                                             <td> {reservas.checkOut}</td>
-                                             <td> {reservas.totalPrice}</td>
-                                             <td> {reservas.clientsByFkClientId.email}</td>                            
+                                        books => 
+                                        <tr key = {books.id}>
+                                             <td> {books.checkIn} </td>   
+                                             <td> {books.checkOut}</td>
+                                             <td> {books.totalPrice}</td>
+                                             <td> {books.clientsByFkClientId.email}</td>                            
                                         </tr>
                                     )
                                 }
@@ -46,4 +46,4 @@ class ListReservaComponent extends Component {
         )
     }
 }
-export default ListReservaComponent
+export default ListBookingComponent

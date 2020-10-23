@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const RESERVA_API_BASE_URL = "http://localhost:8080/boot";
-class ReservaService{
+const BOOKINGS_URL = "http://localhost:8080/boot";
+class BookService{
     getReservas(){
-        return axios.get( RESERVA_API_BASE_URL + '/booknow');
+        return axios.get( BOOKINGS_URL + '/booknow');
     }
     /*getFechasReservaHabitacion(id){
         return axios.get( RESERVA_API_BASE_URL + '/date/' + id);
     }*/
 }
-export default new ReservaService()
+export default new BookService()
