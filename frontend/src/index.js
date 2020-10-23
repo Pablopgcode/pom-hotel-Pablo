@@ -1,18 +1,4 @@
-/*
-
-=========================================================
-* Now UI Kit React - v1.4.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-kit-react
-* Copyright 2020 Creative Tim (http://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/now-ui-kit-react/blob/master/LICENSE.md)
-
-* Designed by www.invisionapp.com Coded by www.creative-tim.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+/*  P  R  I  N   C   I   P   A   L
 
 */
 import React from "react";
@@ -31,13 +17,15 @@ import LoginPage from "views/examples/LoginPage.js";
 import LandingPage from "views/examples/LandingPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 import Reservas from './test/test.jsx'
+import Rooms from './test/test2.jsx'
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Switch>
-        {/* <Route path="/index" render={(props) => <Index {...props} />} /> */}
-        <Route path="/index" render={(props) => <Reservas {...props} />} />
+        {/*<Route path="/index" render={(props) => <Index {...props} />} /> */}
+        {/*<Route path="/index" render={(props) => <Reservas {...props} />} />*/}
+        {<Route path="/index" render={(props) => <Rooms {...props} />} />}
         {/* <Route
           path="/nucleo-icons"
           render={(props) => <NucleoIcons {...props} />}
