@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin (origins = "http://localhost:3000")
 @RestController
-@RequestMapping("rest")
+@RequestMapping("boot")
 public class HomeRest {
 
     //--- Services & Variables used ---------------------------------------
@@ -25,14 +25,14 @@ public class HomeRest {
     }
 
     //--- Rooms Mappings -----------------------------------------------------
-    @GetMapping("/apirooms")
+    @GetMapping("/rooms")
     public List roomsList(){
         List<RoomsModel> rooms = roomsService.findAll();
         return rooms;
     }
 
 
-    @PostMapping("/apirooms")
+    @PostMapping("/rooms")
     public List<RoomsModel> apirooms(@RequestBody SearchDTO dto) {
         if ( ( dto.minprice==null) && (dto.maxprice==null) && (dto.type==null) ) {
             dto.minprice = "1";
