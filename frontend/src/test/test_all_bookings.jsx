@@ -5,12 +5,12 @@ class ListBookingComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            reservas: []
+            bookings: []
         }
     }
     componentDidMount(){
-        BookService.getReservas().then((res) => {
-            this.setState({ reservas : res.data });
+        BookService.getBookings().then((res) => {
+            this.setState({ bookings : res.data });
         });
     }
     render() {
@@ -29,7 +29,7 @@ class ListBookingComponent extends Component {
                     </thead>
                     <tbody>
                                 {
-                                    this.state.reservas.map(
+                                    this.state.bookings.map(
                                         books => 
                                         <tr key = {books.id}>
                                              <td> {books.checkIn} </td>   

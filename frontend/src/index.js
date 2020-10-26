@@ -16,16 +16,17 @@ import NucleoIcons from "views/NucleoIcons.js";
 import LoginPage from "views/examples/LoginPage.js";
 import LandingPage from "views/examples/LandingPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
-import Reservas from './test/test.jsx'
-import Rooms from './test/test2.jsx'
-
+import Bookings from './test/test_all_bookings.jsx'
+import Rooms from './test/test_all_rooms.jsx'
+import Home from "views/Home.js";   // mi pagina home
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Switch>
-        {/*<Route path="/index" render={(props) => <Index {...props} />} /> */}
-        {/*<Route path="/index" render={(props) => <Reservas {...props} />} />*/}
-        {<Route path="/index" render={(props) => <Rooms {...props} />} />}
+        {<Route path="/index" render={(props) => <Index {...props} />} /> }  //Plantilla
+        {<Route path="/home" render={(props) => <Home {...props} />} /> }  //Mi home
+        {/*<Route path="/index" render={(props) => <Bookings {...props} />} />*/}
+        <Route path="/rooms" render={(props) => <Rooms {...props} />} />
         {/* <Route
           path="/nucleo-icons"
           render={(props) => <NucleoIcons {...props} />}
@@ -42,7 +43,7 @@ ReactDOM.render(
           path="/login-page"
           render={(props) => <LoginPage {...props} />}
         /> */}
-        <Redirect to="/index" />
+        {/* <Redirect to="/index" /> */}
         <Redirect from="/" to="/index" />
       </Switch>
     </Switch>

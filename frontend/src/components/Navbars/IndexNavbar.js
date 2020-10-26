@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import '../../assets/css/nav.css'
+
 // reactstrap components
 import {
   Button,
@@ -19,19 +21,21 @@ import {
 
 function IndexNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
+  //const [navbarColor, setNavbarColor] = React.useState("");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
     const updateNavbarColor = () => {
       if (
-        document.documentElement.scrollTop > 399 ||
-        document.body.scrollTop > 399
+        document.documentElement.scrollTop > 30 ||
+        document.body.scrollTop > 30
       ) {
         setNavbarColor("");
       } else if (
         document.documentElement.scrollTop < 400 ||
         document.body.scrollTop < 400
       ) {
-        setNavbarColor("navbar-transparent");
+         setNavbarColor("navbar-transparent");
+        //setNavbarColor("");
       }
     };
     window.addEventListener("scroll", updateNavbarColor);
@@ -50,20 +54,20 @@ function IndexNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} expand="lg" color="info">
+      <Navbar className={"fixed-top " + navbarColor} expand="lg" color="warning">
         <Container>
           <div className="navbar-translate">
             <NavbarBrand
-              href="https://demos.creative-tim.com/now-ui-kit-react/#/index?ref=nukr-index-navbar"
+              href="home"
               target="_blank"
               id="navbar-brand"
             >
-              Now UI Kit React
+              <span>POM Hotel & Spa</span>
             </NavbarBrand>
-            <UncontrolledTooltip target="#navbar-brand">
-              Designed by Invision. Coded by Creative Tim
-            </UncontrolledTooltip>
-            <button
+            {/* <UncontrolledTooltip target="#navbar-brand">
+              Pablo eres el mejor
+            </UncontrolledTooltip> */}
+            {/* <button
               className="navbar-toggler navbar-toggler"
               onClick={() => {
                 document.documentElement.classList.toggle("nav-open");
@@ -75,7 +79,7 @@ function IndexNavbar() {
               <span className="navbar-toggler-bar top-bar"></span>
               <span className="navbar-toggler-bar middle-bar"></span>
               <span className="navbar-toggler-bar bottom-bar"></span>
-            </button>
+            </button> */}
           </div>
           <Collapse
             className="justify-content-end"
@@ -85,19 +89,29 @@ function IndexNavbar() {
             <Nav navbar>
               <NavItem>
                 <NavLink
-                  href="#pablo"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("download-section")
-                      .scrollIntoView();
-                  }}
+                  href="/home"
                 >
-                  <i className="now-ui-icons arrows-1_cloud-download-93"></i>
-                  <p>Download</p>
+                  <i className="now-ui-icons arrows-1_refresh-69"></i>
+                  <span>Home</span>
                 </NavLink>
               </NavItem>
-              <UncontrolledDropdown nav>
+              <NavItem>
+                <NavLink
+                  href="/rooms"
+                >
+                  <i className="now-ui-icons shopping_shop"></i>
+                  <span>Rooms</span>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  href="/about"
+                >
+                  <i className="now-ui-icons design-2_html5"></i>
+                  <span>About us</span>
+                </NavLink>
+              </NavItem>
+              {/* <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret
                   color="default"
@@ -106,12 +120,12 @@ function IndexNavbar() {
                   onClick={(e) => e.preventDefault()}
                 >
                   <i className="now-ui-icons design_app mr-1"></i>
-                  <p>Components</p>
+                  <p>Rooms</p>
                 </DropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem to="/index" tag={Link}>
+                  <DropdownItem to="/rooms" tag={Link}>
                     <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
-                    All components
+                    All rooms
                   </DropdownItem>
                   <DropdownItem
                     href="https://demos.creative-tim.com/now-ui-kit-react/#/documentation/introduction?ref=nukr-index-navbar"
@@ -121,8 +135,8 @@ function IndexNavbar() {
                     Documentation
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
-              <NavItem>
+              </UncontrolledDropdown> */}
+              {/* <NavItem>
                 <Button
                   className="nav-link btn-neutral"
                   color="info"
@@ -136,8 +150,8 @@ function IndexNavbar() {
                 <UncontrolledTooltip target="#upgrade-to-pro">
                   Cooming soon!
                 </UncontrolledTooltip>
-              </NavItem>
-              <NavItem>
+              </NavItem> */}
+              {/* <NavItem>
                 <NavLink
                   href="https://twitter.com/CreativeTim?ref=creativetim"
                   target="_blank"
@@ -175,7 +189,7 @@ function IndexNavbar() {
                 <UncontrolledTooltip target="#instagram-tooltip">
                   Follow us on Instagram
                 </UncontrolledTooltip>
-              </NavItem>
+              </NavItem> */}
             </Nav>
           </Collapse>
         </Container>

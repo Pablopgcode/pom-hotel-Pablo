@@ -62,6 +62,7 @@ public class UiSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/admin/**").hasRole("ADMIN")
                     .antMatchers("/book/**").hasRole("CLIENT") //protegido por el role
                     .antMatchers("/rooms/**").permitAll()
+                    .antMatchers("/boot/**").permitAll()
                     .antMatchers("/bookroomnow/**").hasRole("CLIENT") //protegido por el role
                     .antMatchers("/finalbooking/**").hasRole("CLIENT")
                 .antMatchers(resources).permitAll()

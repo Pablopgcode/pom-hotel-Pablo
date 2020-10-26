@@ -18,7 +18,7 @@ import java.util.List;
 
 @CrossOrigin (origins = "http://localhost:3000")
 @RestController
-@RequestMapping("boot")
+@RequestMapping("/boot")
 public class BookingRest {
 
     //--- Services & Variables used ---------------------------------------

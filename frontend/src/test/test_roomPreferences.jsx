@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RoomService from '../services/roomService.js'
 
-class ListRoomComponent extends Component {
+class RoomComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -9,14 +9,14 @@ class ListRoomComponent extends Component {
         }
     }
     componentDidMount(){
-        RoomService.getRooms().then((res) => {
+        RoomService.getRoomsByPreferences().then((res) => {               
             this.setState({ rooms : res.data });
         });
     }
     render() {
         return (
             <div>
-                <h2 className = "text-center">Lista de Habitaciones SPRING + REACT</h2>
+                <h2 className = "text-center">Lista de Habitaciones buscadas SPRING + REACT</h2>
                 <div className = "Row" >
                     <table className = "table table-striped table-bordered">
                     <thead>
@@ -48,4 +48,4 @@ class ListRoomComponent extends Component {
         )
     }
 }
-export default ListRoomComponent
+export default RoomComponent
