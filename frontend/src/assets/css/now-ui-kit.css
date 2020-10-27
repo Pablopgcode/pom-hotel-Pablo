@@ -1394,7 +1394,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   .navbar .navbar-nav > a.btn:not(.btn-icon) .now-ui-icons {
     position: relative;
     top: 1px; }
-
+/*
 .btn-primary {
   background-color: #f96332;
   color: #FFFFFF; }
@@ -2355,7 +2355,7 @@ textarea.form-control {
   .progress-container.progress-danger .progress-value,
   .progress-container.progress-danger .progress-badge {
     color: #FF3636; }
-
+*/
 /*           badges             */
 .badge {
   border-radius: 8px;
@@ -4297,6 +4297,18 @@ img {
   /* For Firefox 3.6 to 15 */
   background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
   /* Standard syntax */ }
+
+  .clear-filter[filter-color="black"] {
+    background: rgba(44, 44, 44, 0.2);
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(80, 66, 64, 0.6));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(80, 66, 64, 0.6));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(80, 66, 64, 0.6));
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(80, 66, 64, 0.6));
+    /* Standard syntax */ }
 
 .section-story-overview {
   padding: 50px 0; }

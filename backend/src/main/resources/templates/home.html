@@ -5,7 +5,7 @@
 <body>
 <header th:insert="fragments/layout.html :: header"></header>
 
-<!-- chapu para dar feedback al usuario si se ha procesado su reserva correctamente o no -->
+
 <div th:if="${param.bookedok}">
     <div th:insert="fragments/layout.html :: bookedok"></div>
 </div>
