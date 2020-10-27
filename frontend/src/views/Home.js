@@ -3,7 +3,7 @@ import React from "react";
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import IndexHeader from "components/Headers/IndexHeader.js";
-
+import FirstFormPrefer from "components/FirstFormPrefer";
 
 function Home() {
     React.useEffect(() => {
@@ -22,8 +22,8 @@ function Home() {
         <IndexNavbar />
         <div className="wrapper">
             <IndexHeader />
-            
         </div>
+        <FirstFormPrefer />
         
         
             

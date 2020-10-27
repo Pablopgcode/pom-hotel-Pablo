@@ -25,8 +25,8 @@ ReactDOM.render(
       <Switch>
         {<Route path="/index" render={(props) => <Index {...props} />} /> }  //Plantilla
         {<Route path="/home" render={(props) => <Home {...props} />} /> }  //Mi home
-        {/*<Route path="/index" render={(props) => <Bookings {...props} />} />*/}
-        <Route path="/rooms" render={(props) => <Rooms {...props} />} />
+        {/*<Route path="/index" render={(props) => <Bookings {...props} />} />*/}  
+        <Route path="/rooms" render={(props) => <Rooms {...props} />} /> 
         {/* <Route
           path="/nucleo-icons"
           render={(props) => <NucleoIcons {...props} />}
