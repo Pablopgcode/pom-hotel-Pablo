@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../../assets/css/nav.css'
+import '../../assets/css/various-ui-comp.css'
 
 // reactstrap components
 import {
@@ -54,7 +54,7 @@ function IndexNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} expand="lg" color="warning">
+      <Navbar className={"fixed-top " + navbarColor} expand="lg" color="#011f48">
         <Container>
           <div className="navbar-translate">
             <NavbarBrand

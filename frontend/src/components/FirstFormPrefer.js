@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './../assets/css/various-ui-comp.css'
-
+import Datepicker from "components/Datepicker.js";
 
 class FirstFormPrefer extends Component{
   constructor(props){
@@ -26,7 +26,8 @@ render(){
     return(
       <div className="div-form">
         <form onSubmit={this.onFormSubmit} className = "input-group">
-            
+            <Datepicker />
+            <Datepicker />
             <span className="input-group-btn">
                 <button type="submit" className="btn btn-secondary">Find rooms</button>
             </span>

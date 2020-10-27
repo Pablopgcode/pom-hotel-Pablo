@@ -1,9 +1,0 @@
-.navbar.navbar-transparent span{
-    color:rgb(241, 245, 248);
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.navbar.navbar-transparent span:hover{
-    color:yellow;
-}

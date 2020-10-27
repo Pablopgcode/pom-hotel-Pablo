@@ -3,7 +3,8 @@ import React from "react";
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import IndexHeader from "components/Headers/IndexHeader.js";
-import FirstFormPrefer from "components/FirstFormPrefer";
+import FirstFormPrefer from "components/FirstFormPrefer.js";
+
 
 function Home() {
     React.useEffect(() => {
