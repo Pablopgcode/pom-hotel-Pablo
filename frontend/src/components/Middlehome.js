@@ -1,11 +1,12 @@
 import React from "react";
-import '../assets/css/various-ui-comp.css'
+import '../assets/css/various-ui-comp.css';
 import Space from "components/Space.js";
+import Testimony from "components/Testimony.js";
 
 function Middlehome() {    
     
-        return(
-            <>
+    return(
+        <>
             <div className="colorlib-spaces colorlib-light-grey">
                 <div className="container">
                     <div className="row">
@@ -30,17 +31,21 @@ function Middlehome() {
                                 <h2>Our Satisfied Guests says</h2>
                                 <p>We love to tell our successful far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                             </div>
-                        </div>
+                        </div>                        
+                        <div className="row">
+                            <div className="col-md-8 col-md-offset-2 animate-box">
+                                <div className="owl-carousel2">  
+                                    <Testimony person={require("assets/img/person1.jpg")} user="Alysha Myers" city="Miami Florida, USA" coment=" A small river named Duden flows by their place and supplies it with the necessary regelialia."/>
+                                    <Testimony person={require("assets/img/person2.jpg")} user="James Fisher" city="New York, USA" coment=" One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar."/>
+                                    <Testimony person={require("assets/img/person3.jpg")} user="Jane Webb" city="Athens, Greece" coment=" Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way."/>
+                                </div>  
+                            </div> 
+                        </div>  
                     </div>
                 </div>
             </div>  
-      
-
-
-
-            </>
-        );
-    
+        </>
+    );    
 }
 
 export default Middlehome;
