@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RoomService from '../services/roomService.js'
-import IndexNavbar from "../components/Navbars/IndexNavbar.js";
+
 
 
 class ListRoomComponent extends Component {
@@ -18,7 +18,7 @@ class ListRoomComponent extends Component {
     render() {
         return (
             <div>
-                <IndexNavbar/>
+                
                 <h2 className = "text-center">Lista de Habitaciones SPRING + REACT</h2>
                 <div className = "Row" >
                     <table className = "table table-striped table-bordered">

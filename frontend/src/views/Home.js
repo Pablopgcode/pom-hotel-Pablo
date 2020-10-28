@@ -1,10 +1,8 @@
 import React from "react";
 
 // core components
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
+import Navbar from "components/Navbars/Navbar.js";
 import IndexHeader from "components/Headers/IndexHeader.js";
-import FirstFormPrefer from "components/FirstFormPrefer.js";
-
 
 function Home() {
     React.useEffect(() => {
@@ -20,7 +18,7 @@ function Home() {
     });
     return(
         <>
-        <IndexNavbar />
+        <Navbar />
         <div className="wrapper">
             <IndexHeader />
         </div>
