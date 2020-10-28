@@ -34,11 +34,6 @@ function IndexHeader() {
         ></div>
         <Container>
           <div className="content-center brand">
-            {/* <img
-              alt="..."
-              className="n-logo"
-              src={require("assets/img/now-logo.png")}
-            ></img> */}
             <h2 className="h1-seo">by ZDevs</h2>
             <h3>Find emotions</h3>
           </div>
