@@ -12,14 +12,14 @@ import "assets/css/now-ui-kit.css";
 import "assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 import "assets/css/various-ui-comp.css";
 // pages for this kit
-import Index from "views/Index.js";
+
 import Rooms from './test/test_all_rooms.jsx'
 import Home from "views/Home.js";   // mi pagina home
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Switch>
-        {<Route path="/index" render={(props) => <Index {...props} />} /> }  //Plantilla
+      
         {<Route path="/home" render={(props) => <Home {...props} />} /> }  //Mi home
         {/*<Route path="/index" render={(props) => <Bookings {...props} />} />*/}  
         <Route path="/rooms" render={(props) => <Rooms {...props} />} /> 
@@ -40,7 +40,7 @@ ReactDOM.render(
           render={(props) => <LoginPage {...props} />}
         /> */}
         {/* <Redirect to="/index" /> */}
-        <Redirect from="/" to="/index" />
+        <Redirect from="/" to="/home" />
       </Switch>
     </Switch>
   </BrowserRouter>,
