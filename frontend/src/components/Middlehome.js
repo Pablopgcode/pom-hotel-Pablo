@@ -21,7 +21,23 @@ function Middlehome() {
                 <Space image={require("assets/img/camere-4.jpg")} views=" 545 Reviews " message1="LUXURY ROOMS" message2="Enjoy your sensations" price="From $450"/>
                 <Space image={require("assets/img/ok10.jpg")} views=" 545 Reviews " message1="SPA SAUNA" message2="Enjoy your care" price="From $20"/>
                 <Space image={require("assets/img/high-performance.jpg")} views=" 545 Reviews " message1="UNDERWATER SPECIAL ROOMS" message2="Enjoy unique experiences" price="Soon..."/>
-            </div>
+            </div>          
+            <div className="colorlib-spaces colorlib-light-grey">
+                <div id="colorlib-testimony" className="colorlib-light-grey">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-6 col-md-offset-3 text-center colorlib-heading animate-box">
+                                <h2>Our Satisfied Guests says</h2>
+                                <p>We love to tell our successful far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+      
+
+
+
             </>
         );
     
