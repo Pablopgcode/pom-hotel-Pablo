@@ -3,6 +3,7 @@ import React from "react";
 // core components
 import Navbar from "components/Navbars/Navbar.js";
 import IndexHeader from "components/Headers/IndexHeader.js";
+import Middlehome from "components/Middlehome";
 
 function Home() {
     React.useEffect(() => {
@@ -21,6 +22,7 @@ function Home() {
         <Navbar />
         <div className="wrapper">
             <IndexHeader />
+            <Middlehome />
         </div>
         
         
