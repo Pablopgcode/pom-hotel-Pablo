@@ -1,27 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import '../../assets/css/various-ui-comp.css'
 
 // reactstrap components
 import {
-  Button,
   Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
   NavbarBrand,
   Navbar,
   NavItem,
   NavLink,
   Nav,
   Container,
-  UncontrolledTooltip,
 } from "reactstrap";
 
 function IndexNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
-  //const [navbarColor, setNavbarColor] = React.useState("");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
     const updateNavbarColor = () => {
@@ -35,7 +27,6 @@ function IndexNavbar() {
         document.body.scrollTop < 400
       ) {
          setNavbarColor("navbar-transparent");
-        //setNavbarColor("");
       }
     };
     window.addEventListener("scroll", updateNavbarColor);
