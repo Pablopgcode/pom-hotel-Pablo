@@ -5,6 +5,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
+
 // styles for this kit
 import "assets/css/bootstrap.min.css";
 import "assets/demo/demo.css?v=1.4.0";
