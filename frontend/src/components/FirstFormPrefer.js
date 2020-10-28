@@ -68,7 +68,7 @@ render(){
                           </div>
                       </div>
                   </div>
-                  <div className="col-md-2">
+                  <div className="col-md-2 btn-cent">
                       <input className="btn btn-primary btn-block" type="submit" name="submit" id="submit" value="Find Rooms"></input>
                   </div>
               </div>

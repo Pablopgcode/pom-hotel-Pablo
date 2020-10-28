@@ -24,7 +24,7 @@ function Home() {
         <div className="wrapper">
             <IndexHeader />
         </div>
-        <FirstFormPrefer />
+        
         
         
             

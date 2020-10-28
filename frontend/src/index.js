@@ -7,18 +7,12 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 // styles for this kit
 import "assets/css/bootstrap.min.css";
-//import "assets/scss/now-ui-kit.scss?v=1.4.0";
 import "assets/demo/demo.css?v=1.4.0";
 import "assets/css/now-ui-kit.css";
 import "assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 import "assets/css/various-ui-comp.css";
 // pages for this kit
 import Index from "views/Index.js";
-import NucleoIcons from "views/NucleoIcons.js";
-import LoginPage from "views/examples/LoginPage.js";
-import LandingPage from "views/examples/LandingPage.js";
-import ProfilePage from "views/examples/ProfilePage.js";
-import Bookings from './test/test_all_bookings.jsx'
 import Rooms from './test/test_all_rooms.jsx'
 import Home from "views/Home.js";   // mi pagina home
 ReactDOM.render(
