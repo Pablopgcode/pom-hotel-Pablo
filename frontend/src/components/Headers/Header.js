@@ -5,7 +5,8 @@ import React from "react";
 import { Container } from "reactstrap";
 // core components
 
-function IndexHeader() {
+//function Header() {
+const Header = (props) => {
   let pageHeader = React.createRef();
 
   React.useEffect(() => {
@@ -26,12 +27,9 @@ function IndexHeader() {
     <>
       <div className="page-header clear-filter" filter-color="black">
         <div
-          className="page-header-image"
-          style={{
-            backgroundImage: "url(" + require("assets/img/chica_piscina.jpg") + ")",
-          }}
-          ref={pageHeader}
-        ></div>
+          // className="page-header-image" style={{ backgroundImage: "url(" + require("assets/img/chica_piscina.jpg") + ")",}} ref={pageHeader}>
+          className="page-header-image" style={{ backgroundImage: "url(" + props.image + ")", backgroundSize: "cover"}} ref={pageHeader}>           
+        </div>
         <Container>
           <div className="content-center brand">
             <h2 className="h1-seo">by ZDevs</h2>
@@ -46,4 +44,4 @@ function IndexHeader() {
   );
 }
 
-export default IndexHeader;
+export default Header;

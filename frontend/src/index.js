@@ -13,7 +13,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Switch>     
-        {<Route path="/home" render={(props) => <Home {...props} />} /> }  
+        <Route path="/home" render={(props) => <Home {...props} />} />   
         <Route path="/rooms" render={(props) => <Rooms {...props} />} /> 
       
 

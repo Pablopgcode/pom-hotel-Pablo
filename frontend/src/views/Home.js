@@ -2,7 +2,7 @@ import React from "react";
 
 // core components
 import Navbar from "components/Navbars/Navbar.js";
-import IndexHeader from "components/Headers/IndexHeader.js";
+import Header from "components/Headers/Header.js";
 import Middlehome from "components/Middlehome";
 import DarkFooter from "components/Footers/DarkFooter";
 
@@ -22,7 +22,7 @@ function Home() {
       
     <React.Fragment>
         <Navbar />     
-        <IndexHeader />
+        <Header image={require("assets/img/chica_piscina.jpg")}/>
         <Middlehome />  
         <DarkFooter />
     </React.Fragment>           

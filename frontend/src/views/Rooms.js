@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import RoomService from '../services/roomService.js'
-
-
+import RoomService from '../services/roomService.js';
+import Navbar from "components/Navbars/Navbar.js";
+import Header from 'components/Headers/Header.js';
 
 class Rooms extends Component {
+
+    
+
+
     constructor(props) {
         super(props)
         this.state = {
@@ -17,8 +21,20 @@ class Rooms extends Component {
     }
     render() {
         return (
-            <div>
-                
+            <React.Fragment>
+                <Navbar />
+                <Header image={require("assets/img/revato-10251-13112723-111323.jpg")}/>
+
+
+
+
+
+
+
+
+
+{/* 
+
                 <h2 className = "text-center">Lista de Habitaciones SPRING + REACT PRUEBA</h2>
                 <div className = "Row" >
                     <table className = "table table-striped table-bordered">
@@ -46,8 +62,8 @@ class Rooms extends Component {
                                 }
                             </tbody>
                         </table>
-                 </div>
-            </div>
+                 </div> */}
+                 </React.Fragment>
         )
     }
 }
