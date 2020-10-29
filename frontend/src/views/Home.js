@@ -4,6 +4,7 @@ import React from "react";
 import Navbar from "components/Navbars/Navbar.js";
 import IndexHeader from "components/Headers/IndexHeader.js";
 import Middlehome from "components/Middlehome";
+import DarkFooter from "components/Footers/DarkFooter";
 
 function Home() {
     React.useEffect(() => {
@@ -18,22 +19,14 @@ function Home() {
         };
     });
     return(
-        <>
-        <Navbar />
-        <div className="wrapper">
-            <IndexHeader />
-            <Middlehome />
-        </div>
-        
-        
-        
-            
-        
-        </>
+      
+    <React.Fragment>
+        <Navbar />     
+        <IndexHeader />
+        <Middlehome />  
+        <DarkFooter />
+    </React.Fragment>           
     )
 }
-
-
-
 
 export default Home;
