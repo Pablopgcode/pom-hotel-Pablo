@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React from "react";
 
 // reactstrap components
@@ -27,8 +26,7 @@ const Header = (props) => {
     <>
       <div className="page-header clear-filter" filter-color="black">
         <div
-          // className="page-header-image" style={{ backgroundImage: "url(" + require("assets/img/chica_piscina.jpg") + ")",}} ref={pageHeader}>
-          className="page-header-image" style={{ backgroundImage: "url(" + props.image + ")", backgroundSize: "cover"}} ref={pageHeader}>           
+            className="page-header-image" style={{ backgroundImage: "url(" + props.image + ")", backgroundSize: "cover"}} ref={pageHeader}>           
         </div>
         <Container>
           <div className="content-center brand">

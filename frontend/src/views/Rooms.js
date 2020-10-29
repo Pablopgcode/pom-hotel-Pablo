@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RoomService from '../services/roomService.js';
 import Navbar from "components/Navbars/Navbar.js";
 import Header from 'components/Headers/Header.js';
+import '../assets/css/various-ui-comp.css'
 
 class Rooms extends Component {
 
@@ -24,6 +25,9 @@ class Rooms extends Component {
             <React.Fragment>
                 <Navbar />
                 <Header image={require("assets/img/revato-10251-13112723-111323.jpg")}/>
+                <div class="col-md-8 col-md-offset-0 heading2 animate-box fadeInUp animated-fast">
+                    <h2>Our Rooms</h2>
+                </div>
 
 
 
@@ -33,9 +37,9 @@ class Rooms extends Component {
 
 
 
-{/* 
 
-                <h2 className = "text-center">Lista de Habitaciones SPRING + REACT PRUEBA</h2>
+
+                
                 <div className = "Row" >
                     <table className = "table table-striped table-bordered">
                     <thead>
@@ -62,7 +66,7 @@ class Rooms extends Component {
                                 }
                             </tbody>
                         </table>
-                 </div> */}
+                 </div> 
                  </React.Fragment>
         )
     }

@@ -10,18 +10,18 @@ function DarkFooter(){
         <div id='colorlib-footer' role='contentinfo'>
             <div id="footer" className="container-fluid">
                 <div className='row row-pb-md justify-content-center'>
-                    <div className='col-12 col-md-6 col-lg-4 colorlib-widget'>
+                    <div className='col-12 col-md-6 col-lg-3 colorlib-widget'>
                         <h5>POM dreams</h5>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi voluptatem quisquam, labore nesciunt modi officiis alias architecto blanditiis, accusamus, aut eius? </p>
                         <p>Dicta necessitatibus neque perferendis aperiam iste sint cum dolor fugiat nisi temporibus aut!</p>
                     </div>              
-                    <div className='col-12 col-md-6 col-lg-4 colorlib-widget text-center'>
+                    <div className='col-12 col-md-6 col-lg-3 colorlib-widget text-center'>
                         <h5>Play music</h5>
                         <p>Listen the best songs</p>
                         <p><a href='https://youtu.be/GJkuTx1DQzg' target='_blank'><img src={require('assets/img/musica.png')}  width='60rem' height='60rem'/></a></p>
                         <p>Click on the icon</p>
                     </div>
-                    <div className='col-12 col-md-6 col-lg-4 colorlib-widget'>
+                    <div className='col-12 col-md-6 col-lg-3 colorlib-widget'>
                         <h5>Contact Information</h5>
                         <ul class='colorlib-footer-links'>
                             <li>Aulas Formación B-3, <br /> Carretera Nacional II (complejo seat Autovia a-2), KM 585, Martorell, 08760, Barcelona </li>
