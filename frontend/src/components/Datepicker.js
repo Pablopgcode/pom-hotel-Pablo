@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
- 
+
 import 'react-datepicker/dist/react-datepicker.css';
 import 'assets/css/bootstrap.min.css';
 
 class Datepicker extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       startDate: new Date()
@@ -40,23 +40,11 @@ class Datepicker extends Component {
             dateFormat="dd/MM/yyyy"/>}   
           </div>
         </form>
-      </div>
-    );
+      </div>     
+    )                       
   }
 }
 
 export default Datepicker;
 
 
-{/* //Date Range with disabled navigation shown
-// () => { 
-//     const [startDate, setStartDate] = useState(null);
-//     return (
-//       <DatePicker
-//         selected={startDate}
-//         onChange={date => setStartDate(date)}
-//         minDate={new Date()}
-//         maxDate={addMonths(new Date(), 5)}
-//         showDisabledMonthNavigation/>
-//     );
-// }; */}

@@ -1,10 +1,7 @@
 import React from "react";
-
 // reactstrap components
 import { Container } from "reactstrap";
-// core components
 
-//function Header() {
 const Header = (props) => {
   let pageHeader = React.createRef();
 
