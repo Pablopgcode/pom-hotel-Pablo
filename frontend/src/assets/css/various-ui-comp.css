@@ -814,3 +814,8 @@
 .js .animate-box {
   opacity: 0;
 }
+
+.price{
+  font-size: 20px;
+  color: #00BBF0;
+}

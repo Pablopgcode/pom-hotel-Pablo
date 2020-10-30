@@ -3,56 +3,22 @@ import { Container } from "reactstrap";
 import roomService from "services/roomService";
 import DarkFooter from "components/Footers/DarkFooter";
 const Room = (props) => {
-    console.log('room: ',props);
+    
     return (
-
-        
-
-        <Container>
-            
-            <div className="row" style={{margin: '90px'}}>
+        <Container>       
+            <div className="row" style={{margin: '50px'}}>    
                 <div className="col-md-6 col-sm-6">
                     <img src={props.image}></img>
                 </div>
-                <div className="col">
+                <div className="col-md-6 col-sm-6">
                     <h2>{props.name}</h2>
-                    <p><h3>{props.pricePerNight} <small>/ night</small></h3></p>
+                    <p className="price"><h3>{props.pricePerNight} &#8364;<small>/ night</small></h3></p>
                     <p>{props.description}</p> 
-                    <p><a class="btn btn-primary" href="/books/">Book Now!</a></p>
+                    <p><a class="btn btn-primary" href="/books/{props.id}">Book Now!</a></p>  
                 </div>
-            </div>
-            
-
-
-
-                               
-        </Container>
-       
+            </div>                         
+        </Container>      
     );
 }
 
 export default Room
-
-
-//  <div className="col-md-12 animate-box">
-//                 <div className="room-wrap">
-//                     <div className="row">
-//                         <div className="col-md-6 col-sm-6">
-//                             <div className="" style={{backgroundColor: "dimgrey"}}>
-//                                 <div className="" style={{ backgroundImage: "url(" + props.image +")", backgroundSize: "cover"}}>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                         <div className="col-md-6 col-sm-6">
-//                             <div className="desc">
-//                                 <h2>{props.name}</h2>
-//                                  <p className="price"><span>{props.pricePerNight}</span><small>/ night</small></p>
-//                                 <p>{props.description}</p> 
-//                                 {/* <p><a className="btn btn-primary" {/bookroomnow/{id}(id=${room.id})}">Book Now!</a></p>
-//                                 <p><a className="btn btn-primary" {/bookroomnow/(id = ${ room.id }, checkin = ${ checkin }, checkout = ${ checkout })}">Book Now!</a></p>  */}
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>              
-                                                

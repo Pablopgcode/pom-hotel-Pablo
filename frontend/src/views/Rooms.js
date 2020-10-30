@@ -23,9 +23,10 @@ class Rooms extends Component {
             <React.Fragment>
                 <Navbar />
                 <Header image={require("assets/img/revato-10251-13112723-111323.jpg")}/>
-                <div className="col-md-8 heading2 animate-box fadeInUp animated-fast">
+                <div className="col-md-11 heading2 animate-box fadeInUp animated-fast">
                     <h2>Our Rooms</h2>
-                </div>                
+                </div> 
+                <div className="col-md-7"> 
                     {
                         this.state.rooms.map(
                             room =>
@@ -33,7 +34,9 @@ class Rooms extends Component {
                                 <Room image={require("assets/img/rooms/"+room.image)} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} description={room.description}/>
                             </div>    
                         )
-                    }
+                    } 
+                </div> 
+                <div className="border border-danger"></div> 
                 <DarkFooter />     
             </React.Fragment>
         )
