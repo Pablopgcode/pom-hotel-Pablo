@@ -8,7 +8,7 @@ const Room = (props) => {
         <Container>       
             <div className="row" style={{margin: '50px'}}>    
                 <div className="col-md-6 col-sm-6">
-                    <img src={props.image}></img>
+                    <img className="img-raised" src={props.image}></img>
                 </div>
                 <div className="col-md-6 col-sm-6">
                     <h2>{props.name}</h2>

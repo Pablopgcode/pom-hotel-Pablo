@@ -4,6 +4,7 @@ import Navbar from "components/Navbars/Navbar.js";
 import Header from 'components/Headers/Header.js';
 import Room from 'components/Room.js';
 import DarkFooter from "components/Footers/DarkFooter";
+import Form from "components/Form";
 import '../assets/css/various-ui-comp.css'
 
 class Rooms extends Component {
@@ -23,10 +24,11 @@ class Rooms extends Component {
             <React.Fragment>
                 <Navbar />
                 <Header image={require("assets/img/revato-10251-13112723-111323.jpg")}/>
-                <div className="col-md-11 heading2 animate-box fadeInUp animated-fast">
+                <div className="col-md-9 offset-md-1 heading2 animate-box fadeInUp animated-fast">
                     <h2>Our Rooms</h2>
-                </div> 
-                <div className="col-md-7"> 
+                </div>
+                <div className="row">
+                    <div className="col-md-7"> 
                     {
                         this.state.rooms.map(
                             room =>
@@ -35,8 +37,9 @@ class Rooms extends Component {
                             </div>    
                         )
                     } 
+                    </div>                   
+                    <Form />                   
                 </div> 
-                <div className="border border-danger"></div> 
                 <DarkFooter />     
             </React.Fragment>
         )

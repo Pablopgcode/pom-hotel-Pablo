@@ -2,7 +2,7 @@ import React from "react";
 import '../assets/css/various-ui-comp.css'
 
 const Space = (props) => {  
-    console.log('space: ',props);
+    
     return(
         <a className="space-entry animate-box">
            <div className="tour-img" style={{ backgroundImage: "url(" + props.image + ")", backgroundSize: "cover"}}></div>

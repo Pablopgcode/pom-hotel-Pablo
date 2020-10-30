@@ -9,6 +9,7 @@ const Booknow = (props) => {
     return(
 
         <React.Fragment>
+            <Navbar />
             <div>
                 <p>{props.id}</p>
             </div>

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
-
 import 'react-datepicker/dist/react-datepicker.css';
 import 'assets/css/bootstrap.min.css';
 
-class Datepicker extends Component {
+class DateIn extends Component {
 
   constructor(props) {
     super(props)
@@ -36,8 +34,9 @@ class Datepicker extends Component {
             { <DatePicker
               selected={ this.state.startDate }
               onChange={ this.handleChange }
+              minDate={new Date()}
               name="startDate"
-            dateFormat="dd/MM/yyyy"/>}   
+            dateFormat="dd/MM/yyyy"/>}  
           </div>
         </form>
       </div>     
@@ -45,6 +44,6 @@ class Datepicker extends Component {
   }
 }
 
-export default Datepicker;
+export default DateIn;
 
 
