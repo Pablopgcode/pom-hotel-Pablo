@@ -1,15 +1,16 @@
 import React from "react";
 import { Container } from "reactstrap";
 import roomService from "services/roomService";
-
+import DarkFooter from "components/Footers/DarkFooter";
 const Room = (props) => {
     console.log('room: ',props);
     return (
 
-
+        
 
         <Container>
-            <div className="row">
+            
+            <div className="row" style={{margin: '90px'}}>
                 <div className="col-md-6 col-sm-6">
                     <img src={props.image}></img>
                 </div>
@@ -17,14 +18,16 @@ const Room = (props) => {
                     <h2>{props.name}</h2>
                     <p><h3>{props.pricePerNight} <small>/ night</small></h3></p>
                     <p>{props.description}</p> 
+                    <p><a class="btn btn-primary" href="/books/">Book Now!</a></p>
                 </div>
             </div>
-        
+            
 
 
 
                                
         </Container>
+       
     );
 }
 
