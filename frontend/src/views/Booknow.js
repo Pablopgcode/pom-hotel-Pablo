@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from 'components/Headers/Header.js';
 import Navbar from "components/Navbars/Navbar.js";
 import DarkFooter from "components/Footers/DarkFooter";
+import Room from 'components/Room.js';
 import RoomService from '../services/roomService.js';
 
 class Booknow extends Component {
@@ -11,55 +12,35 @@ class Booknow extends Component {
             rooms: []
         }
     }
+    
     componentDidMount(){
-        RoomService.getRooms().then((res) => {               
+        
+        RoomService.getRoomById().then((res) => {               
             this.setState({ rooms : res.data });
         });
     }
+
     render() {
         return(
 
         <React.Fragment>
             <Navbar />
             <Header image={require("assets/img/bg6.jpg")}/>
-
-
-            <div className="Row" >
-                <table className="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>CODE</th>
-                            <th>NAME</th>
-                            <th>DESCRIPTION</th>
-                            <th>PRICE NIGHT</th>
-                            <th>GUESTS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <div className="col-md-9 offset-1 heading2 animate-box fadeInUp animated-fast">
+                <h3>Your choice, our wish</h3>
+                </div>
+                    <div className="row">
+                        <div className="col-md-7"> 
                         {
                             this.state.rooms.map(
                                 room =>
-                                    <tr key={room.id}>
-                                        <td> {room.code} </td>
-                                        {<td> {room.roomtypesByFkRoomtypeId.name}</td>}
-                                        <td> {room.description}</td>
-                                        <td> {room.pricePerNight}</td>
-                                        <td> {room.guests}</td>
-                                    </tr>
+                                <div className="row" key={room.id}>   
+                                    <Room image={require("assets/img/rooms/"+room.image)} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} description={room.description}/>
+                                </div>    
                             )
-                        }
-                    </tbody>
-                </table>
-            </div>
-
-
-
-
-
-
-
-
-
+                        } 
+                        </div>                                    
+                </div> 
             <DarkFooter />
         </React.Fragment>
         )

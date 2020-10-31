@@ -1,9 +1,12 @@
 import axios from 'axios';
-
 const ROOMS_URL = "http://localhost:8080/boot";
 class RoomService{
     getRooms(){
         return axios.get( ROOMS_URL + '/rooms');
+    }
+
+    getRoomById(roomId){
+        return axios.get(ROOMS_URL + '/' + roomId);
     }
     
     getRoomsByPreferences(roomChoosed){
@@ -17,10 +20,10 @@ class RoomService{
             type: '0'
         }
         // Request GET
-        axios.get(( ROOMS_URL + '/rooms'), {
+        return axios.post(( ROOMS_URL + '/rooms'), {
             params: roomChoosed
             }).then(response => {   
-            this.room = response.data;
+            this.rooms = response.data;
         }).catch(e => {
             console.log(e);
         })

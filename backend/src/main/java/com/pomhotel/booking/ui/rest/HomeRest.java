@@ -1,10 +1,13 @@
 package com.pomhotel.booking.ui.rest;
 
+import com.pomhotel.booking.application.models.BookingsModel;
 import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.application.models.RoomtypesModel;
 import com.pomhotel.booking.application.services.RoomTypesService;
 import com.pomhotel.booking.application.services.RoomsService;
 import com.pomhotel.booking.ui.dto.SearchDTO;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -30,6 +33,18 @@ public class HomeRest {
     public List roomsList(){
         List<RoomsModel> rooms = roomsService.findAll();
         return rooms;
+    }
+
+    @GetMapping("/rooms/{id}")
+    public RoomsModel getRoomsById(@PathVariable long id) {
+        RoomsModel model = roomsService.findById(id);
+        ResponseEntity<RoomsModel> response;
+        if (model == null) {
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            response = new ResponseEntity<>(model, HttpStatus.OK);
+        }
+        return model;
     }
 
     @GetMapping("/types")
