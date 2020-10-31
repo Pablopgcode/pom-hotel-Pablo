@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'assets/css/bootstrap.min.css';
+import '../assets/css/various-ui-comp.css'
 
 class DateIn extends Component {
 
@@ -32,11 +33,12 @@ class DateIn extends Component {
         <form onSubmit={ this.handleSubmit }>
           <div className="form-group">
             { <DatePicker
+              className="datum"
               selected={ this.state.startDate }
               onChange={ this.handleChange }
               minDate={new Date()}
               name="startDate"
-            dateFormat="dd/MM/yyyy"/>}  
+              dateFormat="dd/MM/yyyy"/>}  
           </div>
         </form>
       </div>     

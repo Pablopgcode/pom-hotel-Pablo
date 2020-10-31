@@ -8,6 +8,7 @@ import "assets/css/now-ui-kit.css";
 import "assets/css/various-ui-comp.css";
 import Rooms from "views/Rooms.js";
 import Home from "views/Home.js";  
+import About from "views/About.js"; 
 import Booknow from "views/Booknow.js";
 
 ReactDOM.render(
@@ -17,9 +18,7 @@ ReactDOM.render(
         <Route path="/home" render={(props) => <Home {...props} />} />   
         <Route path="/rooms" render={(props) => <Rooms {...props} />} /> 
         <Route path="/books" render={(props) => <Booknow {...props} />} /> 
-
-
-      
+        <Route path="/about" render={(props) => <About {...props} />} />      
         <Redirect from="/" to="/home" />
       </Switch>
     </Switch>

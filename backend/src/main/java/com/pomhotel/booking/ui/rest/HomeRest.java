@@ -1,6 +1,7 @@
 package com.pomhotel.booking.ui.rest;
 
 import com.pomhotel.booking.application.models.RoomsModel;
+import com.pomhotel.booking.application.models.RoomtypesModel;
 import com.pomhotel.booking.application.services.RoomTypesService;
 import com.pomhotel.booking.application.services.RoomsService;
 import com.pomhotel.booking.ui.dto.SearchDTO;
@@ -29,6 +30,12 @@ public class HomeRest {
     public List roomsList(){
         List<RoomsModel> rooms = roomsService.findAll();
         return rooms;
+    }
+
+    @GetMapping("/types")
+    public List roomsTypes(){
+        List<RoomtypesModel> types = roomTypesService.findAll();
+        return types;
     }
 
 

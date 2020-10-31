@@ -52,7 +52,7 @@ function IndexNavbar() {
               href="home"
               target="_blank"
               id="navbar-brand">
-              <span>POM Hotel & Spa</span>
+              <h3>POM Hotel & Spa</h3>
             </NavbarBrand>
           </div>
           <Collapse
@@ -79,7 +79,7 @@ function IndexNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  href="/about">
+                  href="/login">
                   <i className="now-ui-icons objects_key-25"></i>
                   <span>Login</span>
                 </NavLink>

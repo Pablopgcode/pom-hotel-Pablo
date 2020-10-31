@@ -1,7 +1,6 @@
 import React from "react";
 import { Container } from "reactstrap";
-import roomService from "services/roomService";
-import DarkFooter from "components/Footers/DarkFooter";
+
 const Room = (props) => {
     
     return (

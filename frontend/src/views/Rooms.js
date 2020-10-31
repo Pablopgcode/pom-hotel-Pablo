@@ -24,7 +24,7 @@ class Rooms extends Component {
             <React.Fragment>
                 <Navbar />
                 <Header image={require("assets/img/revato-10251-13112723-111323.jpg")}/>
-                <div className="col-md-9 offset-md-1 heading2 animate-box fadeInUp animated-fast">
+                <div className="col-md-9 offset--1 heading2 animate-box fadeInUp animated-fast">
                     <h2>Our Rooms</h2>
                 </div>
                 <div className="row">
