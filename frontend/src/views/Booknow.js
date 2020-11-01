@@ -9,18 +9,20 @@ class Booknow extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            rooms: []
+            room: {},
         }
     }
     
     componentDidMount(){
+        let path = this.props.location.pathname;
+        let p = path.split('/');
         
-        RoomService.getRoomById().then((res) => {               
-            this.setState({ rooms : res.data });
+        RoomService.getRoomById(parseInt(p[2])).then((res) => {         
+            this.setState({ room : res.data });
         });
     }
 
-    render() {
+    render() { 
         return(
 
         <React.Fragment>
@@ -28,18 +30,17 @@ class Booknow extends Component {
             <Header image={require("assets/img/bg6.jpg")}/>
             <div className="col-md-9 offset-1 heading2 animate-box fadeInUp animated-fast">
                 <h3>Your choice, our wish</h3>
-                </div>
-                    <div className="row">
-                        <div className="col-md-7"> 
-                        {
-                            this.state.rooms.map(
-                                room =>
-                                <div className="row" key={room.id}>   
-                                    <Room image={require("assets/img/rooms/"+room.image)} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} description={room.description}/>
+            </div>
+                <div className="row">                          
+                    <div className="col-md-7"> 
+                    {
+                        this.state.room.id ?                            
+                                <div className="row" key={this.state.room.id}>
+                                    <Room image={require("assets/img/rooms/"+this.state.room.image)} name={this.state.room.roomtypesByFkRoomtypeId.name} pricePerNight={this.state.room.pricePerNight} description={this.state.room.description}/>                               
                                 </div>    
-                            )
-                        } 
-                        </div>                                    
+                        :<></>
+                    }    
+                    </div>                                                         
                 </div> 
             <DarkFooter />
         </React.Fragment>

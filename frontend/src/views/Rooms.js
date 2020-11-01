@@ -33,7 +33,7 @@ class Rooms extends Component {
                         this.state.rooms.map(
                             room =>
                             <div className="row" key={room.id}>   
-                                <Room image={require("assets/img/rooms/"+room.image)} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} description={room.description}/>
+                                <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} description={room.description}/>
                             </div>    
                         )
                     } 

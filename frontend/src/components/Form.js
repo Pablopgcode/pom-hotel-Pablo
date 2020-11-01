@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'assets/css/bootstrap.min.css';
-import DateIn from 'components/DateIn'
+import DateIn from 'components/DateIn';
 import '../assets/css/various-ui-comp.css'
 import TypeService from '../services/typeService.js';
 
@@ -74,7 +74,7 @@ class Form extends Component {
                                         <div className="form-group">
                                             <label for="pricefrom">Price from:</label>
                                             <div className="form-field">
-                                                <select onchange="controlMinMaxSelect()" name="minprice" id="pricefrom" className="form-control">
+                                                <select onchange="ControlPrice()" name="minprice" id="pricefrom" className="form-control">
                                                     <option value="1">1</option>
                                                     <option value="50">50</option>
                                                     <option value="100">100</option>
@@ -88,7 +88,7 @@ class Form extends Component {
                                         <div className="form-group">
                                             <label for="priceto">Price to:</label>
                                             <div className="form-field">
-                                                <select onchange="controlMinMaxSelect()" name="maxprice" id="priceto" className="form-control">
+                                                <select onchange="ControlPrice()" name="maxprice" id="priceto" className="form-control">
                                                     <option value="100">100</option>
                                                     <option value="200">200</option>
                                                     <option value="300">300</option>
