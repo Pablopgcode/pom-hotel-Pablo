@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import RoomService from '../services/roomService.js';
 import Navbar from "components/Navbars/Navbar.js";
 import Header from 'components/Headers/Header.js';
-import Room from 'components/Room.js';
+import Room from 'components/Rooms/Room.js';
 import DarkFooter from "components/Footers/DarkFooter";
 import Form from "components/Form";
 import '../assets/css/various-ui-comp.css'
