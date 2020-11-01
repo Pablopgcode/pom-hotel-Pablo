@@ -77,13 +77,13 @@ function IndexNavbar() {
                   <span>About us</span>
                 </NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink
                   href="/login">
                   <i className="now-ui-icons objects_key-25"></i>
                   <span>Login</span>
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
             </Nav>
           </Collapse>
         </Container>

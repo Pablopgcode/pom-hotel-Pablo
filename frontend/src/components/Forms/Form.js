@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'assets/css/bootstrap.min.css';
 import DateIn from 'components/DateIn';
-import '../assets/css/various-ui-comp.css'
-import TypeService from '../services/typeService.js';
+import '../../assets/css/various-ui-comp.css'
+import TypeService from '../../services/typeService.js';
 
 class Form extends Component {
 

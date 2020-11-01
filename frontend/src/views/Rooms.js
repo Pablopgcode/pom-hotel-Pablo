@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import RoomService from '../services/roomService.js';
 import Navbar from "components/Navbars/Navbar.js";
 import Header from 'components/Headers/Header.js';
-import Room from 'components/Rooms/Room.js';
-import DarkFooter from "components/Footers/DarkFooter";
-import Form from "components/Form";
+import RoomToBuy from 'components/Rooms/RoomToBuy.js';
+import DarkFooter from "components/Footers/DarkFooter.js";
+import Form from "components/Forms/Form.js";
 import '../assets/css/various-ui-comp.css'
 
 class Rooms extends Component {
@@ -33,7 +33,7 @@ class Rooms extends Component {
                         this.state.rooms.map(
                             room =>
                             <div className="row" key={room.id}>   
-                                <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} description={room.description}/>
+                                <RoomToBuy image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} description={room.description}/>
                             </div>    
                         )
                     } 
