@@ -36,7 +36,8 @@ function Middlehome() {
                             <Testimony person={require("assets/img/person1.jpg")} user="Alysha Myers" city="Miami Florida, USA" coment=" A small river named Duden flows by their place and supplies it with the necessary regelialia."/>
                             <Testimony person={require("assets/img/person2.jpg")} user="James Fisher" city="New York, USA" coment=" One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar."/>
                             <Testimony person={require("assets/img/person3.jpg")} user="Jane Webb" city="Athens, Greece" coment=" Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way."/>                                                                                                                        
-                    </div>
+                    </div>                   
+                    <div id="buthome"><a class="btn btn-primary" href="/rooms/">Find your rest!</a></div>
                 </div>
             </div> 
         </Container>

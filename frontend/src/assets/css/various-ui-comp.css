@@ -1036,3 +1036,116 @@
 select option {
   color: #000;
 }
+
+/* About page */
+.page-block__content--tall {
+  padding-top: 125px;
+  padding-bottom: 125px;
+}
+
+.type-center {
+  text-align: center;
+}
+
+.type-mega--sans {
+  font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 53px;
+}
+
+.type-base--serif {
+  font-family: "Cooper Light", Georgia, serif;
+  font-size: 1.6rem;
+  line-height: 1.9;
+}
+
+.color-callout.blue, .image-callout.blue {
+  background-color: #1ab3a2;
+}
+.color-callout--pull-up, .image-callout--pull-up {
+  margin-top: -75px;
+}
+.color-callout, .image-callout {
+  color: #FFFFFF;
+  position: relative;
+  text-align: center;
+  border-radius: 0;
+  margin-bottom: 75px;
+  z-index: 101;
+}
+
+.color-callout__content, .image-callout__content {
+    width: 75%;
+    margin: auto;
+}
+
+.type-kilo--sans {
+  font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  font-size: 3.4rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.type-med--serif {
+  font-family: "Cooper Light", Georgia, serif;
+  font-size: 1.8rem;
+  line-height: 1.8;
+}
+
+.page-block--image.jobs-1 {
+  background-position: bottom;
+}
+
+.page-block {
+  position: relative;
+  margin: 0;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+}
+
+.page-block__content {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+
+.col-5 {
+    width: 41.6666666667%;
+}
+
+.col-post-1 {
+    margin-right: 8.3333333333%;
+}
+
+.col {
+    float: left;
+}
+
+.type-xl--sans {
+  font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  font-size: 2.8rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col {
+    float: left;
+}
+
+.type-base--serif {
+  font-family: "Cooper Light", Georgia, serif;
+  font-size: 1.6rem;
+  line-height: 1.9;
+}
+
+#buthome{
+  text-align: center;
+  padding:80px;
+}
+
