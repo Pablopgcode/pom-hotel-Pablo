@@ -13,8 +13,8 @@ class Pay extends Component {
     }
     
     componentDidMount(){
-        let id = this.props.location.pathname.split('/');      
-        RoomService.getRoomById(parseInt(id[2])).then((res) => {         
+        let id = this.props.match.params.id;    
+        RoomService.getRoomById(parseInt(id)).then((res) => {         
             this.setState({ room : res.data });
         });
     }

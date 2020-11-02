@@ -20,7 +20,7 @@ ReactDOM.render(
         <Route path="/rooms" render={(props) => <Rooms {...props} />} /> 
         <Route path="/books" render={(props) => <Booknow {...props} />} /> 
         <Route path="/about" render={(props) => <About {...props} />} /> 
-        <Route path="/pay" render={(props) => <Pay {...props} />} />     
+        <Route path="/pay/:id" render={(props) => <Pay {...props} />} />     
         <Redirect from="/" to="/home" />
       </Switch>
     </Switch>

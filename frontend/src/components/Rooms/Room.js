@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "reactstrap";
-
+import {Link} from "react-router-dom";
 const Room = (props) => {
     
     return (
@@ -15,7 +15,7 @@ const Room = (props) => {
                     <p>{props.description}</p> 
                     <p className="price">for {props.guests} guests</p>
                     {/* <p><a class="btn btn-primary" href={"/books/" + props.id}>Book Now!</a></p> */}
-                    <p><a class="btn btn-primary" href={"/pay/" + props.id}>Buy Now!</a></p>
+                    <p><Link className="btn btn-primary" to={"/pay/" + props.id}>Buy Now!</Link></p>
                 </div>
             </div>                         
         </Container>      

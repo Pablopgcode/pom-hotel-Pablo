@@ -1149,3 +1149,19 @@ select option {
   padding:80px;
 }
 
+input[type="checkbox"]{
+  display:inline-block;
+  width:19px;
+  height:19px;
+  margin:-1px 10px 2px 20px;
+  vertical-align:middle;
+	box-shadow: 3px 0 3px 0 rgba(0,0,0,0.2);
+}
+
+#checkOptions{
+  font-weight: bold;
+}
+
+.stronghr{
+  border: 0 ; border-top: 4px double grey; width: 90%;
+}
