@@ -50,6 +50,11 @@ const FormConfirmation = (props) => {
                                         <label>Security code</label>
                                         <input type="text" class="form-control"></input>
                                     </div>
+                                    <div className="col-md-4 padding-bottom">
+                                        <label>Admitted</label>
+                                        <br></br>
+                                        <img src={require("assets/img/Pagos.png")}></img>
+                                    </div>
                                 </div>
                                 <div class="form-group col-12"><hr></hr></div>
                                 <div className="row form-group">
