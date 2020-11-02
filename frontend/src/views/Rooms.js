@@ -5,8 +5,8 @@ import Header from 'components/Headers/Header.js';
 import Room from 'components/Rooms/Room.js';
 import DarkFooter from "components/Footers/DarkFooter.js";
 import Form from "components/Forms/Form.js";
-import '../assets/css/various-ui-comp.css'
-
+import '../assets/css/various-ui-comp.css';
+import Search from "components/Forms/Search.js";
 class Rooms extends Component {
     constructor(props) {
         super(props)

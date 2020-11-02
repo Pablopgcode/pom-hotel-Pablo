@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'assets/css/bootstrap.min.css';
 import DateIn from 'components/DateIn';
+import DateOut from 'components/DateOut';
 import '../../assets/css/various-ui-comp.css'
 import TypeService from '../../services/typeService.js';
+
 
 class Form extends Component {
 
@@ -11,10 +13,7 @@ class Form extends Component {
         super(props)
         this.state = {
             rtypes: [],
-            minPrice: null,
-            maxPrice: null
         }
-        this.ControlPrice = this.ControlPrice.bind(this);
     }
 
     componentDidMount() {
@@ -40,7 +39,7 @@ class Form extends Component {
                                 <div className="form-group">
                                     <label for="checkin">Check-out:</label>
                                     <div className="form-field">
-                                        <DateIn />
+                                        <DateOut />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
@@ -112,24 +111,7 @@ class Form extends Component {
         )
     }
 
-    ControlPrice(e) {
-        var maxSelector = document.getElementById("priceto");
-        var minSelector = document.getElementById("pricefrom");
-        var maxPrice = document.getElementById("priceto").value;
-        var minPrice = document.getElementById("pricefrom").value;
-        for (let i = 0; i < 5; i++) {
-            if (parseInt(maxSelector.options[i].value) < parseInt(minPrice)) {
-                maxSelector.options[i].hidden = true;
-            } else {
-                maxSelector.options[i].hidden = false;
-            }
-            if (parseInt(minSelector.options[i].value) > parseInt(maxPrice)) {
-                minSelector.options[i].hidden = true;
-            } else {
-                minSelector.options[i].hidden = false;
-            }
-        }
-    }
+    
 }
 
 export default Form;

@@ -27,9 +27,8 @@ class Pay extends Component {
                 <Header image={require("assets/img/high-performance.jpg")} />
                 {this.state.room.id ?  
                     <div className="row" key={this.state.room.id}>
-                        {/* <FormConfirmation image={require("assets/img/rooms/"+this.state.room.image)} id={this.state.room.id} type={this.state.room.roomtypesByFkRoomtypeId.name} price={this.state.room.pricePerNight} guests={this.state.room.guests} code={this.state.room.code} description={this.state.room.description}/> */}
                         <Detail image={require("assets/img/rooms/"+this.state.room.image)} id={this.state.room.id} type={this.state.room.roomtypesByFkRoomtypeId.name} price={this.state.room.pricePerNight} guests={this.state.room.guests} code={this.state.room.code} description={this.state.room.description}/>
-                        <FormConfirmation/>
+                        <FormConfirmation />
                     </div>
                 :<></>}    
                 <DarkFooter />
