@@ -1161,7 +1161,3 @@ input[type="checkbox"]{
 #checkOptions{
   font-weight: bold;
 }
-
-.stronghr{
-  border: 0 ; border-top: 4px double grey; width: 90%;
-}

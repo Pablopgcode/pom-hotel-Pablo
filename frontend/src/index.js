@@ -18,7 +18,7 @@ ReactDOM.render(
       <Switch>     
         <Route path="/home" render={(props) => <Home {...props} />} />   
         <Route path="/rooms" render={(props) => <Rooms {...props} />} /> 
-        <Route path="/books" render={(props) => <Booknow {...props} />} /> 
+        <Route path="/find" render={(props) => <Booknow {...props} />} /> 
         <Route path="/about" render={(props) => <About {...props} />} /> 
         <Route path="/pay/:id" render={(props) => <Pay {...props} />} />     
         <Redirect from="/" to="/home" />

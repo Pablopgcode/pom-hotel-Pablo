@@ -29,7 +29,7 @@ class Form extends Component {
                 <div className="sidebar-wrap img-raised" style={{ margin: '50px' }}>
                     <div className="side search-wrap animate-box">
                         <h2 className="sidebar-heading">Find your room</h2>
-                        <form method="post" action="/books" id="roomsSearch" className="colorlib-form">
+                        <form method="post" action="/find" id="roomsSearch" className="colorlib-form">
                             <div className="row">
                                 <div className="form-group">
                                     <label for="checkin">Check-in:</label>
@@ -130,7 +130,6 @@ class Form extends Component {
             }
         }
     }
-
 }
 
 export default Form;
