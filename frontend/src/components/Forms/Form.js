@@ -10,24 +10,27 @@ class Form extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            rtypes: []
+            rtypes: [],
+            minPrice: null,
+            maxPrice: null
         }
+        this.ControlPrice = this.ControlPrice.bind(this);
     }
 
-    componentDidMount(){
-        TypeService.getTypes().then((res) => {               
-            this.setState({ rtypes : res.data });
+    componentDidMount() {
+        TypeService.getTypes().then((res) => {
+            this.setState({ rtypes: res.data });
         });
     }
-    
+
     render() {
         return (
             <div className="col-md-3">
-                <div className="sidebar-wrap img-raised" style={{margin: '50px'}}>
+                <div className="sidebar-wrap img-raised" style={{ margin: '50px' }}>
                     <div className="side search-wrap animate-box">
                         <h2 className="sidebar-heading">Find your room</h2>
                         <form method="post" action="/books" id="roomsSearch" className="colorlib-form">
-                            <div className="row">                           
+                            <div className="row">
                                 <div className="form-group">
                                     <label for="checkin">Check-in:</label>
                                     <div className="form-field">
@@ -58,12 +61,12 @@ class Form extends Component {
                                     <div className="form-group">
                                         <label for="roomtypes">Room Types</label>
                                         <div className="form-field">
-                                            <select  name="type" id="roomtype" className="form-control">
+                                            <select name="type" id="roomtype" className="form-control">
                                                 <option value="0">All types</option>
                                                 {
                                                     this.state.rtypes.map(
                                                         type =>
-                                                        <option value={type.id}>{type.name}</option>
+                                                            <option value={type.id}>{type.name}</option>
                                                     )
                                                 }
                                             </select>
@@ -71,36 +74,36 @@ class Form extends Component {
                                     </div>
                                 </div>
                                 <div className="col-md-6">
-                                        <div className="form-group">
-                                            <label for="pricefrom">Price from:</label>
-                                            <div className="form-field">
-                                                <select onchange="ControlPrice()" name="minprice" id="pricefrom" className="form-control">
-                                                    <option value="1">1</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
-                                                    <option value="200">200</option>
-                                                    <option value="300">300</option>
-                                                </select>
-                                            </div>
+                                    <div className="form-group">
+                                        <label for="pricefrom">Price from:</label>
+                                        <div className="form-field">
+                                            <select name="minprice" id="pricefrom" className="form-control" onchange={this.ControlPrice}>
+                                                <option value="1">1</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                                <option value="200">200</option>
+                                                <option value="300">300</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div className="col-md-6">                  
-                                        <div className="form-group">
-                                            <label for="priceto">Price to:</label>
-                                            <div className="form-field">
-                                                <select onchange="ControlPrice()" name="maxprice" id="priceto" className="form-control">
-                                                    <option value="100">100</option>
-                                                    <option value="200">200</option>
-                                                    <option value="300">300</option>
-                                                    <option value="500">500</option>
-                                                    <option value="1000">1000</option>
-                                                </select>
-                                            </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label for="priceto">Price to:</label>
+                                        <div className="form-field">
+                                            <select name="maxprice" id="priceto" className="form-control" onchange={this.ControlPrice}>
+                                                <option value="100">100</option>
+                                                <option value="200">200</option>
+                                                <option value="300">300</option>
+                                                <option value="500">500</option>
+                                                <option value="1000">1000</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div className="col-md-12">
-                                        <input type="submit" name="submit" id="submit" value="Find Room" className="btn btn-primary btn-block"></input>
-                                    </div>
+                                </div>
+                                <div className="col-md-12">
+                                    <input type="submit" name="submit" id="submit" value="Find Room" className="btn btn-primary btn-block"></input>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -108,6 +111,26 @@ class Form extends Component {
             </div>
         )
     }
+
+    ControlPrice(e) {
+        var maxSelector = document.getElementById("priceto");
+        var minSelector = document.getElementById("pricefrom");
+        var maxPrice = document.getElementById("priceto").value;
+        var minPrice = document.getElementById("pricefrom").value;
+        for (let i = 0; i < 5; i++) {
+            if (parseInt(maxSelector.options[i].value) < parseInt(minPrice)) {
+                maxSelector.options[i].hidden = true;
+            } else {
+                maxSelector.options[i].hidden = false;
+            }
+            if (parseInt(minSelector.options[i].value) > parseInt(maxPrice)) {
+                minSelector.options[i].hidden = true;
+            } else {
+                minSelector.options[i].hidden = false;
+            }
+        }
+    }
+
 }
 
 export default Form;
