@@ -4,7 +4,7 @@ import Navbar from "components/Navbars/Navbar.js";
 import Header from 'components/Headers/Header.js';
 import Room from 'components/Rooms/Room.js';
 import DarkFooter from "components/Footers/DarkFooter.js";
-import Form from "components/Forms/Form.js";
+import FormSearch from "components/Forms/FormSearch.js";
 import '../assets/css/various-ui-comp.css';
 
 class Rooms extends Component {
@@ -23,7 +23,8 @@ class Rooms extends Component {
     }
 
     updateFilter(filter){
-        this.setState ({filter:filter})
+        console.log('updateFilter.filter: ', filter)
+        // this.setState ({filter:filter})
     }
     
     render() {
@@ -45,7 +46,7 @@ class Rooms extends Component {
                         )
                     } 
                     </div>                   
-                    <Form onFilterChange={this.updateFilter.bind(this)} />                   
+                    <FormSearch onFilterChange={this.updateFilter.bind(this)} />                   
                 </div> 
                 <DarkFooter />     
             </React.Fragment>

@@ -6,7 +6,7 @@ import '../../assets/css/various-ui-comp.css'
 import TypeService from '../../services/typeService.js';
 
 
-class Form extends Component {
+class FormSearch extends Component {
     /* Props */
     constructor(props) {
         super(props)
@@ -32,7 +32,7 @@ class Form extends Component {
     handleMinprice (event){
         this.setState({minprice: event.target.value});
     }
-
+    
     handleMaxprice (event){
         this.setState({maxprice: event.target.value});
     }
@@ -43,14 +43,15 @@ class Form extends Component {
             this.setState({ rtypes: res.data });
         });
     }
-
+    
     render() {
+        console.log('state: ',this.state);
         return (
             <div className="col-md-3">
                 <div className="sidebar-wrap img-raised" style={{ margin: '50px' }}>
                     <div className="side search-wrap animate-box">
                         <h2 className="sidebar-heading">Find your room</h2>
-                        <form onSubmit={console.log(this.state)} id="roomsSearch" className="colorlib-form">
+                        <form onSubmit={this.props.onFilterChange(this.state)} id="roomsSearch" className="colorlib-form">
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group">
@@ -150,5 +151,5 @@ class Form extends Component {
     }   
 }
 
-export default Form;
+export default FormSearch;
 
