@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'assets/css/bootstrap.min.css';
-import DateIn from 'components/DateIn';
-import DateOut from 'components/DateOut';
 import '../../assets/css/various-ui-comp.css'
 import TypeService from '../../services/typeService.js';
 
@@ -56,30 +54,27 @@ class Form extends Component {
                         <h2 className="sidebar-heading">Find your room</h2>
                         <form method="post" action="/find" id="roomsSearch" className="colorlib-form">
                             <div className="row">
-                                <div className="form-group">
-                                    <label for="checkin">Check-in:</label>
-                                    <div className="form-field">
-                                        <div className = "container">
-                                        {/* <DateIn name="checkin" value={this.state.value} onchange={this.handleCheckin}/> */}
-                                        <DatePicker
-                                            className="datum"
-                                            selected={ this.state.startDate}
-                                            onChange={ (date) => this.setState({...this.state, startDate: date}) }
-                                            minDate={new Date()}
-                                            name="startDate"
-                                            dateFormat="dd/MM/yyyy"/>
-                                        </div>
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label for="checkin">Check-in:</label>
+                                            <div className="form-field">
+                                            <DatePicker
+                                                className="datum form-control"
+                                                selected={ this.state.startDate}
+                                                onChange={ (date) => this.setState({...this.state, startDate: date}) }
+                                                minDate={new Date()}
+                                                name="startDate"
+                                                dateFormat="dd/MM/yyyy"/>
+                                            </div>
                                     </div>
                                 </div>
-                                <div className="form-group">
-                                    <label for="checkout">Check-out:</label>
-                                    <div className="form-field">
-                                        <div className = "container">
-                                        {/* <DateOut name="checkout" value={this.state.value} onchange={this.handleCheckout}/> */}
-                                        <DatePicker
-                                            className="datum"
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label for="checkout">Check-out:</label>
+                                        <div className="form-field">
+                                            <DatePicker
+                                            className="datum form-control"
                                             selected={ this.state.endDate<this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
-                                            // onChange={  (date) => this.setState({...this.state, endDate: date})  }
                                             onChange={  (date) => this.setState({...this.state, endDate: date})  }
                                             minDate={this.state.startDate}
                                             name="endDate"
@@ -154,9 +149,7 @@ class Form extends Component {
                 </div>
             </div>
         )
-    }
-
-    
+    }   
 }
 
 export default Form;
