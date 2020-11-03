@@ -6,19 +6,26 @@ import Room from 'components/Rooms/Room.js';
 import DarkFooter from "components/Footers/DarkFooter.js";
 import Form from "components/Forms/Form.js";
 import '../assets/css/various-ui-comp.css';
-import Search from "components/Forms/Search.js";
+
 class Rooms extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            rooms: []
+            rooms: [],
+            fiter: {}
         }
+        
     }
     componentDidMount(){
         RoomService.getRooms().then((res) => {               
             this.setState({ rooms : res.data });
         });
     }
+
+    updateFilter(filter){
+        this.setState ({filter:filter})
+    }
+    
     render() {
         return (
             <React.Fragment>
@@ -38,7 +45,7 @@ class Rooms extends Component {
                         )
                     } 
                     </div>                   
-                    <Form />                   
+                    <Form onFilterChange={this.updateFilter.bind(this)} />                   
                 </div> 
                 <DarkFooter />     
             </React.Fragment>

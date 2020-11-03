@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from 'components/Headers/Header.js';
 import Navbar from "components/Navbars/Navbar.js";
 import DarkFooter from "components/Footers/DarkFooter";
-import RoomToBuy from 'components/Rooms/RoomToBuy.js';
+import Room from 'components/Rooms/Room.js';
 import RoomService from '../services/roomService.js';
 
 class Booknow extends Component {
@@ -34,7 +34,7 @@ class Booknow extends Component {
                     {
                         this.state.room.id ?                            
                             <div className="row" key={this.state.room.id}>
-                                <RoomToBuy image={require("assets/img/rooms/"+this.state.room.image)} name={this.state.room.roomtypesByFkRoomtypeId.name} pricePerNight={this.state.room.pricePerNight} description={this.state.room.description}/>                               
+                                <Room image={require("assets/img/rooms/"+this.state.room.image)} name={this.state.room.roomtypesByFkRoomtypeId.name} pricePerNight={this.state.room.pricePerNight} description={this.state.room.description}/>                               
                             </div>    
                         :<></>
                     }    

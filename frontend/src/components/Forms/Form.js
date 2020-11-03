@@ -12,47 +12,30 @@ class Form extends Component {
         super(props)
         this.state = {
             rtypes: [],
-            guests: 1,
+            guests: "3",
             startDate: new Date(),
             endDate: this.startDate,
-            type:{},
-            minprice: 1,
-            maxprice: 1000
+            type: "All types",
+            minprice: "1",
+            maxprice: "1000"
         }
     }
     /*Handlers*/
     handleGuests (event){
-        this.setState({value: event.target.value});
+        this.setState({guests: event.target.value});
     }
 
     handleTypes (event){
-        this.setState({value: event.target.value});
+        this.setState({type: event.target.value});
     }
 
     handleMinprice (event){
-        this.setState({value: event.target.value});
+        this.setState({minprice: event.target.value});
     }
 
     handleMaxprice (event){
-        this.setState({value: event.target.value});
+        this.setState({maxprice: event.target.value});
     }
-
-    handleprice(price){
-        for (let i = 0; i < 5; i++) {
-            // if (parseInt(maxprice.options[i].value) < parseInt(minPrice)) {
-            //     this.setState ({...this.state, maxprice.options[i].hidden :true})
-            // } else {
-            //     this.setState ({...this.state, maxprice.options[i].hidden :false})
-            // }
-            // if (parseInt(minprice.options[i].value) > parseInt(maxPrice)) {
-            //     this.setState ({...this.state, minprice.options[i].hidden :true})
-            // } else {
-            //     this.setState ({...this.state, minprice.options[i].hidden :false})
-            // }
-        }
-    }
-
-
 
     /* obtain types of rooms */
     componentDidMount() {
@@ -67,7 +50,7 @@ class Form extends Component {
                 <div className="sidebar-wrap img-raised" style={{ margin: '50px' }}>
                     <div className="side search-wrap animate-box">
                         <h2 className="sidebar-heading">Find your room</h2>
-                        <form method="post" action="/find" id="roomsSearch" className="colorlib-form">
+                        <form onSubmit={console.log(this.state)} id="roomsSearch" className="colorlib-form">
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group">
@@ -76,7 +59,7 @@ class Form extends Component {
                                             <DatePicker
                                                 className="datum form-control"
                                                 selected={ this.state.startDate}
-                                                onChange={ (date) => this.setState({...this.state, startDate: date}) }
+                                                onChange={ (date) => this.setState({startDate: date}) }
                                                 minDate={new Date()}
                                                 name="startDate"
                                                 dateFormat="dd/MM/yyyy"/>
@@ -90,7 +73,7 @@ class Form extends Component {
                                             <DatePicker
                                             className="datum form-control"
                                             selected={ this.state.endDate<this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
-                                            onChange={  (date) => this.setState({...this.state, endDate: date})  }
+                                            onChange={  (date) => this.setState({endDate: date})  }
                                             minDate={this.state.startDate}
                                             name="endDate"
                                             dateFormat="dd/MM/yyyy"/>
@@ -101,9 +84,9 @@ class Form extends Component {
                                     <div className="form-group">
                                         <label for="guests">Guest</label>
                                         <div className="form-field">
-                                            <select id="guests" name="guests" className="form-control" value={this.state.value} onchange={this.handleGuests}>
+                                            <select id="guests" name="guests" className="form-control" value={this.state.guests} onChange={(e) => this.handleGuests(e)}>
                                                 <option value="1">1</option>
-                                                <option value="2" selected>2</option>
+                                                <option value="2">2</option>
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
                                                 <option value="5">5+</option>
@@ -115,7 +98,7 @@ class Form extends Component {
                                     <div className="form-group">
                                         <label for="roomtypes">Room Types</label>
                                         <div className="form-field">
-                                            <select name="type" id="roomtype" className="form-control" value={this.state.value} onchange={this.handleTypes}>
+                                            <select name="type" id="roomtype" className="form-control" value={this.state.value} onChange={(e) => this.handleTypes(e)}>
                                                 <option value="0">All types</option>
                                                 {
                                                     this.state.rtypes.map(
@@ -131,7 +114,7 @@ class Form extends Component {
                                     <div className="form-group">
                                         <label for="pricefrom">Price from:</label>
                                         <div className="form-field">
-                                            <select name="minprice" id="pricefrom" className="form-control" onchange={this.handleprice}>
+                                            <select name="minprice" id="pricefrom" className="form-control" value={this.state.value} onChange={(e) => this.handleprice(e)}>
                                                 <option value="1">1</option>
                                                 <option value="50">50</option>
                                                 <option value="100">100</option>
@@ -145,7 +128,7 @@ class Form extends Component {
                                     <div className="form-group">
                                         <label for="priceto">Price to:</label>
                                         <div className="form-field">
-                                            <select name="maxprice" id="priceto" className="form-control" onchange={this.handleprice}>
+                                            <select name="maxprice" id="priceto" className="form-control" value={this.state.value} onChange={(e) => this.handleprice(e)}>
                                                 <option value="100">100</option>
                                                 <option value="200">200</option>
                                                 <option value="300">300</option>
