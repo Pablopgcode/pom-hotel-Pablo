@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import 'assets/css/bootstrap.min.css';
 import '../../assets/css/various-ui-comp.css'
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
-
-const FormConfirmation = (props) => {
-
-  
-    return (
+// const FormConfirmation = (props) => {
+class FormConfirmation extends Component {    
+    constructor(props) {
+        super(props)
+        this.state = {
+            startDate: new Date(),
+            endDate: this.startDate,
+        }
+    }
+    
+    render() {
+        return (
                 <div className="container">
                     <form id="booking" method="post">
                         <div className="row form-group">
@@ -65,7 +74,7 @@ const FormConfirmation = (props) => {
                         </div>
                         <div class="form-group col-12"><hr></hr></div>
                             <div className="row">
-                                <div className="col-md-5">
+                                {/* <div className="col-md-5">
                                     <label>Check In</label>
                                     <input type="date" id="checkinVisible" className="form-control"></input>
                                     <input type="hidden" id="checkin" className="form-control" readonly></input>
@@ -74,6 +83,35 @@ const FormConfirmation = (props) => {
                                     <label>Check Out</label>
                                     <input type="date" id="checkoutVisible" className="form-control"></input>
                                     <input type="hidden" id="checkout" className="form-control" readonly></input>
+                                </div> */}
+
+                                <div className="col-md-5">
+                                    <div className="form-group">
+                                        <label for="checkin">Check-in:</label>
+                                        <div className="form-field">
+                                            <DatePicker
+                                                className=" form-control"
+                                                selected={ this.state.startDate}
+                                                onChange={ (date) => this.setState({startDate: date}) }
+                                                minDate={new Date()}
+                                                name="startDate"
+                                                dateFormat="dd/MM/yyyy"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-5">
+                                    <div className="form-group">
+                                        <label for="checkout">Check-out:</label>
+                                        <div className="form-field">
+                                            <DatePicker
+                                            className=" form-control"
+                                            selected={ this.state.endDate<this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
+                                            onChange={  (date) => this.setState({endDate: date})  }
+                                            minDate={this.state.startDate}
+                                            name="endDate"
+                                            dateFormat="dd/MM/yyyy"/>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="col-md-2">
                                     <label>Total Price</label>
@@ -87,7 +125,7 @@ const FormConfirmation = (props) => {
                 </div>                
           
         )
-    
+    }
 }
 
 export default FormConfirmation;

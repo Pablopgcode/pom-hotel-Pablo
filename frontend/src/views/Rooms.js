@@ -12,10 +12,10 @@ class Rooms extends Component {
         super(props)
         this.state = {
             rooms: [],
-            fiter: {}
-        }
-        
+            filter: {}
+        }       
     }
+
     componentDidMount(){
         RoomService.getRooms().then((res) => {               
             this.setState({ rooms : res.data });
@@ -25,8 +25,31 @@ class Rooms extends Component {
     updateFilter(filter){
         console.log('updateFilter.filter: ', filter)
         // this.setState ({filter:filter})
-    }
     
+
+    /* ---------------- by Juan ----------------------------------*/
+    // const roomsFiltered = rooms.filter((room) => {
+    //     let validPricePerNightFrom = filter.minprice
+    //       ? room.pricePerNight >= +filter.minprice
+    //       : true;
+    //     let validPricePerNightTo = filter.maxprice
+    //       ? room.pricePerNight <= +filter.maxprice
+    //       : true;
+    //     let validGuest = filter.guests
+    //       ? room.guests >= +filter.guests
+    //       : true;
+    //     let validType = room.type.includes(filter.type);
+    
+    //     return (
+    //       validPricePerNightFrom &&
+    //       validPricePerNightTo &&
+    //       validGuest &&
+    //       validType
+    //     );
+    //   });
+    // }
+    /* -----------------------------------------------------------------------------*/
+    }/*out*/
     render() {
         return (
             <React.Fragment>
@@ -38,12 +61,13 @@ class Rooms extends Component {
                 <div className="row">
                     <div className="col-md-7"> 
                     {
-                        this.state.rooms.map(
-                            room =>
+                        this.state.rooms.map( /*antes*/
+                        // roomsFiltered.map((room) => (
+                            room => /*antes*/
                             <div className="row" key={room.id}> 
                                 <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} guests={room.guests} description={room.description}/>                           
                             </div>    
-                        )
+                        )     /*)*/
                     } 
                     </div>                   
                     <FormSearch onFilterChange={this.updateFilter.bind(this)} />                   

@@ -45,7 +45,6 @@ class FormSearch extends Component {
     }
     
     render() {
-        console.log('state: ',this.state);
         return (
             <div className="col-md-3">
                 <div className="sidebar-wrap img-raised" style={{ margin: '50px' }}>
@@ -56,7 +55,7 @@ class FormSearch extends Component {
                                 <div className="col-md-6">
                                     <div className="form-group">
                                         <label for="checkin">Check-in:</label>
-                                            <div className="form-field">
+                                        <div className="form-field">
                                             <DatePicker
                                                 className="datum form-control"
                                                 selected={ this.state.startDate}
@@ -64,7 +63,7 @@ class FormSearch extends Component {
                                                 minDate={new Date()}
                                                 name="startDate"
                                                 dateFormat="dd/MM/yyyy"/>
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
