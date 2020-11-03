@@ -114,12 +114,12 @@ class Form extends Component {
                                     <div className="form-group">
                                         <label for="pricefrom">Price from:</label>
                                         <div className="form-field">
-                                            <select name="minprice" id="pricefrom" className="form-control" value={this.state.value} onChange={(e) => this.handleprice(e)}>
-                                                <option value="1">1</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                                <option value="200">200</option>
-                                                <option value="300">300</option>
+                                            <select name="minprice" id="pricefrom" className="form-control" value={this.state.minprice} onChange={(e) => this.handleMinprice(e)}>
+                                                <option value="1" disabled={this.state.maxprice < 1 ? 'true' : ''}>1</option>
+                                                <option value="50" disabled={this.state.maxprice < 50 ? 'true' : ''}>50</option>
+                                                <option value="100" disabled={this.state.maxprice < 100 ? 'true' : ''}>100</option>
+                                                <option value="200" disabled={this.state.maxprice < 200 ? 'true' : ''}>200</option>
+                                                <option value="300" disabled={this.state.maxprice < 300 ? 'true' : ''}>300</option>
                                             </select>
                                         </div>
                                     </div>
@@ -128,11 +128,11 @@ class Form extends Component {
                                     <div className="form-group">
                                         <label for="priceto">Price to:</label>
                                         <div className="form-field">
-                                            <select name="maxprice" id="priceto" className="form-control" value={this.state.value} onChange={(e) => this.handleprice(e)}>
-                                                <option value="100">100</option>
-                                                <option value="200">200</option>
-                                                <option value="300">300</option>
-                                                <option value="500">500</option>
+                                            <select name="maxprice" id="priceto" className="form-control" value={this.state.maxprice} onChange={(e) => this.handleMaxprice(e)}>
+                                                <option value="100" disabled={this.state.minprice > 100 ? 'true' : ''}>100</option>
+                                                <option value="200" disabled={this.state.minprice > 200 ? 'true' : ''}>200</option>
+                                                <option value="300" disabled={this.state.minprice > 300 ? 'true' : ''}>300</option>
+                                                <option value="500" disabled={this.state.minprice > 500 ? 'true' : ''}>500</option>
                                                 <option value="1000">1000</option>
                                             </select>
                                         </div>
