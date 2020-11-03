@@ -34,10 +34,10 @@ class DateOut extends Component {
           <div className="form-group">
             { <DatePicker
               className="datum"
-              selected={ this.state.startDate }
+              selected={ this.state.startDate}
               onChange={ this.handleChange }
               minDate={new Date()}
-              name="startDate"
+              name="checkout"
               dateFormat="dd/MM/yyyy"/>}  
           </div>
         </form>
