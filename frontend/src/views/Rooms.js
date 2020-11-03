@@ -27,7 +27,7 @@ class Rooms extends Component {
         // this.setState ({filter:filter})
     
 
-    /* ---------------- by Juan ----------------------------------*/
+    /* ---------------- filter by Juan ----------------------------------*/
     // const roomsFiltered = rooms.filter((room) => {
     //     let validPricePerNightFrom = filter.minprice
     //       ? room.pricePerNight >= +filter.minprice
@@ -49,7 +49,7 @@ class Rooms extends Component {
     //   });
     // }
     /* -----------------------------------------------------------------------------*/
-    }/*out*/
+    }                                                                           /*out*/
     render() {
         return (
             <React.Fragment>

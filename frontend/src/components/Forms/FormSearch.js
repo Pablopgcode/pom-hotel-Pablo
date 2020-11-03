@@ -12,10 +12,10 @@ class FormSearch extends Component {
         super(props)
         this.state = {
             rtypes: [],
-            guests: "3",
+            guests: "2",
             startDate: new Date(),
             endDate: this.startDate,
-            type: "All types",
+            type: "Suite room",
             minprice: "1",
             maxprice: "1000"
         }
@@ -26,7 +26,7 @@ class FormSearch extends Component {
     }
 
     handleTypes (event){
-        this.setState({type: event.target.value});
+        this.setState({type: event.target.value}); /*vOJO VALOR TIPO */
     }
 
     handleMinprice (event){
@@ -97,8 +97,8 @@ class FormSearch extends Component {
                                 <div className="col-md-6">
                                     <div className="form-group">
                                         <label for="roomtypes">Room Types</label>
-                                        <div className="form-field">
-                                            <select name="type" id="roomtype" className="form-control" value={this.state.value} onChange={(e) => this.handleTypes(e)}>
+                                        <div className="form-field"> 
+                                            <select name="type" id="roomtype" className="form-control" value={this.state.type} onChange={(e) => this.handleTypes(e)}>
                                                 <option value="0">All types</option>
                                                 {
                                                     this.state.rtypes.map(

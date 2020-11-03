@@ -4,7 +4,6 @@ import '../../assets/css/various-ui-comp.css'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-// const FormConfirmation = (props) => {
 class FormConfirmation extends Component {    
     constructor(props) {
         super(props)
@@ -74,17 +73,6 @@ class FormConfirmation extends Component {
                         </div>
                         <div class="form-group col-12"><hr></hr></div>
                             <div className="row">
-                                {/* <div className="col-md-5">
-                                    <label>Check In</label>
-                                    <input type="date" id="checkinVisible" className="form-control"></input>
-                                    <input type="hidden" id="checkin" className="form-control" readonly></input>
-                                </div>
-                                <div className="col-md-5">
-                                    <label>Check Out</label>
-                                    <input type="date" id="checkoutVisible" className="form-control"></input>
-                                    <input type="hidden" id="checkout" className="form-control" readonly></input>
-                                </div> */}
-
                                 <div className="col-md-5">
                                     <div className="form-group">
                                         <label for="checkin">Check-in:</label>
