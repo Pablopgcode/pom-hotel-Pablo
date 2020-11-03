@@ -12,12 +12,12 @@ class Form extends Component {
         super(props)
         this.state = {
             rtypes: [],
-            guests:{},
+            guests: 1,
             startDate: new Date(),
             endDate: this.startDate,
             type:{},
-            minprice:{},
-            maxprice:{}
+            minprice: 1,
+            maxprice: 1000
         }
     }
     /*Handlers*/
@@ -35,6 +35,21 @@ class Form extends Component {
 
     handleMaxprice (event){
         this.setState({value: event.target.value});
+    }
+
+    handleprice(price){
+        for (let i = 0; i < 5; i++) {
+            // if (parseInt(maxprice.options[i].value) < parseInt(minPrice)) {
+            //     this.setState ({...this.state, maxprice.options[i].hidden :true})
+            // } else {
+            //     this.setState ({...this.state, maxprice.options[i].hidden :false})
+            // }
+            // if (parseInt(minprice.options[i].value) > parseInt(maxPrice)) {
+            //     this.setState ({...this.state, minprice.options[i].hidden :true})
+            // } else {
+            //     this.setState ({...this.state, minprice.options[i].hidden :false})
+            // }
+        }
     }
 
 
@@ -116,7 +131,7 @@ class Form extends Component {
                                     <div className="form-group">
                                         <label for="pricefrom">Price from:</label>
                                         <div className="form-field">
-                                            <select name="minprice" id="pricefrom" className="form-control" onchange={this.handleMinprice}>
+                                            <select name="minprice" id="pricefrom" className="form-control" onchange={this.handleprice}>
                                                 <option value="1">1</option>
                                                 <option value="50">50</option>
                                                 <option value="100">100</option>
@@ -130,7 +145,7 @@ class Form extends Component {
                                     <div className="form-group">
                                         <label for="priceto">Price to:</label>
                                         <div className="form-field">
-                                            <select name="maxprice" id="priceto" className="form-control" onchange={this.handleMaxprice}>
+                                            <select name="maxprice" id="priceto" className="form-control" onchange={this.handleprice}>
                                                 <option value="100">100</option>
                                                 <option value="200">200</option>
                                                 <option value="300">300</option>
@@ -154,16 +169,3 @@ class Form extends Component {
 
 export default Form;
 
-/*
-for (let i = 0; i < 5; i++) {
-    if (parseInt(maxSelector.options[i].value) < parseInt(minPrice)) {
-        maxSelector.options[i].hidden = true;
-    } else {
-        maxSelector.options[i].hidden = false;
-    }
-    if (parseInt(minSelector.options[i].value) > parseInt(maxPrice)) {
-        minSelector.options[i].hidden = true;
-    } else {
-        minSelector.options[i].hidden = false;
-    }
-}*/
