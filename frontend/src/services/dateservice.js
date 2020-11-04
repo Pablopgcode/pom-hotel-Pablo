@@ -5,3 +5,5 @@ export  function isDateBetween (date, from , to) {
 
     return dateObj >= fromObj && dateObj <= toObj;
 }
+
+export const now = new Date();

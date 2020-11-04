@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'assets/css/bootstrap.min.css';
 import '../../assets/css/various-ui-comp.css'
 import TypeService from '../../services/typeService.js';
-
+import {now} from '../../services/dateservice';
 class FormSearch extends Component {
     /* Props */
     constructor(props) {
@@ -12,8 +12,8 @@ class FormSearch extends Component {
         this.state = {
             rtypes: [],
             guests: "1",
-            startDate: new Date(),
-            endDate: this.startDate || new Date(),
+            startDate: now,
+            endDate: now,
             type: "",
             minprice: "1",
             maxprice: "1000"
@@ -24,7 +24,6 @@ class FormSearch extends Component {
         TypeService.getTypes().then((res) => {
             this.setState({ rtypes: res.data });
         });
-        console.log("PROPS FORM: ", this.props)
     }
 
     /*Handlers*/

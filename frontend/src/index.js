@@ -9,7 +9,6 @@ import "assets/css/various-ui-comp.css";
 import Rooms from "views/Rooms.js";
 import Home from "views/Home.js";  
 import About from "views/About.js"; 
-import Booknow from "views/Booknow.js";
 import Pay from "views/Pay.js";
 
 ReactDOM.render(
@@ -18,7 +17,6 @@ ReactDOM.render(
       <Switch>     
         <Route path="/home" render={(props) => <Home {...props} />} />   
         <Route path="/rooms" render={(props) => <Rooms {...props} />} /> 
-        <Route path="/find" render={(props) => <Booknow {...props} />} /> 
         <Route path="/about" render={(props) => <About {...props} />} /> 
         <Route path="/pay/:id" render={(props) => <Pay {...props} />} />     
         <Redirect from="/" to="/home" />
