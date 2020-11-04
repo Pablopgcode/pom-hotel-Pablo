@@ -12,21 +12,29 @@ class FormSearch extends Component {
         super(props)
         this.state = {
             rtypes: [],
-            guests: "2",
+            guests: "",
             startDate: new Date(),
-            endDate: this.startDate,
-            type: "Suite room",
-            minprice: "1",
-            maxprice: "1000"
+            endDate: this.startDate || new Date(),
+            type: "",
+            minprice: "",
+            maxprice: ""
         }
     }
+    /* obtain types of rooms */
+    componentDidMount() {
+        TypeService.getTypes().then((res) => {
+            this.setState({ rtypes: res.data });
+        });
+        console.log("PROPS FORM: ", this.props)
+    }
+
     /*Handlers*/
     handleGuests (event){
         this.setState({guests: event.target.value});
     }
 
     handleTypes (event){
-        this.setState({type: event.target.value}); /*vOJO VALOR TIPO */
+        this.setState({type: event.target.value}); /*OJO VALOR TIPO */
     }
 
     handleMinprice (event){
@@ -37,11 +45,9 @@ class FormSearch extends Component {
         this.setState({maxprice: event.target.value});
     }
 
-    /* obtain types of rooms */
-    componentDidMount() {
-        TypeService.getTypes().then((res) => {
-            this.setState({ rtypes: res.data });
-        });
+    submitFormData(ev){
+        ev.preventDefault();
+        this.props.onFilterChange(this.state)
     }
     
     render() {
@@ -50,7 +56,7 @@ class FormSearch extends Component {
                 <div className="sidebar-wrap img-raised" style={{ margin: '50px' }}>
                     <div className="side search-wrap animate-box">
                         <h2 className="sidebar-heading">Find your room</h2>
-                        <form onSubmit={this.props.onFilterChange(this.state)} id="roomsSearch" className="colorlib-form">
+                        <form onSubmit={(e)=> this.submitFormData(e)} id="roomsSearch" className="colorlib-form">
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group">

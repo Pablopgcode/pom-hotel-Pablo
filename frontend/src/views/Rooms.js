@@ -19,38 +19,37 @@ class Rooms extends Component {
     componentDidMount(){
         RoomService.getRooms().then((res) => {               
             this.setState({ rooms : res.data });
-        });
+        })
     }
 
     updateFilter(filter){
         console.log('updateFilter.filter: ', filter)
-        // this.setState ({filter:filter})
-    
-
-    /* ---------------- filter by Juan ----------------------------------*/
-    // const roomsFiltered = rooms.filter((room) => {
-    //     let validPricePerNightFrom = filter.minprice
-    //       ? room.pricePerNight >= +filter.minprice
-    //       : true;
-    //     let validPricePerNightTo = filter.maxprice
-    //       ? room.pricePerNight <= +filter.maxprice
-    //       : true;
-    //     let validGuest = filter.guests
-    //       ? room.guests >= +filter.guests
-    //       : true;
-    //     let validType = room.type.includes(filter.type);
-    
-    //     return (
-    //       validPricePerNightFrom &&
-    //       validPricePerNightTo &&
-    //       validGuest &&
-    //       validType
-    //     );
-    //   });
-    // }
-    /* -----------------------------------------------------------------------------*/
-    }                                                                           /*out*/
+        this.setState ({filter:filter})   
+    }
+                                                                          
     render() {
+            
+        const roomsFiltered = this.state.rooms.filter((room) => {
+            let validPricePerNightFrom = this.state.filter.minprice
+            ? room.pricePerNight >= +this.state.filter.minprice
+            : true;
+            let validPricePerNightTo = this.state.filter.maxprice
+            ? room.pricePerNight <= +this.state.filter.maxprice
+            : true;
+            let validGuest = this.state.filter.guests
+            ? room.guests >= +this.state.filter.guests
+            : true;
+        // let validType = room.type.includes(this.state.filter.type);
+        
+            return (
+                validPricePerNightFrom &&
+                validPricePerNightTo &&
+                validGuest //&&
+                //validType
+            );
+        
+        });
+
         return (
             <React.Fragment>
                 <Navbar />
@@ -61,14 +60,14 @@ class Rooms extends Component {
                 <div className="row">
                     <div className="col-md-7"> 
                     {
-                        this.state.rooms.map( /*antes*/
-                        // roomsFiltered.map((room) => (
-                            room => /*antes*/
+                        // this.state.rooms.map( /*antes*/
+                        roomsFiltered.map((room) => (
+                            // room => /*antes*/
                             <div className="row" key={room.id}> 
                                 <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} guests={room.guests} description={room.description}/>                           
                             </div>    
-                        )     /*)*/
-                    } 
+                        ))
+                    }
                     </div>                   
                     <FormSearch onFilterChange={this.updateFilter.bind(this)} />                   
                 </div> 
