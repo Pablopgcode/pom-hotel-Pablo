@@ -27,7 +27,7 @@ class Rooms extends Component {
         this.setState ({filter:filter})   
     }
                                                                           
-    render() {            
+    render() { 
         const roomsFiltered = this.state.rooms.filter((room) => {
             let validPricePerNightFrom = this.state.filter.minprice
             ? room.pricePerNight >= +this.state.filter.minprice
@@ -48,8 +48,8 @@ class Rooms extends Component {
                 validType
             );        
         });
-
-        return (
+        console.log('renser.filter: ',this.state.filter);  /* objeto filter actual */
+        return (         
             <React.Fragment>
                 <Navbar />
                 <Header image={require("assets/img/revato-10251-13112723-111323.jpg")}/>
