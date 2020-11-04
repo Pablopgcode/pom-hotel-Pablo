@@ -5,19 +5,18 @@ import 'assets/css/bootstrap.min.css';
 import '../../assets/css/various-ui-comp.css'
 import TypeService from '../../services/typeService.js';
 
-
 class FormSearch extends Component {
     /* Props */
     constructor(props) {
         super(props)
         this.state = {
             rtypes: [],
-            guests: "",
+            guests: "1",
             startDate: new Date(),
             endDate: this.startDate || new Date(),
             type: "",
-            minprice: "",
-            maxprice: ""
+            minprice: "1",
+            maxprice: "1000"
         }
     }
     /* obtain types of rooms */
@@ -53,7 +52,7 @@ class FormSearch extends Component {
     render() {
         return (
             <div className="col-md-3">
-                <div className="sidebar-wrap img-raised" style={{ margin: '50px' }}>
+                <div className="sidebar-wrap img-raised" style={{ marginTop: '50px' }}>
                     <div className="side search-wrap animate-box">
                         <h2 className="sidebar-heading">Find your room</h2>
                         <form onSubmit={(e)=> this.submitFormData(e)} id="roomsSearch" className="colorlib-form">

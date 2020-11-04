@@ -27,8 +27,7 @@ class Rooms extends Component {
         this.setState ({filter:filter})   
     }
                                                                           
-    render() {
-            
+    render() {            
         const roomsFiltered = this.state.rooms.filter((room) => {
             let validPricePerNightFrom = this.state.filter.minprice
             ? room.pricePerNight >= +this.state.filter.minprice
@@ -39,15 +38,13 @@ class Rooms extends Component {
             let validGuest = this.state.filter.guests
             ? room.guests >= +this.state.filter.guests
             : true;
-        // let validType = room.type.includes(this.state.filter.type);
-        
+        // let validType = room.type.includes(this.state.filter.type);       
             return (
                 validPricePerNightFrom &&
                 validPricePerNightTo &&
                 validGuest //&&
                 //validType
-            );
-        
+            );        
         });
 
         return (
@@ -60,9 +57,7 @@ class Rooms extends Component {
                 <div className="row">
                     <div className="col-md-7"> 
                     {
-                        // this.state.rooms.map( /*antes*/
                         roomsFiltered.map((room) => (
-                            // room => /*antes*/
                             <div className="row" key={room.id}> 
                                 <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} guests={room.guests} description={room.description}/>                           
                             </div>    
