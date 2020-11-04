@@ -33,6 +33,7 @@ class FormSearch extends Component {
 
     handleTypes (event){
         this.setState({type: event.target.value}); /*OJO VALOR TIPO */
+        console.log("Tipo?: ", event.target.value);
     }
 
     handleMinprice (event){
@@ -49,6 +50,7 @@ class FormSearch extends Component {
     }
     
     render() {
+        console.log("Estado actual: ", this.state);
         return (
             <div className="col-md-3">
                 <div className="sidebar-wrap img-raised" style={{ marginTop: '50px' }}>
@@ -102,7 +104,7 @@ class FormSearch extends Component {
                                     <div className="form-group">
                                         <label for="roomtypes">Room Types</label>
                                         <div className="form-field"> 
-                                            <select name="type" id="roomtype" className="form-control" value={this.state.type} onChange={(e) => this.handleTypes(e)}>
+                                            <select name="type" id="roomtype" className="form-control" value={this.state.value} onChange={(e) => this.handleTypes(e)}>
                                                 <option value="0">All types</option>
                                                 {
                                                     this.state.rtypes.map(

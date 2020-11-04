@@ -12,23 +12,30 @@ describe('Search form unit test', () => {
     test('should have required inputs [',() => {
         const wrapper = shallow(<FormSearch />);
         expect(wrapper.find('[name="guests"]')).toHaveLength(1);
+        expect(wrapper.find('[name="minprice"]')).toHaveLength(1);
+        expect(wrapper.find('[name="maxprice"]')).toHaveLength(1);
+        expect(wrapper.find('[name="startDate"]')).toHaveLength(1);
+        expect(wrapper.find('[name="endDate"]')).toHaveLength(1);
+
     });
 
     test('should run onChange with the new state', () => {
         const updateFilter = jest.fn();
         const wrapper = shallow(<FormSearch onFilterChange={updateFilter}/>);
         wrapper.find('select[name="guests"]').simulate('change', {target:{name:'guests', value: '3'}});
-        wrapper.find('form').simulate('submit', {preventDefault: () => {}});
-
+        wrapper.find('select[name="minprice"]').simulate('change', {target:{name:'minprice', value: '50'}});
+        wrapper.find('select[name="maxprice"]').simulate('change', {target:{name:'maxprice', value: '200'}});
+        wrapper.find('select[name="type"]').simulate('change', {target:{name:'type', value: '2'}});
+        wrapper.find('form').simulate('submit', {preventDefault: () => {}});       
 
         expect (updateFilter).toHaveBeenCalledWith({
                 rtypes: [],
                 guests: "3",
                 startDate: now,
                 endDate: now,
-                type: "",
-                minprice: "1",
-                maxprice: "1000"
+                type: "2",
+                minprice: "50",
+                maxprice: "200"
         })
     });
 

@@ -38,12 +38,14 @@ class Rooms extends Component {
             let validGuest = this.state.filter.guests
             ? room.guests >= +this.state.filter.guests
             : true;
-        // let validType = room.type.includes(this.state.filter.type);       
+            let validType = this.state.filter.type 
+            ? room.roomtypesByFkRoomtypeId.id == this.state.filter.type 
+            : true;       
             return (
                 validPricePerNightFrom &&
                 validPricePerNightTo &&
-                validGuest //&&
-                //validType
+                validGuest &&
+                validType
             );        
         });
 
