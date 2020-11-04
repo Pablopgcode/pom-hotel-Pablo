@@ -29,7 +29,7 @@ class Rooms extends Component {
                                                                           
     render() { 
         const roomsFiltered = this.state.rooms.filter((room) => {
-            let validPricePerNightFrom = this.state.filter.minprice
+            let validPricePerNightFrom = this.state.filter.minprice  /* OJO VALIDAR FECHAS PARA PODER PAGAR SIN FORM */
             ? room.pricePerNight >= +this.state.filter.minprice
             : true;
             let validPricePerNightTo = this.state.filter.maxprice
@@ -48,7 +48,7 @@ class Rooms extends Component {
                 validType
             );        
         });
-        console.log('renser.filter: ',this.state.filter);  /* objeto filter actual */
+        console.log('render.filter: ',this.state.filter);  /* objeto filter renderizado actual */
         return (         
             <React.Fragment>
                 <Navbar />
@@ -61,7 +61,7 @@ class Rooms extends Component {
                     {
                         roomsFiltered.map((room) => (
                             <div className="row" key={room.id}> 
-                                <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} guests={room.guests} description={room.description}/>                           
+                                <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} guests={room.guests} description={room.description} startDate={this.state.filter.startDate} endDate={this.state.filter.endDate}/>                           
                             </div>    
                         ))
                     }

@@ -8,8 +8,10 @@ class FormConfirmation extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            startDate: new Date(),
-            endDate: this.startDate,
+            // startDate: new Date(),
+            // endDate: this.startDate,
+            startDate: this.props.startDate,
+            endDate: this.props.endDate
         }
     }
     

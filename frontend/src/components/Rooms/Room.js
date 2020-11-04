@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "reactstrap";
 import {Link} from "react-router-dom";
+import { isPropertyAccessExpression } from "typescript";
 const Room = (props) => {
     
     return (
@@ -14,7 +15,7 @@ const Room = (props) => {
                     <p className="price"><h3>{props.pricePerNight} &#8364;<small>/ night</small></h3></p>
                     <p>{props.description}</p> 
                     <p className="price">for {props.guests} guests</p>
-                    <p><Link className="btn btn-primary" to={"/pay/" + props.id}>Buy Now!</Link></p>
+                    <p><Link className="btn btn-primary" to={"/pay/" + props.id + props.startDate + props.endDate}>Buy Now!</Link></p>
                 </div>
             </div>                         
         </Container>      
