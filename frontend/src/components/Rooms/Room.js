@@ -15,7 +15,11 @@ const Room = (props) => {
                     <p className="price"><h3>{props.pricePerNight} &#8364;<small>/ night</small></h3></p>
                     <p>{props.description}</p> 
                     <p className="price">for {props.guests} guests</p>
-                    <p><Link className="btn btn-primary" to={"/pay/" + props.id + props.startDate + props.endDate}>Buy Now!</Link></p>
+                    <p><Link className="btn btn-primary" to={{pathname: "/pay/" + props.id + props.startDate + props.endDate,
+                                                              state: {
+                                                                  data: props
+                                                              }}}
+                    >Buy Now!</Link></p>
                 </div>
             </div>                         
         </Container>      

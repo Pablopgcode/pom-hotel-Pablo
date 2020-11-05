@@ -10,9 +10,10 @@ class Pay extends Component {
         super(props)
         this.state = {
             room: {},
-            startDate: this.props.startDate,                            /* OJO AQUI !!!!! */
-            endDate: this.props.endDate                                 /* NO VIENEN BIEN POR URL, MIRAR CHURRO EN COMPONENTE ROOM */
+            startDate: this.props.location.state.data.startDate,                            
+            endDate: this.props.location.state.data.endDate                               
         }
+        console.log('Datos Room: ',props.location.state.data);
     }
     
     componentDidMount(){
@@ -31,7 +32,7 @@ class Pay extends Component {
                 {this.state.room.id ?  
                     <div className="row" key={this.state.room.id}>
                         <Detail image={require("assets/img/rooms/"+this.state.room.image)} id={this.state.room.id} type={this.state.room.roomtypesByFkRoomtypeId.name} price={this.state.room.pricePerNight} guests={this.state.room.guests} code={this.state.room.code} description={this.state.room.description}/>
-                        <FormConfirmation startDate={this.startDate} endDate={this.endDate} /> 
+                        <FormConfirmation startDate={this.state.startDate} endDate={this.state.endDate} /> 
                     </div>
                 :<></>}    
                 <DarkFooter />
