@@ -1,6 +1,7 @@
 package com.pomhotel.booking.application.repositories;
 
 import com.pomhotel.booking.application.domain.entities.BookingsEntity;
+import com.pomhotel.booking.application.models.ReservedModel;
 
 import java.util.List;
 
@@ -8,6 +9,8 @@ import java.util.List;
 public interface BookingsRepository {
 
     BookingsEntity findById(long id);
+
+    public List<ReservedModel> getReservedDates(long id);
 
     List<BookingsEntity> findAll();
 

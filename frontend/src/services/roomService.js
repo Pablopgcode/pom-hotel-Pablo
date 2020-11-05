@@ -9,12 +9,6 @@ class RoomService{
         return axios.get(ROOMS_URL + '/rooms/' + id);
     }
 
-    
-
-    
-
-    
-
 }
 export default new RoomService()
 

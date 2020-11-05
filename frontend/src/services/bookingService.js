@@ -5,6 +5,5 @@ class BookService{
     getBookings(){
         return axios.get( BOOKINGS_URL + '/booknow');
     }
-
 }
 export default new BookService()

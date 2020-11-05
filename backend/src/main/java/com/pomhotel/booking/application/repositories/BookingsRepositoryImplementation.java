@@ -1,6 +1,9 @@
 package com.pomhotel.booking.application.repositories;
 
 import com.pomhotel.booking.application.domain.entities.BookingsEntity;
+import com.pomhotel.booking.application.domain.entities.ClientsEntity;
+import com.pomhotel.booking.application.domain.entities.RoomsEntity;
+import com.pomhotel.booking.application.models.ReservedModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -53,6 +56,22 @@ public class BookingsRepositoryImplementation implements BookingsRepository{
         }
         return entities;
     }
+
+    @Override
+    public List<ReservedModel> getReservedDates(long id) {
+        List<ReservedModel> model = null;
+        Session session = this.dbConnection.openSession();
+        try {
+            model = session.createQuery("SELECT checkIn,checkOut FROM BookingsEntity e WHERE ( e.roomsByFkRoomId.id="+id+") AND ( checkOut > current_date )" ).getResultList();
+        }catch (Throwable ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return model;
+    }
+
+
 
     @Override
     public void saveOrUpdate(BookingsEntity entity) {

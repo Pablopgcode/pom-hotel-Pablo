@@ -6,13 +6,14 @@ import Room from 'components/Rooms/Room.js';
 import DarkFooter from "components/Footers/DarkFooter.js";
 import FormSearch from "components/Forms/FormSearch.js";
 import '../assets/css/various-ui-comp.css';
+import {now} from '../services/dateservice';
 
 class Rooms extends Component {
     constructor(props) {
         super(props)
         this.state = {
             rooms: [],
-            filter: {}
+            filter: {startDate: now}
         }       
     }
 
@@ -29,7 +30,7 @@ class Rooms extends Component {
                                                                           
     render() { 
         const roomsFiltered = this.state.rooms.filter((room) => {
-            let validPricePerNightFrom = this.state.filter.minprice  /* OJO VALIDAR FECHAS PARA PODER PAGAR SIN FORM */
+            let validPricePerNightFrom = this.state.filter.minprice  
             ? room.pricePerNight >= +this.state.filter.minprice
             : true;
             let validPricePerNightTo = this.state.filter.maxprice
@@ -40,7 +41,7 @@ class Rooms extends Component {
             : true;
             let validType = this.state.filter.type 
             ? room.roomtypesByFkRoomtypeId.id == this.state.filter.type 
-            : true;       
+            : true; 
             return (
                 validPricePerNightFrom &&
                 validPricePerNightTo &&
@@ -48,7 +49,7 @@ class Rooms extends Component {
                 validType
             );        
         });
-        console.log('render.filter: ',this.state.filter);  /* objeto filter renderizado actual */
+        console.log('Objeto filter renderizado: ',this.state.filter);  /* objeto filter renderizado actual */
         return (         
             <React.Fragment>
                 <Navbar />

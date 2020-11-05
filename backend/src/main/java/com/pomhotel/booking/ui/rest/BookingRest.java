@@ -1,6 +1,7 @@
 package com.pomhotel.booking.ui.rest;
 
 import com.pomhotel.booking.application.models.BookingsModel;
+import com.pomhotel.booking.application.models.ReservedModel;
 import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.application.services.BookingsService;
 import com.pomhotel.booking.application.services.ClientLoginService;
@@ -43,6 +44,12 @@ public class BookingRest {
     public List bookingsList(){
         List<BookingsModel> bookings = bookingsService.findAll();
         return bookings;
+    }
+
+    @GetMapping("/reserved/{id}")
+    public List getReservedDatesByRoomId(@PathVariable long id){
+        List <ReservedModel> reservedDates = bookingsService.getReservedDates(id);
+        return reservedDates;
     }
 
     @GetMapping("/booknow/{id}")

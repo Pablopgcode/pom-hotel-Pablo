@@ -10,6 +10,7 @@ import Rooms from "views/Rooms.js";
 import Home from "views/Home.js";  
 import About from "views/About.js"; 
 import Pay from "views/Pay.js";
+import ReservedDates from "components/ReservedDates.js"
 
 ReactDOM.render(
   <BrowserRouter>
@@ -18,7 +19,9 @@ ReactDOM.render(
         <Route path="/home" render={(props) => <Home {...props} />} />   
         <Route path="/rooms" render={(props) => <Rooms {...props} />} /> 
         <Route path="/about" render={(props) => <About {...props} />} /> 
-        <Route path="/pay/:id" render={(props) => <Pay {...props} />} />     
+        <Route path="/pay/:id" render={(props) => <Pay {...props} />} />
+
+        <Route path="/reserved" render={(props) => <ReservedDates {...props} />} />   
         <Redirect from="/" to="/home" />
       </Switch>
     </Switch>
