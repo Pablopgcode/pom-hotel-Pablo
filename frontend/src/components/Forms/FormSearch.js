@@ -49,6 +49,7 @@ class FormSearch extends Component {
     }
     
     render() {
+        
         return (
             <div className="col-md-3">
                 <div className="sidebar-wrap img-raised" style={{ marginTop: '50px' }}>
@@ -66,7 +67,8 @@ class FormSearch extends Component {
                                                 onChange={ (date) => this.setState({startDate: date}) }
                                                 minDate={new Date()}
                                                 name="startDate"
-                                                dateFormat="dd/MM/yyyy"/>
+                                                dateFormat="dd/MM/yyyy"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +82,8 @@ class FormSearch extends Component {
                                             onChange={  (date) => this.setState({endDate: date})  }
                                             minDate={this.state.startDate}
                                             name="endDate"
-                                            dateFormat="dd/MM/yyyy"/>
+                                            dateFormat="dd/MM/yyyy"
+                                            />
                                         </div>
                                     </div>
                                 </div>

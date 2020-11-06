@@ -6,9 +6,9 @@ import Room from 'components/Rooms/Room.js';
 import DarkFooter from "components/Footers/DarkFooter.js";
 import FormSearch from "components/Forms/FormSearch.js";
 import '../assets/css/various-ui-comp.css';
-import {now} from '../services/dateservice';
+import {isDateBetween, now} from '../services/dateservice';
 import {parseISO} from 'date-fns';
-
+let excluded = [];
 class Rooms extends Component {
     constructor(props) {
         super(props)
@@ -16,24 +16,14 @@ class Rooms extends Component {
             rooms: [],
             excluded: [],
             filter: {startDate: now}
-        }       
+        }           
     }
 
     componentDidMount(){
-        let rooms = []
         RoomService.getRooms().then((res) => {  
-            rooms = res.data;
             this.setState({ rooms : res.data });
-        })
-        
-        console.log('mount.rooms ',rooms)
-        let excluded = [];
-        const l = rooms.length;
-        for (let i=0; i<l; i++){
-            excluded = rooms[i].booked.map((date) => parseISO(date));
-        }
-        console.log('excluded: ',excluded);
-    }
+        }) 
+    }  
 
     updateFilter(filter){
         console.log('updateFilter.filter: ', filter)
@@ -41,7 +31,7 @@ class Rooms extends Component {
     }
                                                                           
     render() { 
-        console.log("Rooms con reservas: ", this.state.rooms);
+        console.log("Rooms : ", this.state.rooms);
         const roomsFiltered = this.state.rooms.filter((room) => {
             let validPricePerNightFrom = this.state.filter.minprice  
             ? room.pricePerNight >= +this.state.filter.minprice
@@ -55,11 +45,14 @@ class Rooms extends Component {
             let validType = this.state.filter.type 
             ? room.roomtypesByFkRoomtypeId.id == this.state.filter.type 
             : true; 
+            let validDates = !room.booked.some(
+                date =>
+                isDateBetween (date, this.state.filter.startDate, this.state.filter.endDate),);
             return (
                 validPricePerNightFrom &&
                 validPricePerNightTo &&
                 validGuest &&
-                validType
+                validType && validDates
             );        
         });
         console.log('Objeto filter renderizado: ',this.state.filter);  /* objeto filter renderizado actual */
