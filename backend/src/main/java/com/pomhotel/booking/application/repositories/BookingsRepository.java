@@ -10,7 +10,7 @@ public interface BookingsRepository {
 
     BookingsEntity findById(long id);
 
-    public List<ReservedModel> getReservedDates(long id);
+    public List<Object[]> getReservedDates(long id);
 
     List<BookingsEntity> findAll();
 

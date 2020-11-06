@@ -3,6 +3,7 @@ package com.pomhotel.booking.application.services;
 import com.pomhotel.booking.application.models.BookingsModel;
 import com.pomhotel.booking.application.models.ReservedModel;
 
+import java.sql.Date;
 import java.util.List;
 
 //--- Service Interface -------------------------------------------
@@ -18,5 +19,6 @@ public interface BookingsService {
 
     void delete(BookingsModel model);
 
-    public List<ReservedModel> getReservedDates(long id);
+
+    public List<Date> getReservedDates(long id);
 }

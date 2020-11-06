@@ -58,20 +58,18 @@ public class BookingsRepositoryImplementation implements BookingsRepository{
     }
 
     @Override
-    public List<ReservedModel> getReservedDates(long id) {
-        List<ReservedModel> model = null;
+    public List<Object[]> getReservedDates(long id) {
+        List<Object[]> entities = null;
         Session session = this.dbConnection.openSession();
         try {
-            model = session.createQuery("SELECT checkIn,checkOut FROM BookingsEntity e WHERE ( e.roomsByFkRoomId.id="+id+") AND ( checkOut > current_date )" ).getResultList();
+            entities = session.createQuery("SELECT checkIn,checkOut FROM BookingsEntity e WHERE ( e.roomsByFkRoomId.id="+id+") AND ( checkOut > current_date )" ).getResultList();
         }catch (Throwable ex) {
             ex.printStackTrace();
         } finally {
             session.close();
         }
-        return model;
+        return entities;
     }
-
-
 
     @Override
     public void saveOrUpdate(BookingsEntity entity) {

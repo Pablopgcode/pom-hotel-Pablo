@@ -8,7 +8,6 @@ import com.pomhotel.booking.application.services.ClientLoginService;
 import com.pomhotel.booking.application.services.RoomsService;
 import com.pomhotel.booking.ui.controllers.SecurityController;
 import com.pomhotel.booking.ui.dto.NewBookingDTO;
-import com.pomhotel.booking.ui.dto.ReservedDatesDTO;
 import com.pomhotel.booking.ui.servicies.BookingLogicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,28 +49,11 @@ public class BookingRest {
         return bookings;
     }
 
-    @GetMapping("/reserved/{id}")
-    public List getReservedDatesByRoomId(@PathVariable long id){
-        List <ReservedModel> reservedDates = bookingsService.getReservedDates(id);
+    @GetMapping("/reserved/{id}") ////////////////////////////////////////////////////////////////////////////////////////
+    public List <Date> getAlleDatum (@PathVariable long id){
+        List <Date> reservedDates = bookingsService.getReservedDates(id);
         return reservedDates;
-    }
-
-    @GetMapping("/reser/{id}")
-    public List getAlleDatum (@PathVariable long id){
-        List <ReservedModel> reservedDates = bookingsService.getReservedDates(id);
-        List<ReservedModel> allDatesReserved = new ArrayList<>();
-        System.out.println(reservedDates.get(2).getCheckIn());
-//        for (int i = 0; i < reservedDates.size(); i++) {
-//            Date checkIn = reservedDates.get(i).getCheckIn();
-//            Date checkOut = reservedDates.get(i).getCheckOut();
-//            while (!checkIn.equals(checkOut)) {
-//                allDatesReserved.add(checkIn);
-//                checkIn = new Date(checkIn.getTime() + TimeUnit.DAYS.toMillis( 1 ));
-//                System.out.println(allDatesReserved.toString());
-//            }
-//        }
-        return reservedDates;
-    }
+    }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     @GetMapping("/booknow/{id}")

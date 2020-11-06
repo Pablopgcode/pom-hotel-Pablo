@@ -7,7 +7,11 @@ import com.pomhotel.booking.application.models.ReservedModel;
 import com.pomhotel.booking.application.repositories.BookingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 //--- Service ----------------------------------------------------------
@@ -45,9 +49,26 @@ public class BookingsServiceImplementation implements BookingsService{
         repository.saveOrUpdate(factory.createEntity(model));
     }
 
-    @Override
-    public List<ReservedModel> getReservedDates(long id){
-        return repository.getReservedDates(id);
+//        @Override
+//    public List<Object[]> getReservedDates(long id){
+//        return repository.getReservedDates(id);
+//    }
+
+     @Override
+     public List<Date> getReservedDates(long id) {
+         List<Object[]> entities = repository.getReservedDates(id);
+         List<Date> reservedDates = new ArrayList<>();
+         for (int i=0 ; i < entities.size(); i++){
+            Date checkIn = (Date) entities.get(i)[0];
+            Date checkOut = (Date) entities.get(i)[1];
+            reservedDates.add(checkIn);
+            Date newDate = checkIn;
+            while (!newDate.equals(checkOut)) {
+                newDate = new Date(newDate.getTime() + TimeUnit.DAYS.toMillis(1));
+                reservedDates.add(newDate);
+            }
+         }
+         return reservedDates;
     }
 
     @Override
