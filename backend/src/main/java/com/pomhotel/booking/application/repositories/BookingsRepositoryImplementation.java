@@ -1,9 +1,6 @@
 package com.pomhotel.booking.application.repositories;
 
 import com.pomhotel.booking.application.domain.entities.BookingsEntity;
-import com.pomhotel.booking.application.domain.entities.ClientsEntity;
-import com.pomhotel.booking.application.domain.entities.RoomsEntity;
-import com.pomhotel.booking.application.models.ReservedModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

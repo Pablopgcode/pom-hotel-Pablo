@@ -1,7 +1,6 @@
 package com.pomhotel.booking.application.services;
 
 import com.pomhotel.booking.application.models.BookingsModel;
-import com.pomhotel.booking.application.models.ReservedModel;
 
 import java.sql.Date;
 import java.util.List;

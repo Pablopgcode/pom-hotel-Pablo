@@ -1,7 +1,6 @@
 package com.pomhotel.booking.ui.rest;
 
 import com.pomhotel.booking.application.models.BookingsModel;
-import com.pomhotel.booking.application.models.ReservedModel;
 import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.application.services.BookingsService;
 import com.pomhotel.booking.application.services.ClientLoginService;
@@ -15,9 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 @CrossOrigin (origins = "http://localhost:3000")
@@ -49,12 +46,11 @@ public class BookingRest {
         return bookings;
     }
 
-    @GetMapping("/reserved/{id}") ////////////////////////////////////////////////////////////////////////////////////////
+    @GetMapping("/reserved/{id}")
     public List <Date> getAlleDatum (@PathVariable long id){
         List <Date> reservedDates = bookingsService.getReservedDates(id);
         return reservedDates;
-    }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    }
 
     @GetMapping("/booknow/{id}")
     public BookingsModel  getBooking(@PathVariable long id) {

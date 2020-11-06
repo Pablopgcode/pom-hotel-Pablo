@@ -1,7 +1,6 @@
 package com.pomhotel.booking.application.repositories;
 
 import com.pomhotel.booking.application.domain.entities.BookingsEntity;
-import com.pomhotel.booking.application.models.ReservedModel;
 
 import java.util.List;
 
