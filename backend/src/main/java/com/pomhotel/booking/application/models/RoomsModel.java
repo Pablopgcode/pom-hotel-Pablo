@@ -1,5 +1,8 @@
 package com.pomhotel.booking.application.models;
 
+import java.sql.Date;
+import java.util.List;
+
 public class RoomsModel {
 
     //--- Attributes -----------------------------------------------
@@ -10,7 +13,7 @@ public class RoomsModel {
     public String image;
     public int guests;
     public RoomtypesModel roomtypesByFkRoomtypeId;
-
+    public List<Date> booked;
     //--- Constructor ----------------------------------------------
     public RoomsModel() {
     }
@@ -63,5 +66,13 @@ public class RoomsModel {
     }
     public void setRoomtypesByFkRoomtypeId(RoomtypesModel roomtypesByFkRoomtypeId) {
         this.roomtypesByFkRoomtypeId = roomtypesByFkRoomtypeId;
+    }
+
+    public List<Date> getBooked() {
+        return booked;
+    }
+
+    public void setBooked(List<Date> booked) {
+        this.booked = booked;
     }
 }

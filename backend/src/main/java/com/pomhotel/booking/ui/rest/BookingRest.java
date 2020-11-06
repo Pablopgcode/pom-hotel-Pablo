@@ -46,12 +46,6 @@ public class BookingRest {
         return bookings;
     }
 
-    @GetMapping("/reserved/{id}")
-    public List <Date> getAlleDatum (@PathVariable long id){
-        List <Date> reservedDates = bookingsService.getReservedDates(id);
-        return reservedDates;
-    }
-
     @GetMapping("/booknow/{id}")
     public BookingsModel  getBooking(@PathVariable long id) {
         BookingsModel model = bookingsService.findById(id);

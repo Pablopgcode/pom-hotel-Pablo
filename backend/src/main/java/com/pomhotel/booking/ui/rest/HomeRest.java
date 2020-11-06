@@ -3,6 +3,7 @@ package com.pomhotel.booking.ui.rest;
 import com.pomhotel.booking.application.models.BookingsModel;
 import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.application.models.RoomtypesModel;
+import com.pomhotel.booking.application.services.BookingsService;
 import com.pomhotel.booking.application.services.RoomTypesService;
 import com.pomhotel.booking.application.services.RoomsService;
 import com.pomhotel.booking.ui.dto.SearchDTO;
@@ -10,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
 import java.util.List;
 
 @CrossOrigin (origins = "http://localhost:3000")
@@ -20,18 +23,23 @@ public class HomeRest {
     //--- Services & Variables used ---------------------------------------
     RoomsService roomsService;
     RoomTypesService roomTypesService;
+    BookingsService bookingsService;
 
     //--- Constructor -----------------------------------------------------
     @Autowired
-    public HomeRest(RoomsService roomsService, RoomTypesService roomTypesService) {
+    public HomeRest(RoomsService roomsService, RoomTypesService roomTypesService, BookingsService bookingsService) {
         this.roomsService = roomsService;
         this.roomTypesService = roomTypesService;
+        this.bookingsService = bookingsService;
     }
 
     //--- Rooms Mappings -----------------------------------------------------
     @GetMapping("/rooms")
     public List roomsList(){
         List<RoomsModel> rooms = roomsService.findAll();
+        for (RoomsModel room : rooms){
+            room.setBooked(bookingsService.getReservedDates(room.id));
+        }
         return rooms;
     }
 
