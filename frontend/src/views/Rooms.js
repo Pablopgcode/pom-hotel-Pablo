@@ -14,7 +14,6 @@ class Rooms extends Component {
         super(props)
         this.state = {
             rooms: [],
-            excluded: [],
             filter: {startDate: now}
         }           
     }
@@ -31,7 +30,7 @@ class Rooms extends Component {
     }
                                                                           
     render() { 
-        console.log("Rooms : ", this.state.rooms);
+        
         const roomsFiltered = this.state.rooms.filter((room) => {
             let validPricePerNightFrom = this.state.filter.minprice  
             ? room.pricePerNight >= +this.state.filter.minprice
@@ -55,7 +54,8 @@ class Rooms extends Component {
                 validType && validDates
             );        
         });
-        console.log('Objeto filter renderizado: ',this.state.filter);  /* objeto filter renderizado actual */
+        console.log('Objeto filter renderizado: ',this.state.filter);  /* Objeto filter renderizado actual */
+        console.log("roomsFiltered : ", roomsFiltered);
         return (         
             <React.Fragment>
                 <Navbar />
