@@ -27,17 +27,15 @@ public class BookRoomController {
     RoomsService roomsService;
     BookingsService bookingsService;
     ClientLoginService clientsService;
-    SecurityController securityController;
     BookingLogicalService bookingLogicalService;
     RoomsModel roomSelected;
 
     //--- Constructor --------------------------------------------------
     @Autowired
-    public BookRoomController(RoomsService roomsService, BookingsService bookingsService, ClientLoginService clientsService, SecurityController securityController, BookingLogicalService bookingLogicalService) {
+    public BookRoomController(RoomsService roomsService, BookingsService bookingsService, ClientLoginService clientsService, BookingLogicalService bookingLogicalService) {
         this.roomsService = roomsService;
         this.bookingsService = bookingsService;
         this.clientsService = clientsService;
-        this.securityController = securityController;
         this.bookingLogicalService = bookingLogicalService;
     }
 
@@ -70,7 +68,7 @@ public class BookRoomController {
             model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
 
             model.roomsByFKRoomId = roomSelected;
-            model.clientsByFkClientId = clientsService.findClientByUsername(securityController.currentUsername());
+            model.clientsByFkClientId = clientsService.findClientByUsername("Garcia1989");
             model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, roomSelected.pricePerNight);
             bookingsService.saveOrUpdate(model);
 

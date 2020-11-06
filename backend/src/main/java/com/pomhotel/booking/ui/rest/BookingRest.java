@@ -5,7 +5,6 @@ import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.application.services.BookingsService;
 import com.pomhotel.booking.application.services.ClientLoginService;
 import com.pomhotel.booking.application.services.RoomsService;
-import com.pomhotel.booking.ui.controllers.SecurityController;
 import com.pomhotel.booking.ui.dto.NewBookingDTO;
 import com.pomhotel.booking.ui.servicies.BookingLogicalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.sql.Date;
 import java.util.List;
 
 
@@ -26,17 +24,15 @@ public class BookingRest {
     RoomsService roomsService;
     BookingsService bookingsService;
     ClientLoginService clientsService;
-    SecurityController securityController;
     BookingLogicalService bookingLogicalService;
     RoomsModel roomSelected;
 
     //--- Constructor --------------------------------------------------
     @Autowired
-    public BookingRest(RoomsService roomsService, BookingsService bookingsService, ClientLoginService clientsService, SecurityController securityController, BookingLogicalService bookingLogicalService) {
+    public BookingRest(RoomsService roomsService, BookingsService bookingsService, ClientLoginService clientsService, BookingLogicalService bookingLogicalService) {
         this.roomsService = roomsService;
         this.bookingsService = bookingsService;
         this.clientsService = clientsService;
-        this.securityController = securityController;
         this.bookingLogicalService = bookingLogicalService;
     }
 
@@ -65,7 +61,7 @@ public class BookingRest {
             model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
             model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
             model.roomsByFKRoomId = roomsService.findById(dto.roomId);
-            model.clientsByFkClientId = clientsService.findClientByUsername(securityController.currentUsername());
+            model.clientsByFkClientId = clientsService.findClientByUsername("Garcia1989");
             model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, model.roomsByFKRoomId.pricePerNight);
             bookingsService.saveOrUpdate(model);
         }catch (Exception e) {
