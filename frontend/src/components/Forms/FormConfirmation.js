@@ -17,11 +17,12 @@ class FormConfirmation extends Component {
     calculatePrice(end){
         this.setState({endDate: end})
         GetTotalPrice.getTotalPrice(this.state.startDate, end, this.props.id).then((res) => {
-            this.setState({ totalPrice: res.data});
+            this.setState({ totalPrice: res.data});           
         })
     }
    
     render() {
+        console.log("Precio Total: ", this.state.totalPrice);
         return (
                 <div className="container">
                     <form id="booking" method="post">
@@ -111,7 +112,7 @@ class FormConfirmation extends Component {
                                 </div>
                                 <div className="col-md-2">
                                     <label>Total Price</label>
-                                    <input type="text" className="form-control" disabled>{this.state.totalPrice}</input>
+                                    <input type="text" className="form-control" disabled value={this.state.totalPrice} ></input>
                                 </div>
                                 <div className="form-group text-center col-md-12"><hr></hr>
                                     <input type="submit" value="Confirm Booking" className="btn btn-primary"></input>
