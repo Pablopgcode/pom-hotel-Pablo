@@ -20,8 +20,15 @@ class FormConfirmation extends Component {
             this.setState({ totalPrice: res.data});           
         })
     }
+
+    componentDidMount(){
+        GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.id).then((res) => {
+            this.setState({ totalPrice: res.data});           
+        })
+    }  
    
     render() {
+        console.log("FECHA", this.state.startDate);
         console.log("Precio Total: ", this.state.totalPrice);
         return (
                 <div className="container">

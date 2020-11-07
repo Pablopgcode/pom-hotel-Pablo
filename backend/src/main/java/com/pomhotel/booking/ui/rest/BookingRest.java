@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.sql.Date;
+
 import java.util.List;
 
 
@@ -46,17 +46,17 @@ public class BookingRest {
         return bookings;
     }
 
-//    @GetMapping("/booknow/{id}")
-//    public BookingsModel  getBooking(@PathVariable long id) {
-//        BookingsModel model = bookingsService.findById(id);
-//        ResponseEntity<BookingsModel> response;
-//        if (model == null) {
-//            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        } else {
-//            response = new ResponseEntity<>(model, HttpStatus.OK);
-//        }
-//        return model;
-//    }
+    @GetMapping("/booknow/{id}")
+    public BookingsModel  getBooking(@PathVariable long id) {
+        BookingsModel model = bookingsService.findById(id);
+        ResponseEntity<BookingsModel> response;
+        if (model == null) {
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            response = new ResponseEntity<>(model, HttpStatus.OK);
+        }
+        return model;
+    }
 
     @PostMapping("/getTotalPrice")
     public Double getTotalPrice(@RequestBody @Valid NewCalculTotalDTO dto){
@@ -75,8 +75,8 @@ public class BookingRest {
     public BookingsModel bookingnow(@RequestBody @Valid NewBookingDTO dto) {
         BookingsModel model = new BookingsModel();
         try {
-//            model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
-//            model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
+            model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
+            model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
             model.roomsByFKRoomId = roomsService.findById(dto.roomId);
             model.clientsByFkClientId = clientsService.findClientByUsername("Garcia1989");
             model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, model.roomsByFKRoomId.pricePerNight);

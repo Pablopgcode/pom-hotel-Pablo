@@ -4,7 +4,8 @@ import com.pomhotel.booking.application.models.RoomsModel;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.sql.Date;
+
 
 public class NewCalculTotalDTO {
 
