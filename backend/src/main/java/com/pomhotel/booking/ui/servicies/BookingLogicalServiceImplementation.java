@@ -2,7 +2,7 @@ package com.pomhotel.booking.ui.servicies;
 
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
@@ -10,8 +10,8 @@ import java.util.concurrent.TimeUnit;
 //--- Service ----------------------------------------------------------
 @Service
 public class BookingLogicalServiceImplementation implements BookingLogicalService {
-    DateTimeFormatter formatoDeEntrada = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    DateTimeFormatter formatoDeSalida = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//    DateTimeFormatter formatoDeEntrada = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//    DateTimeFormatter formatoDeSalida = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     //--- Functions ----------------------------------------------------
     @Override
@@ -21,10 +21,10 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
         return totalPrice;
     }
 
-    @Override
-    public Date stringToDate(String date) {
-        return Date.valueOf( LocalDate.parse(date, formatoDeEntrada).format(formatoDeSalida) );
-    }
+//    @Override
+//    public Date stringToDate(String date) {
+//        return Date.valueOf( LocalDate.parse(date, formatoDeEntrada).format(formatoDeSalida) );
+//    }
 
     @Override
     public long getDaysBetweenTwoDates(Date date1, Date date2) {

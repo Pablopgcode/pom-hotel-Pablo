@@ -32,7 +32,7 @@ class Pay extends Component {
                 {this.state.room.id ?  
                     <div className="row" key={this.state.room.id}>
                         <Detail image={require("assets/img/rooms/"+this.state.room.image)} id={this.state.room.id} type={this.state.room.roomtypesByFkRoomtypeId.name} price={this.state.room.pricePerNight} guests={this.state.room.guests} code={this.state.room.code} description={this.state.room.description}/>
-                        <FormConfirmation startDate={this.state.startDate} endDate={this.state.endDate} /> 
+                        <FormConfirmation startDate={this.state.startDate} endDate={this.state.endDate} id={this.state.room.id} /> 
                     </div>
                 :<></>}    
                 <DarkFooter />

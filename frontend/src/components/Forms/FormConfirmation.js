@@ -3,18 +3,24 @@ import 'assets/css/bootstrap.min.css';
 import '../../assets/css/various-ui-comp.css'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import GetTotalPrice from '../../services/bookingService.js';
 
 class FormConfirmation extends Component {    
     constructor(props) {
         super(props)
         this.state = {
-            // startDate: new Date(),
-            // endDate: this.startDate,
             startDate: this.props.startDate,
-            endDate: this.props.endDate
+            endDate: this.props.endDate,
+            totalPrice: null
         }
     }
-    
+    calculatePrice(end){
+        this.setState({endDate: end})
+        GetTotalPrice.getTotalPrice(this.state.startDate, end, this.props.id).then((res) => {
+            this.setState({ totalPrice: res.data});
+        })
+    }
+   
     render() {
         return (
                 <div className="container">
@@ -96,7 +102,7 @@ class FormConfirmation extends Component {
                                             <DatePicker
                                             className=" form-control"
                                             selected={ this.state.endDate<this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
-                                            onChange={  (date) => this.setState({endDate: date})  }
+                                            onChange={  (date) => this.calculatePrice(date) }
                                             minDate={this.state.startDate}
                                             name="endDate"
                                             dateFormat="dd/MM/yyyy"/>
@@ -105,7 +111,7 @@ class FormConfirmation extends Component {
                                 </div>
                                 <div className="col-md-2">
                                     <label>Total Price</label>
-                                    <input type="text" className="form-control" disabled></input>
+                                    <input type="text" className="form-control" disabled>{this.state.totalPrice}</input>
                                 </div>
                                 <div className="form-group text-center col-md-12"><hr></hr>
                                     <input type="submit" value="Confirm Booking" className="btn btn-primary"></input>

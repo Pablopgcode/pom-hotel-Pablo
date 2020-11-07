@@ -51,7 +51,7 @@ public class BookRoomController {
         newBookingDTO.checkIn = checkin;
         newBookingDTO.checkOut = checkout;
 
-        newBookingDTO.totalPrice = (int) calculadora.calculateTotalPrice(calculadora.stringToDate(checkin),calculadora.stringToDate(checkout),roomSelected.pricePerNight);
+//        newBookingDTO.totalPrice = (int) calculadora.calculateTotalPrice(calculadora.stringToDate(checkin),calculadora.stringToDate(checkout),roomSelected.pricePerNight);
 
         model.addAttribute("newBooking", newBookingDTO);
 
@@ -64,8 +64,8 @@ public class BookRoomController {
         BookingsModel model = new BookingsModel();
 
         try {
-            model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
-            model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
+//            model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
+//            model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
 
             model.roomsByFKRoomId = roomSelected;
             model.clientsByFkClientId = clientsService.findClientByUsername("Garcia1989");
