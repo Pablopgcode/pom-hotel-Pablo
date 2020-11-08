@@ -1,11 +1,9 @@
 package com.pomhotel.booking.ui.servicies;
 
 import org.springframework.stereotype.Service;
-
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import java.util.concurrent.TimeUnit;
 
 //--- Service ----------------------------------------------------------
@@ -26,6 +24,7 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
     public Date stringToDate(String date) {
         return Date.valueOf( LocalDate.parse(date, formatoDeEntrada).format(formatoDeSalida) );
     }
+
 
     @Override
     public long getDaysBetweenTwoDates(Date date1, Date date2) {

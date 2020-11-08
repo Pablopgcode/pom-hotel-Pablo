@@ -64,8 +64,8 @@ public class BookRoomController {
         BookingsModel model = new BookingsModel();
 
         try {
-//            model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
-//            model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
+            model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
+            model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
 
             model.roomsByFKRoomId = roomSelected;
             model.clientsByFkClientId = clientsService.findClientByUsername("Garcia1989");

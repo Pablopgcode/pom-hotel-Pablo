@@ -15,6 +15,7 @@ public class ApiCorsConfiguration {
             CorsConfiguration config = new CorsConfiguration();
             config.setAllowCredentials(true);
             config.addAllowedOrigin("http://localhost:3000");
+            config.addAllowedOrigin("*");
             config.addAllowedHeader("*");
             config.addAllowedMethod("*");
             //config.addExposedHeader("Access-Control-Allow-Origin");

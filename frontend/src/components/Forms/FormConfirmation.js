@@ -4,6 +4,7 @@ import '../../assets/css/various-ui-comp.css'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import GetTotalPrice from '../../services/bookingService.js';
+import SaveBooking from '../../services/bookingService.js';
 
 class FormConfirmation extends Component {    
     constructor(props) {
@@ -16,23 +17,40 @@ class FormConfirmation extends Component {
     }
     calculatePrice(end){
         this.setState({endDate: end})
-        GetTotalPrice.getTotalPrice(this.state.startDate, end, this.props.id).then((res) => {
+        GetTotalPrice.getTotalPrice(this.state.startDate, end, this.props.room.id).then((res) => {
             this.setState({ totalPrice: res.data});           
         })
     }
 
     componentDidMount(){
-        GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.id).then((res) => {
+        GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id).then((res) => {
             this.setState({ totalPrice: res.data});           
         })
-    }  
+    } 
+
+    submitFormData(ev){
+        const sqlStartDate = this.state.startDate.toJSON().split("T")[0];
+        const sqlEndDate = this.state.endDate.toJSON().split("T")[0];
+        ev.preventDefault();
+        SaveBooking.saveBooking (this.props.room.id, 
+                                this.props.room.code, 
+                                this.props.room.description, 
+                                this.props.room.pricePerNight, 
+                                this.props.room.image, 
+                                this.props.room.guests,
+                                this.props.roomtypesByFkRoomtypeId, 
+                                sqlStartDate, 
+                                sqlEndDate,
+                                this.state.totalPrice).then((res) => {
+                                    console.log("DATA BOOKING", res.data);
+                                })
+    }
    
     render() {
-        console.log("FECHA", this.state.startDate);
         console.log("Precio Total: ", this.state.totalPrice);
         return (
                 <div className="container">
-                    <form id="booking" method="post">
+                    <form id="booking" onSubmit={(e)=> this.submitFormData(e)} >
                         <div className="row form-group">
                             <div id="checkOptions">
                                 <h5> Add your options...</h5>
@@ -119,7 +137,7 @@ class FormConfirmation extends Component {
                                 </div>
                                 <div className="col-md-2">
                                     <label>Total Price</label>
-                                    <input type="text" className="form-control" disabled value={this.state.totalPrice} ></input>
+                                    <input type="text" className="form-control" disabled value={this.state.totalPrice}></input>
                                 </div>
                                 <div className="form-group text-center col-md-12"><hr></hr>
                                     <input type="submit" value="Confirm Booking" className="btn btn-primary"></input>
