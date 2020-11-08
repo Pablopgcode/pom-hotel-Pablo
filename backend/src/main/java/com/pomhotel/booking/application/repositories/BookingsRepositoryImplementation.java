@@ -69,7 +69,7 @@ public class BookingsRepositoryImplementation implements BookingsRepository{
     }
 
     @Override
-    public void saveOrUpdate(BookingsEntity entity) {
+    public long saveOrUpdate(BookingsEntity entity) {
         Session session = this.dbConnection.openSession();
         Transaction transaction = null;
         try {
@@ -82,6 +82,7 @@ public class BookingsRepositoryImplementation implements BookingsRepository{
         } finally {
             session.close();
         }
+        return entity.getId();
     }
 
     @Override

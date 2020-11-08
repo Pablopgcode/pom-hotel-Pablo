@@ -13,7 +13,7 @@ public interface BookingsRepository {
 
     List<BookingsEntity> findAll();
 
-    void saveOrUpdate(BookingsEntity entity);
+    long saveOrUpdate(BookingsEntity entity);
 
     void deleteById(long id);
 

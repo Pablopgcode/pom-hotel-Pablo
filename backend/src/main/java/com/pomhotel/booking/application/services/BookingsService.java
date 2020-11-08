@@ -12,7 +12,7 @@ public interface BookingsService {
 
     List<BookingsModel> findAll();
 
-    void saveOrUpdate(BookingsModel model);
+    long saveOrUpdate(BookingsModel model);
 
     void deleteById(long id);
 

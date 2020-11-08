@@ -3,6 +3,7 @@ import Navbar from "components/Navbars/Navbar.js";
 import Header from "components/Headers/Header";
 import DarkFooter from "components/Footers/DarkFooter";
 import '../assets/css/various-ui-comp.css'
+import ThankPage from '../ThankYouPage/ThankPage.js';
 
 const About = (props) => {
     return (
@@ -43,6 +44,7 @@ const About = (props) => {
                         </div>
                     </div>
                 </section>
+                <ThankPage id='32' />
             </div>
 
 

@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import GetTotalPrice from '../../services/bookingService.js';
 import SaveBooking from '../../services/bookingService.js';
-// import ThankPage from '../../ThankYouPage/ThankPage.js';
+import ThankPage from '../../ThankYouPage/ThankPage.js';
 
 class FormConfirmation extends Component {    
     constructor(props) {
@@ -13,7 +13,8 @@ class FormConfirmation extends Component {
         this.state = {
             startDate: this.props.startDate,
             endDate: this.props.endDate,
-            totalPrice: null
+            totalPrice: null,
+            bookingId: 0,
         }
     }
     calculatePrice(end){
@@ -43,8 +44,7 @@ class FormConfirmation extends Component {
                                 sqlStartDate, 
                                 sqlEndDate,
                                 this.state.totalPrice).then((res) => {
-                                    console.log("DATA BOOKING", res.data);
-                                    
+                                    this.setState.bookingId = res.data;                               
                                 })
     }
    
@@ -145,10 +145,10 @@ class FormConfirmation extends Component {
                                     <input type="submit" value="Confirm Booking" className="btn btn-primary"></input>
                                 </div>
                             </div>
-                    </form>
-                </div>                
-          
-        )
+                    </form> 
+                    {/* <ThankPage bookingId={this.state.bookingId} /> */} 
+                </div>                    
+        )        
     }
 }
 

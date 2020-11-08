@@ -72,19 +72,20 @@ public class BookingRest {
 
 
     @PostMapping("/booknow")
-    public BookingsModel bookingnow(@RequestBody @Valid NewBookingDTO dto) {
+    public long bookingnow(@RequestBody @Valid NewBookingDTO dto) {
         BookingsModel model = new BookingsModel();
+        long id = 0;
         try {
             model.checkIn = Date.valueOf(dto.checkIn);
             model.checkOut = Date.valueOf(dto.checkOut);
             model.roomsByFKRoomId = roomsService.findById(dto.roomId);
             model.clientsByFkClientId = clientsService.findClientByUsername("Garcia1989");
             model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, model.roomsByFKRoomId.pricePerNight);
-            bookingsService.saveOrUpdate(model);
+            id = bookingsService.saveOrUpdate(model);
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return model;
+        return id;
     }
 
     @DeleteMapping("/booknow/{id}")
