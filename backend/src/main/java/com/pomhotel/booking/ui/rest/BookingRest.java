@@ -75,8 +75,6 @@ public class BookingRest {
     public BookingsModel bookingnow(@RequestBody @Valid NewBookingDTO dto) {
         BookingsModel model = new BookingsModel();
         try {
-            //model.checkIn = bookingLogicalService.stringToDate(dto.checkIn);
-            //model.checkOut = bookingLogicalService.stringToDate(dto.checkOut);
             model.checkIn = Date.valueOf(dto.checkIn);
             model.checkOut = Date.valueOf(dto.checkOut);
             model.roomsByFKRoomId = roomsService.findById(dto.roomId);

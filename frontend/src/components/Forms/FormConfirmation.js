@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import GetTotalPrice from '../../services/bookingService.js';
 import SaveBooking from '../../services/bookingService.js';
+// import ThankPage from '../../ThankYouPage/ThankPage.js';
 
 class FormConfirmation extends Component {    
     constructor(props) {
@@ -43,6 +44,7 @@ class FormConfirmation extends Component {
                                 sqlEndDate,
                                 this.state.totalPrice).then((res) => {
                                     console.log("DATA BOOKING", res.data);
+                                    
                                 })
     }
    

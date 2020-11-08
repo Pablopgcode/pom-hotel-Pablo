@@ -1,7 +1,7 @@
 import React from "react";
-// reactstrap components
 import { Container } from "reactstrap";
 
+import ThankPage from '../../ThankYouPage/ThankPage.js';
 const Header = (props) => {
   
   return (
@@ -20,6 +20,7 @@ const Header = (props) => {
           </h6>
         </Container>
       </div>
+      <ThankPage />
     </>
   );
 }
