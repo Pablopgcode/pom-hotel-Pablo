@@ -15,21 +15,11 @@ class BookService{
         })
     }
 
-    saveBooking(id, code, description, price, image, guests, roomtypesByFkRoomtypeId, startDate, endDate, totalPrice){
+    saveBooking(id, startDate, endDate, totalPrice){
         return axios.post(BOOKINGS_URL + '/booknow',{
             roomId: id,
-                room:{
-                    id: id,
-                    code: code,
-                    description: description,
-                    pricePerNight: price,
-                    image: image,
-                    guests: guests,
-                    roomtypesByFkRoomtypeId: roomtypesByFkRoomtypeId
-                },
             checkIn: startDate,
             checkOut: endDate,
-            guests: guests,
             totalPrice: totalPrice
         })
     }

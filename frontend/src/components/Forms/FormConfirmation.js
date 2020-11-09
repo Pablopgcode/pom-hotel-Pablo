@@ -15,6 +15,7 @@ class FormConfirmation extends Component {
             endDate: this.props.endDate,
             totalPrice: null,
             bookingId: 0,
+            respuesta: '',
         }
     }
     calculatePrice(end){
@@ -34,22 +35,20 @@ class FormConfirmation extends Component {
         const sqlStartDate = this.state.startDate.toJSON().split("T")[0];
         const sqlEndDate = this.state.endDate.toJSON().split("T")[0];
         ev.preventDefault();
-        SaveBooking.saveBooking (this.props.room.id, 
-                                this.props.room.code, 
-                                this.props.room.description, 
-                                this.props.room.pricePerNight, 
-                                this.props.room.image, 
-                                this.props.room.guests,
-                                this.props.roomtypesByFkRoomtypeId, 
-                                sqlStartDate, 
-                                sqlEndDate,
-                                this.state.totalPrice).then((res) => {
-                                    this.setState.bookingId = res.data;                               
-                                })
+        const respuesta = SaveBooking.saveBooking (this.props.room.id, 
+                                                    sqlStartDate, 
+                                                    sqlEndDate,
+                                                    this.state.totalPrice).then((res) => {
+                                                    this.setState({bookingId: res.data});                              
+                                                })
+        // this.setState({respuesta: respuesta});
     }
-   
+
+
+    
     render() {
         console.log("Precio Total: ", this.state.totalPrice);
+        console.log("Respuesta: ", this.state.respuesta);
         return (
                 <div className="container">
                     <form id="booking" onSubmit={(e)=> this.submitFormData(e)} >
@@ -146,7 +145,7 @@ class FormConfirmation extends Component {
                                 </div>
                             </div>
                     </form> 
-                    {/* <ThankPage bookingId={this.state.bookingId} /> */} 
+                    {/* <ThankPage bookingId={this.state.bookingId} startDate={this.state.startDate} endDate={this.state.endDate} totalPrice={this.state.totalPrice}/> */} 
                 </div>                    
         )        
     }

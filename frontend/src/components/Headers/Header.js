@@ -17,8 +17,7 @@ const Header = (props) => {
           <h6 className="category category-absolute">
             Designed by{"Pablo"}
           </h6>
-        </Container>
-      
+        </Container>    
       </div>
     </>
   );
