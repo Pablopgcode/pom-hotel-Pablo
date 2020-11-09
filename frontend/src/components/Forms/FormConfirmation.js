@@ -33,15 +33,16 @@ class FormConfirmation extends Component {
 
     submitFormData(ev){
         const sqlStartDate = this.state.startDate.toJSON().split("T")[0];
-        const sqlEndDate = this.state.endDate.toJSON().split("T")[0];
+        const sqlEndDate = this.state.endDate.toJSON().split("T")[0];       
+        //this.setState({startDate: sqlStartDate});
+        //this.setState({endDate: sqlEndDate });
         ev.preventDefault();
-        const respuesta = SaveBooking.saveBooking (this.props.room.id, 
-                                                    sqlStartDate, 
-                                                    sqlEndDate,
-                                                    this.state.totalPrice).then((res) => {
-                                                    this.setState({bookingId: res.data});                              
-                                                })
-        // this.setState({respuesta: respuesta});
+        SaveBooking.saveBooking (this.props.room.id, 
+                                sqlStartDate, 
+                                sqlEndDate,
+                                this.state.totalPrice).then((res) => {
+                                    this.setState({bookingId: res.data});                    
+                                })
     }
 
 
@@ -49,6 +50,7 @@ class FormConfirmation extends Component {
     render() {
         console.log("Precio Total: ", this.state.totalPrice);
         console.log("Respuesta: ", this.state.respuesta);
+        console.log("estado: ", this.state);
         return (
                 <div className="container">
                     <form id="booking" onSubmit={(e)=> this.submitFormData(e)} >
@@ -145,7 +147,7 @@ class FormConfirmation extends Component {
                                 </div>
                             </div>
                     </form> 
-                    {/* <ThankPage bookingId={this.state.bookingId} startDate={this.state.startDate} endDate={this.state.endDate} totalPrice={this.state.totalPrice}/> */} 
+                    {this.state.bookingId != 0 && <ThankPage bookingId={this.state.bookingId} startDate={this.state.startDate} endDate={this.state.endDate} totalPrice={this.state.totalPrice}/>}
                 </div>                    
         )        
     }

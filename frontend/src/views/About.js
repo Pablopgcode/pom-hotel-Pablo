@@ -44,7 +44,6 @@ const About = (props) => {
                         </div>
                     </div>
                 </section>
-                <ThankPage id='32' />
             </div>
 
 

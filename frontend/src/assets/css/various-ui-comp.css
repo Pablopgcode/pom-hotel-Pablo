@@ -1164,6 +1164,12 @@ input[type="checkbox"]{
 
 .thText{
   margin-top: 30px;
+  color: rgb(8, 8, 93);
+}
+
+.lastPrice{
+  color: red;
   font-weight: bold;
-  color: rgb(55, 55, 223);
+  text-decoration: underline;
+  letter-spacing: 4px;
 }
