@@ -29,6 +29,10 @@ public class BookingsFactory {
         entity.setTotalPrice(model.totalPrice);
         entity.setClientsByFkClientId(clientsFactory.createEntity(model.clientsByFkClientId));
         entity.setRoomsByFkRoomId(roomsFactory.createEntity(model.roomsByFKRoomId));
+        entity.setSafebox(model.safebox);
+        entity.setWedge(model.wedge);
+        entity.setLaundry(model.laundry);
+        entity.setParking(model.parking);
         return entity;
     }
 
@@ -40,6 +44,10 @@ public class BookingsFactory {
         model.totalPrice = entity.getTotalPrice();
         model.clientsByFkClientId = clientsFactory.createModel(entity.getClientsByFkClientId());
         model.roomsByFKRoomId = roomsFactory.createModel(entity.getRoomsByFkRoomId());
+        model.safebox = entity.isSafebox();
+        model.wedge = entity.isWedge();
+        model.laundry = entity.isLaundry();
+        model.parking = entity.isParking();
         return model;
     }
 }

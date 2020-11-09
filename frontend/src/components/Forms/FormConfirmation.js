@@ -71,7 +71,7 @@ class FormConfirmation extends Component {
                         <div className="row form-group">
                             <div id="checkOptions">
                                 <h5> Add your options...</h5>
-                                <label><input type="checkbox"  name="safe" checked={this.state.safe} onChange={this.handleCheck} />Safe box 12&#8364;/day</label>
+                                <label><input type="checkbox"  name="safebox" checked={this.state.safe} onChange={this.handleCheck} />Safe box 12&#8364;/day</label>
                                 <label><input type="checkbox"  name="wedge" checked={this.state.wedge} onChange={this.handleCheck}/>Wedge 5&#8364;/day</label>
                                 <label><input type="checkbox"  name="laundry" checked={this.state.laundry} onChange={this.handleCheck}/>Laundry service 7&#8364;/day</label>
                                 <label><input type="checkbox"  name="parking" checked={this.state.parking} onChange={this.handleCheck}/>Parking inside 14&#8364;/day</label>

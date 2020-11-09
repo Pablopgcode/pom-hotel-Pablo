@@ -61,7 +61,7 @@ public class BookingRest {
         Double totalPrice = 0.0;
         try{
             RoomsModel model = roomsService.findById(dto.roomId);
-            totalPrice = bookingLogicalService.calculateTotalPrice(dto.checkIn, dto.checkOut, model.pricePerNight);
+            totalPrice = bookingLogicalService.calculateTotalPrice(dto.checkIn, dto.checkOut, model.pricePerNight, dto.safebox, dto.wedge, dto.laundry, dto.parking);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -77,7 +77,11 @@ public class BookingRest {
             model.checkOut = Date.valueOf(dto.checkOut);
             model.roomsByFKRoomId = roomsService.findById(dto.roomId);
             model.clientsByFkClientId = clientsService.findClientByUsername("Garcia1989");
-            model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, model.roomsByFKRoomId.pricePerNight);
+            model.safebox = dto.safebox;
+            model.wedge = dto.wedge;
+            model.laundry = dto.laundry;
+            model.parking = dto.parking;
+            model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, model.roomsByFKRoomId.pricePerNight, model.safebox, model.wedge, model.laundry, model.parking);
             id = bookingsService.saveOrUpdate(model);
         }catch (Exception e) {
             e.printStackTrace();

@@ -23,7 +23,8 @@ class BookService{
             totalPrice: totalPrice,
             safebox: safebox,
             wedge: wedge,
-            laundry: parking
+            laundry: laundry,
+            parking: parking
         })
     }
 }

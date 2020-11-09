@@ -36,6 +36,23 @@ public class BookingsEntity implements Serializable {
     @JoinColumn(name = "fk_room_id", referencedColumnName = "id", table = "bookings")
     private RoomsEntity roomsByFkRoomId;
 
+    @Basic
+    @Column(name = "safebox", nullable = true)
+    private boolean safebox;
+
+    @Basic
+    @Column(name = "wedge", nullable = true)
+    private boolean wedge;
+
+    @Basic
+    @Column(name = "laundry", nullable = true)
+    private boolean laundry;
+
+    @Basic
+    @Column(name = "parking", nullable = true)
+    private boolean parking;
+
+
     //--- Getters & Setters ---------------------------------------
     public long getId() {
         return id;
@@ -63,6 +80,38 @@ public class BookingsEntity implements Serializable {
     }
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public boolean isSafebox() {
+        return safebox;
+    }
+
+    public void setSafebox(boolean safebox) {
+        this.safebox = safebox;
+    }
+
+    public boolean isWedge() {
+        return wedge;
+    }
+
+    public void setWedge(boolean wedge) {
+        this.wedge = wedge;
+    }
+
+    public boolean isLaundry() {
+        return laundry;
+    }
+
+    public void setLaundry(boolean laundry) {
+        this.laundry = laundry;
+    }
+
+    public boolean isParking() {
+        return parking;
+    }
+
+    public void setParking(boolean parking) {
+        this.parking = parking;
     }
 
     public ClientsEntity getClientsByFkClientId() {

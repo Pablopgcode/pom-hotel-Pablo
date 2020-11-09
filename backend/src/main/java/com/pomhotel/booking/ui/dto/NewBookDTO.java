@@ -29,6 +29,22 @@ public class NewBookDTO {
     @NotEmpty
     public int totalPrice;
 
+    @NotNull
+    @NotEmpty
+    public boolean safebox;
+
+    @NotNull
+    @NotEmpty
+    public boolean wedge;
+
+    @NotNull
+    @NotEmpty
+    public boolean laundry;
+
+    @NotNull
+    @NotEmpty
+    public boolean parking;
+
     //--- Getters & Setters ----------------------------------------
     public long getRoomId() {
         return roomId;
@@ -68,5 +84,37 @@ public class NewBookDTO {
 
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public boolean isSafebox() {
+        return safebox;
+    }
+
+    public void setSafebox(boolean safebox) {
+        this.safebox = safebox;
+    }
+
+    public boolean isWedge() {
+        return wedge;
+    }
+
+    public void setWedge(boolean wedge) {
+        this.wedge = wedge;
+    }
+
+    public boolean isLaundry() {
+        return laundry;
+    }
+
+    public void setLaundry(boolean laundry) {
+        this.laundry = laundry;
+    }
+
+    public boolean isParking() {
+        return parking;
+    }
+
+    public void setParking(boolean parking) {
+        this.parking = parking;
     }
 }
