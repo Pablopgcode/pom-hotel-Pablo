@@ -14,7 +14,8 @@ class Rooms extends Component {
         super(props)
         this.state = {
             rooms: [],
-            filter: {startDate: now}
+            filter: {startDate: now,
+                     endDate: now}
         }           
     }
 

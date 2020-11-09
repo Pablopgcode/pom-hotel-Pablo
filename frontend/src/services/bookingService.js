@@ -11,7 +11,7 @@ class BookService{
         return axios.post(BOOKINGS_URL + '/getTotalPrice',{            
             checkIn: startDate,
             checkOut: endDate,
-            roomId: id                      
+            roomId: id,                    
         })
     }
 
