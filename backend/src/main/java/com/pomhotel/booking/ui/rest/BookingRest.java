@@ -6,14 +6,11 @@ import com.pomhotel.booking.application.services.BookingsService;
 import com.pomhotel.booking.application.services.ClientLoginService;
 import com.pomhotel.booking.application.services.RoomsService;
 import com.pomhotel.booking.ui.dto.NewBookDTO;
-import com.pomhotel.booking.ui.dto.NewBookingDTO;
 import com.pomhotel.booking.ui.dto.NewCalculTotalDTO;
 import com.pomhotel.booking.ui.servicies.BookingLogicalService;
-import com.pomhotel.booking.ui.servicies.BookingLogicalServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.sql.Date;
@@ -70,24 +67,6 @@ public class BookingRest {
         }
         return totalPrice;
     }
-
-
-//    @PostMapping("/booknow")
-//    public long bookingnow(@RequestBody @Valid NewBookingDTO dto) {
-//        BookingsModel model = new BookingsModel();
-//        long id = 0;
-//        try {
-//            model.checkIn = Date.valueOf(dto.checkIn);
-//            model.checkOut = Date.valueOf(dto.checkOut);
-//            model.roomsByFKRoomId = roomsService.findById(dto.roomId);
-//            model.clientsByFkClientId = clientsService.findClientByUsername("Garcia1989");
-//            model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, model.roomsByFKRoomId.pricePerNight);
-//            id = bookingsService.saveOrUpdate(model);
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return id;
-//    }
 
     @PostMapping("/booknow")
     public long bookingnow(@RequestBody @Valid NewBookDTO dto) {

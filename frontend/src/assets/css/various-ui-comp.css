@@ -1165,6 +1165,5 @@ input[type="checkbox"]{
 .thText{
   margin-top: 30px;
   font-weight: bold;
-  color: rgb(93, 93, 221);
-  background-color: rgb(218, 226, 238);
+  color: rgb(55, 55, 223);
 }

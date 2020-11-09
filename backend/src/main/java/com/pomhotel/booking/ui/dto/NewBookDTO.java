@@ -1,10 +1,9 @@
 package com.pomhotel.booking.ui.dto;
 
-import com.pomhotel.booking.application.models.RoomsModel;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+//--- DTO ----------------------------------------------------------
 public class NewBookDTO {
 
     //--- Attributes -----------------------------------------------
@@ -30,6 +29,7 @@ public class NewBookDTO {
     @NotEmpty
     public int totalPrice;
 
+    //--- Getters & Setters ----------------------------------------
     public long getRoomId() {
         return roomId;
     }

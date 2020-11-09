@@ -28,7 +28,7 @@ class ThankPage extends Component {
                     <div>
                         <p className="thText">Dear friend, your reservation number is # {this.state.bookingId} # 
                         your chosen dates are between {this.state.startDate} and {this.state.endDate}
-                        . The final price is {this.state.totalPrice}</p>
+                        . The final price is {this.state.totalPrice} &#8364;</p>
                     </div>
                 </row>
                 <p>Having trouble? <a href="">Contact us</a>
