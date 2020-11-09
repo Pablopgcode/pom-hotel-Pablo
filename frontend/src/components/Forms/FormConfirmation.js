@@ -21,7 +21,6 @@ class FormConfirmation extends Component {
             parking: false
         }
         this.handleCheck = this.handleCheck.bind(this);
-
     }
     calculatePrice(){
         GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id,  this.state.safebox, this.state.wedge, this.state.laundry, this.state.parking).then((res) => {
@@ -143,8 +142,8 @@ class FormConfirmation extends Component {
                                             <DatePicker
                                                 className=" form-control"
                                                 selected={ this.state.startDate}
-                                                // onChange={(date) => this.calculatePrice()}
-                                                onChange = {this.handleDates}
+                                                onChange={(date) => this.calculatePrice()}
+                                                // onChange = {this.handleDates}
                                                 minDate={new Date()}
                                                 name="startDate"
                                                 dateFormat="dd/MM/yyyy"/>
@@ -158,8 +157,8 @@ class FormConfirmation extends Component {
                                             <DatePicker
                                             className=" form-control"
                                             selected= {this.state.endDate<this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
-                                            // onChange= {(date) => this.calculatePrice()}          
-                                            onChange = {this.handleDates}                                
+                                            onChange= {(date) => this.calculatePrice()}          
+                                            // onChange = {this.handleDates}                              
                                             minDate={this.state.startDate}
                                             name="endDate"
                                             dateFormat="dd/MM/yyyy"/>

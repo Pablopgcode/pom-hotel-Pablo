@@ -14,6 +14,7 @@ class Rooms extends Component {
         super(props)
         this.state = {
             rooms: [],
+            reserved: [],
             filter: {startDate: now,
                      endDate: now}
         }           
@@ -22,16 +23,28 @@ class Rooms extends Component {
     componentDidMount(){
         RoomService.getRooms().then((res) => {  
             this.setState({ rooms : res.data });
-        }) 
+        })
+        this.reservedDates();
     }  
 
     updateFilter(filter){
         console.log('updateFilter.filter: ', filter)
         this.setState ({filter:filter})   
-    }
-                                                                          
+    } 
+    
+     reservedDates(){   /* MIRARLO BIEN */
+        for (var i=0; i < this.state.rooms.length; i++){
+            for(var j=0; j < this.state.rooms[i].booked.length(); j++){
+                var newDate = new Date(this.state.rooms.booked[j]);
+                // this.state.reserved.push(newDate);
+                this.state.reserved[j] = new Date(this.state.rooms[i].booked[j]);
+            }
+        }
+        this.setState ({reserved: this.reserved});
+     }
+  
     render() { 
-        
+        console.log("RESERVED?:", this.state.reserved);
         const roomsFiltered = this.state.rooms.filter((room) => {
             let validPricePerNightFrom = this.state.filter.minprice  
             ? room.pricePerNight >= +this.state.filter.minprice

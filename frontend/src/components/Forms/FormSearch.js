@@ -11,6 +11,7 @@ class FormSearch extends Component {
         super(props)
         this.state = {
             rtypes: [],
+            reserved: [],
             guests: "1",
             startDate: now,
             endDate: now,
@@ -49,7 +50,6 @@ class FormSearch extends Component {
     }
     
     render() {
-        
         return (
             <div className="col-md-3">
                 <div className="sidebar-wrap img-raised" style={{ marginTop: '50px' }}>
