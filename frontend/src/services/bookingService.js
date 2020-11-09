@@ -15,12 +15,15 @@ class BookService{
         })
     }
 
-    saveBooking(id, startDate, endDate, totalPrice){
+    saveBooking(id, startDate, endDate, totalPrice, safebox, wedge, laundry, parking){
         return axios.post(BOOKINGS_URL + '/booknow',{
             roomId: id,
             checkIn: startDate,
             checkOut: endDate,
-            totalPrice: totalPrice
+            totalPrice: totalPrice,
+            safebox: safebox,
+            wedge: wedge,
+            laundry: parking
         })
     }
 }

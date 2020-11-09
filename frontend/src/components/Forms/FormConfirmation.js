@@ -15,7 +15,10 @@ class FormConfirmation extends Component {
             endDate: this.props.endDate,
             totalPrice: null,
             bookingId: 0,
-            respuesta: '',
+            safebox: false,
+            wedge: false,
+            laundry: false,
+            parking: false
         }
     }
     calculatePrice(end){
@@ -29,38 +32,49 @@ class FormConfirmation extends Component {
         GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id).then((res) => {
             this.setState({ totalPrice: res.data});           
         })
-    } 
+    }
+    
+    handleCheck = (event) => {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        this.setState({
+          [name]: value
+        });
+    }
 
     submitFormData(ev){
         const sqlStartDate = this.state.startDate.toJSON().split("T")[0];
         const sqlEndDate = this.state.endDate.toJSON().split("T")[0];       
-        //this.setState({startDate: sqlStartDate});
-        //this.setState({endDate: sqlEndDate });
         ev.preventDefault();
         SaveBooking.saveBooking (this.props.room.id, 
                                 sqlStartDate, 
                                 sqlEndDate,
-                                this.state.totalPrice).then((res) => {
+                                this.state.totalPrice,
+                                this.state.safebox,
+                                this.state.wedge,
+                                this.state.laundry,
+                                this.state.parking).then((res) => {
                                     this.setState({bookingId: res.data});                    
                                 })
     }
-
-
     
     render() {
+        console.log(this.state.safe);
+        console.log(this.state.wedge);
+        console.log(this.state.laundry);
+        console.log(this.state.parking);
         console.log("Precio Total: ", this.state.totalPrice);
-        console.log("Respuesta: ", this.state.respuesta);
-        console.log("estado: ", this.state);
         return (
                 <div className="container">
                     <form id="booking" onSubmit={(e)=> this.submitFormData(e)} >
                         <div className="row form-group">
                             <div id="checkOptions">
                                 <h5> Add your options...</h5>
-                                <label><input type="checkbox" />Safe box 12&#8364;/day</label>
-                                <label><input type="checkbox" />Wedge 5&#8364;/day</label>
-                                <label><input type="checkbox" />Laundry service 7&#8364;/day</label>
-                                <label><input type="checkbox" />Parking inside 14&#8364;/day</label>
+                                <label><input type="checkbox"  name="safe" checked={this.state.safe} onChange={this.handleCheck} />Safe box 12&#8364;/day</label>
+                                <label><input type="checkbox"  name="wedge" checked={this.state.wedge} onChange={this.handleCheck}/>Wedge 5&#8364;/day</label>
+                                <label><input type="checkbox"  name="laundry" checked={this.state.laundry} onChange={this.handleCheck}/>Laundry service 7&#8364;/day</label>
+                                <label><input type="checkbox"  name="parking" checked={this.state.parking} onChange={this.handleCheck}/>Parking inside 14&#8364;/day</label>
                             </div>
                         </div>
                         <hr></hr>
