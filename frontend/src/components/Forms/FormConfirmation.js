@@ -86,7 +86,6 @@ class FormConfirmation extends Component {
     }
     
     render() {
-        console.log("NAME", this.state.name);
         console.log("Precio Total: ", this.state.totalPrice);
         return (
                 <div className="container">

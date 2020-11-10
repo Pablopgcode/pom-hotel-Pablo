@@ -13,13 +13,11 @@ class AlertEmpty extends Component {
     }
     render() {      
         if (this.state.show) {
-            return (
-                
-                    <Alert className="dataempty" variant="warning" onClose={() => this.setState({show: false})} dismissible>
+            return (               
+                <Alert className="dataempty" variant="warning" onClose={() => this.setState({show: false})} dismissible>
                     <Alert.Heading>Wait!</Alert.Heading>
-                        <p> Remember select dates before you booking </p>
-                    </Alert>
-               
+                    <p>Remember to select your dates before planning your vacation.</p>
+                </Alert>              
             );
         }
     }

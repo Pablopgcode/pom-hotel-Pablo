@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "reactstrap";
 import {Link} from "react-router-dom";
+import AlertEmpty from "components/Alerts/AlertEmpty.js";
 import { isPropertyAccessExpression } from "typescript";
 const Room = (props) => {
     
@@ -21,7 +22,8 @@ const Room = (props) => {
                                                               }}}
                     >Buy Now!</Link></p>
                 </div>
-            </div>                         
+                {/* <AlertEmpty show={props.show}/>  */}
+            </div>                   
         </Container>      
     );
 }

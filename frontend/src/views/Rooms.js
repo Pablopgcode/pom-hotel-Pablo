@@ -5,7 +5,6 @@ import Header from 'components/Headers/Header.js';
 import Room from 'components/Rooms/Room.js';
 import DarkFooter from "components/Footers/DarkFooter.js";
 import FormSearch from "components/Forms/FormSearch.js";
-import AlertEmpty from "components/Alerts/AlertEmpty.js";
 import '../assets/css/various-ui-comp.css';
 import {isDateBetween, now} from '../services/dateservice';
 let excluded = [];
@@ -53,15 +52,17 @@ class Rooms extends Component {
                 validPricePerNightTo &&
                 validGuest &&
                 validType && validDates
-            );        
-        });
+            ); 
+            if(this.state.filter.startDate === this.state.filter.endDate){
+                this.setState({show: true})
+            }         
+        });  
         console.log('Objeto filter renderizado: ',this.state.filter);  /* Objeto filter renderizado actual */
         console.log("roomsFiltered : ", roomsFiltered);
         return (         
             <React.Fragment>
                 <Navbar />
                 <Header image={require("assets/img/revato-10251-13112723-111323.jpg")}/>
-                <AlertEmpty show={this.state.show}/>
                 <div className="col-md-9 offset-1 heading2 animate-box fadeInUp animated-fast">
                     <h2>Our Rooms</h2>
                 </div>
@@ -70,7 +71,7 @@ class Rooms extends Component {
                     {
                         roomsFiltered.map((room) => (
                             <div className="row" key={room.id}> 
-                                <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} guests={room.guests} description={room.description} booked={room.booked} startDate={this.state.filter.startDate} endDate={this.state.filter.endDate}/>                           
+                                <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} guests={room.guests} description={room.description} booked={room.booked} startDate={this.state.filter.startDate} endDate={this.state.filter.endDate} show={this.state.show}/>                           
                             </div>    
                         ))
                     }

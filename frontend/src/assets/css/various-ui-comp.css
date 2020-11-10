@@ -1158,10 +1158,6 @@ input[type="checkbox"]{
 	box-shadow: 3px 0 3px 0 rgba(0,0,0,0.2);
 }
 
-/* #checkOptions{
-  font-weight: bold;
-} */
-
 .thText{
   margin-top: 30px;
   color: rgb(8, 8, 93);
@@ -1175,10 +1171,14 @@ input[type="checkbox"]{
 }
 
 .dataempty{
-  width:20%;
+  color: black;
+  width:17%;
   line-height: 90%;
-  padding-right: 0px;
+  padding-right: 50px;
   border-radius: 35px 0px 35px 0px;
   -moz-border-radius: 35px 0px 35px 0px;
   -webkit-border-radius: 35px 0px 35px 0px;
+  position: absolute;
+  left: 20%;
+  margin-top: 8%;
 }
