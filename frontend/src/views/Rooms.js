@@ -5,16 +5,16 @@ import Header from 'components/Headers/Header.js';
 import Room from 'components/Rooms/Room.js';
 import DarkFooter from "components/Footers/DarkFooter.js";
 import FormSearch from "components/Forms/FormSearch.js";
+import AlertEmpty from "components/Alerts/AlertEmpty.js";
 import '../assets/css/various-ui-comp.css';
 import {isDateBetween, now} from '../services/dateservice';
-import {parseISO} from 'date-fns';
 let excluded = [];
 class Rooms extends Component {
     constructor(props) {
         super(props)
         this.state = {
             rooms: [],
-            reserved: [],
+            show: true,
             filter: {startDate: now,
                      endDate: now}
         }           
@@ -24,7 +24,6 @@ class Rooms extends Component {
         RoomService.getRooms().then((res) => {  
             this.setState({ rooms : res.data });
         })
-        this.reservedDates();
     }  
 
     updateFilter(filter){
@@ -32,17 +31,6 @@ class Rooms extends Component {
         this.setState ({filter:filter})   
     } 
     
-     reservedDates(){   /* MIRARLO BIEN */
-        for (var i=0; i < this.state.rooms.length; i++){
-            for(var j=0; j < this.state.rooms[i].booked.length(); j++){
-                var newDate = new Date(this.state.rooms.booked[j]);
-                // this.state.reserved.push(newDate);
-                this.state.reserved[j] = new Date(this.state.rooms[i].booked[j]);
-            }
-        }
-        this.setState ({reserved: this.reserved});
-     }
-  
     render() { 
         const roomsFiltered = this.state.rooms.filter((room) => {
             let validPricePerNightFrom = this.state.filter.minprice  
@@ -73,6 +61,7 @@ class Rooms extends Component {
             <React.Fragment>
                 <Navbar />
                 <Header image={require("assets/img/revato-10251-13112723-111323.jpg")}/>
+                <AlertEmpty show={this.state.show}/>
                 <div className="col-md-9 offset-1 heading2 animate-box fadeInUp animated-fast">
                     <h2>Our Rooms</h2>
                 </div>

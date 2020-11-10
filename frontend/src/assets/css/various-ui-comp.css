@@ -1173,3 +1173,12 @@ input[type="checkbox"]{
   text-decoration: underline;
   letter-spacing: 4px;
 }
+
+.dataempty{
+  width:20%;
+  line-height: 90%;
+  padding-right: 0px;
+  border-radius: 35px 0px 35px 0px;
+  -moz-border-radius: 35px 0px 35px 0px;
+  -webkit-border-radius: 35px 0px 35px 0px;
+}
