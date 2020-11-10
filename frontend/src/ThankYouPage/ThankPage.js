@@ -9,6 +9,7 @@ class ThankPage extends Component {
         super(props)
         this.state = {
             bookingId: this.props.bookingId,
+            name: this.props.name,
             startDate: this.props.startDate.toJSON().split("T")[0],
             endDate: this.props.endDate.toJSON().split("T")[0],
             totalPrice: this.props.totalPrice
@@ -19,20 +20,18 @@ class ThankPage extends Component {
         return (
         <Modal show={true}>
             <div className="jumbotron text-center">
-                <h3 className="display-7">Thank You!</h3>
+                <h2 className="display-5">Thank You!</h2>
                 <p className="lead"><strong>Please check your email</strong> to view the details of your invoice.</p><hr></hr>
                 <row>
                     <div className="col-10">
                         <img src={require("../assets/img/bg6.jpg")} className="img-fluid" alt="lobby" />
                     </div>
                     <div>
-                        <p className="lead thText">Dear friend, your reservation number is:</p><p className="lead lastPrice">#{this.state.bookingId}#</p><p className="lead thText"> 
+                        <p className="lead thText">Dear {this.state.name}, your reservation number is:</p><p className="lead lastPrice">#{this.state.bookingId}</p><p className="lead thText"> 
                         Your chosen dates are between {this.state.startDate} and {this.state.endDate}
                         . The last final price is {this.state.totalPrice}&#8364;.</p>
                     </div>
                 </row>
-                <p>Having trouble? <a href="">Contact us</a>
-                </p>
                 <p className="lead"><a class="btn btn-primary btn-sm" href="/home/" role="button">Go to homepage</a></p>
                 <small> Team POM Hotel </small>
             </div>

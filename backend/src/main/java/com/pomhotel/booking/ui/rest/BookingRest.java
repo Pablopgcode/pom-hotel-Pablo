@@ -62,6 +62,9 @@ public class BookingRest {
         try{
             RoomsModel model = roomsService.findById(dto.roomId);
             totalPrice = bookingLogicalService.calculateTotalPrice(dto.checkIn, dto.checkOut, model.pricePerNight, dto.safebox, dto.wedge, dto.laundry, dto.parking);
+            if (totalPrice < 0){
+                totalPrice = 0.0;
+            }
         }catch (Exception e){
             e.printStackTrace();
         }

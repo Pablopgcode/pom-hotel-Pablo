@@ -14,7 +14,7 @@ class FormSearch extends Component {
             reserved: [],
             guests: "1",
             startDate: now,
-            endDate: now,
+            endDate: now,       
             type: "",
             minprice: "1",
             maxprice: "1000"
@@ -79,7 +79,7 @@ class FormSearch extends Component {
                                             <DatePicker
                                             className="datum form-control"
                                             selected={ this.state.endDate<this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
-                                            onChange={  (date) => this.setState({endDate: date})  }
+                                            onChange={(date) => this.setState({endDate: date})}
                                             minDate={this.state.startDate}
                                             name="endDate"
                                             dateFormat="dd/MM/yyyy"

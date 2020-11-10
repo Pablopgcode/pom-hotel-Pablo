@@ -18,11 +18,13 @@ class FormConfirmation extends Component {
             safebox: false,
             wedge: false,
             laundry: false,
-            parking: false
+            parking: false,
+            name: ''
         }
         this.handleCheck = this.handleCheck.bind(this);
         this.handleDateCheckin = this.handleDateCheckin.bind(this);
         this.handleDateCheckout = this.handleDateCheckout.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
     }
     calculatePrice(){
         GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id,  this.state.safebox, this.state.wedge, this.state.laundry, this.state.parking).then((res) => {
@@ -65,6 +67,8 @@ class FormConfirmation extends Component {
         });     
     }
 
+    handleChangeName(event) { this.setState({name: event.target.value});}
+
     submitFormData(ev){
         const sqlStartDate = this.state.startDate.toJSON().split("T")[0];
         const sqlEndDate = this.state.endDate.toJSON().split("T")[0];       
@@ -82,6 +86,7 @@ class FormConfirmation extends Component {
     }
     
     render() {
+        console.log("NAME", this.state.name);
         console.log("Precio Total: ", this.state.totalPrice);
         return (
                 <div className="container">
@@ -99,7 +104,7 @@ class FormConfirmation extends Component {
                         <div className="row form-group">
                             <div className="col-md-12 padding-bottom">
                                 <label>Your Name, First Name and Last Name</label>
-                                <input type="text" class="form-control"></input>
+                                <input type="text" class="form-control" value={this.state.name} onChange={this.handleChangeName}></input>
                             </div>
                         </div>
                         <div className="row form-group">
@@ -179,7 +184,7 @@ class FormConfirmation extends Component {
                                 </div>
                             </div>
                     </form> 
-                    {this.state.bookingId != 0 && <ThankPage bookingId={this.state.bookingId} startDate={this.state.startDate} endDate={this.state.endDate} totalPrice={this.state.totalPrice}/>}
+                    {this.state.bookingId != 0 && <ThankPage bookingId={this.state.bookingId} startDate={this.state.startDate} endDate={this.state.endDate} totalPrice={this.state.totalPrice} name={this.state.name}/>}
                 </div>                    
         )        
     }
