@@ -21,6 +21,8 @@ class FormConfirmation extends Component {
             parking: false
         }
         this.handleCheck = this.handleCheck.bind(this);
+        this.handleDateCheckin = this.handleDateCheckin.bind(this);
+        this.handleDateCheckout = this.handleDateCheckout.bind(this);
     }
     calculatePrice(){
         GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id,  this.state.safebox, this.state.wedge, this.state.laundry, this.state.parking).then((res) => {
@@ -47,12 +49,17 @@ class FormConfirmation extends Component {
     }
 
     /* handle dates */
-    handleDates = (event) => {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
+    handleDateCheckin = (event) => {
         this.setState({
-          [name]: value
+          startDate: event
+        }, () => {
+            this.calculatePrice();
+        });     
+    }
+
+    handleDateCheckout = (event) => {
+        this.setState({
+          endDate: event
         }, () => {
             this.calculatePrice();
         });     
@@ -141,9 +148,8 @@ class FormConfirmation extends Component {
                                         <div className="form-field">
                                             <DatePicker
                                                 className=" form-control"
-                                                selected={ this.state.startDate}
-                                                onChange={(date) => this.calculatePrice()}
-                                                // onChange = {this.handleDates}
+                                                selected={ this.state.startDate}                                            
+                                                onChange = {this.handleDateCheckin}                                                                                                
                                                 minDate={new Date()}
                                                 name="startDate"
                                                 dateFormat="dd/MM/yyyy"/>
@@ -156,9 +162,8 @@ class FormConfirmation extends Component {
                                         <div className="form-field">
                                             <DatePicker
                                             className=" form-control"
-                                            selected= {this.state.endDate<this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
-                                            onChange= {(date) => this.calculatePrice()}          
-                                            // // onChange = {this.handleDates}                              
+                                            selected= {this.state.endDate < this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
+                                            onChange = {this.handleDateCheckout}             
                                             minDate={this.state.startDate}
                                             name="endDate"
                                             dateFormat="dd/MM/yyyy"/>
