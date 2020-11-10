@@ -7,11 +7,15 @@ class BookService{
         return axios.get( BOOKINGS_URL + '/booknow');
     }
 
-    getTotalPrice(startDate, endDate, id){
+    getTotalPrice(startDate, endDate, id, safebox, wedge, laundry, parking){
         return axios.post(BOOKINGS_URL + '/getTotalPrice',{            
             checkIn: startDate,
             checkOut: endDate,
-            roomId: id,                    
+            roomId: id, 
+            safebox: safebox,
+            wedge: wedge,
+            laundry: laundry,
+            parking: parking
         })
     }
 

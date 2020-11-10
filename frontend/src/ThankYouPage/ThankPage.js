@@ -34,7 +34,7 @@ class ThankPage extends Component {
                 <p>Having trouble? <a href="">Contact us</a>
                 </p>
                 <p className="lead"><a class="btn btn-primary btn-sm" href="/home/" role="button">Go to homepage</a></p>
-                <small>The POM Hotel group</small>
+                <small> Team POM Hotel </small>
             </div>
         </Modal>
     )};

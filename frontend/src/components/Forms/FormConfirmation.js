@@ -24,7 +24,7 @@ class FormConfirmation extends Component {
     }
     calculatePrice(){
         GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id,  this.state.safebox, this.state.wedge, this.state.laundry, this.state.parking).then((res) => {
-            this.setState({ totalPrice: res.data});         
+            this.setState({ totalPrice: res.data}); 
         })
     }
 
@@ -158,7 +158,7 @@ class FormConfirmation extends Component {
                                             className=" form-control"
                                             selected= {this.state.endDate<this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
                                             onChange= {(date) => this.calculatePrice()}          
-                                            // onChange = {this.handleDates}                              
+                                            // // onChange = {this.handleDates}                              
                                             minDate={this.state.startDate}
                                             name="endDate"
                                             dateFormat="dd/MM/yyyy"/>

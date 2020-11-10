@@ -44,7 +44,6 @@ class Rooms extends Component {
      }
   
     render() { 
-        console.log("RESERVED?:", this.state.reserved);
         const roomsFiltered = this.state.rooms.filter((room) => {
             let validPricePerNightFrom = this.state.filter.minprice  
             ? room.pricePerNight >= +this.state.filter.minprice
