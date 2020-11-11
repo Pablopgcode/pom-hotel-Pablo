@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import GetTotalPrice from '../../services/bookingService.js';
 import SaveBooking from '../../services/bookingService.js';
 import ThankPage from '../../ThankYouPage/ThankPage.js';
-
+import Alert from '../../components/Alerts/Alert.js'
 class FormConfirmation extends Component {    
     constructor(props) {
         super(props)
@@ -26,12 +26,21 @@ class FormConfirmation extends Component {
         this.handleDateCheckin = this.handleDateCheckin.bind(this);
         this.handleDateCheckout = this.handleDateCheckout.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
+        // this.handleShowSeason = this.handleShowSeason.bind(this);
     }
 
-    verifySesion (startDate, endDate){
+    // verifySesion (startDate, endDate){
+    //     let offSesions = [0,1,2,3,4,5,9,10,11]; /* I consider high season July, August and September */
+    //     if(offSesions.includes(startDate.getMonth()) && offSesions.includes(endDate.getMonth())){
+    //         this.setState({offSeason: true})       
+    //     }       
+    // }
+
+    verifySesion (){
         let offSesions = [0,1,2,3,4,5,9,10,11]; /* I consider high season July, August and September */
-        if(offSesions.includes(startDate.getMonth()) && offSesions.includes(endDate.getMonth())){
-            this.setState({offSeason: true})       
+        if(offSesions.includes(this.state.startDate.getMonth()) && offSesions.includes(this.state.endDate.getMonth())){
+            this.setState({offSeason: true})
+            alert("THANK YOU")       
         }       
     }
 
@@ -42,7 +51,7 @@ class FormConfirmation extends Component {
     }
 
     componentDidMount(){
-        this.verifySesion (this.state.startDate, this.state.endDate);
+        //this.verifySesion (this.state.startDate, this.state.endDate);
         GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id).then((res) => {
             this.setState({ totalPrice: res.data});          
         })
@@ -65,23 +74,27 @@ class FormConfirmation extends Component {
         this.setState({
           startDate: event
         }, () => {
+            this.verifySesion(); 
             this.calculatePrice();
-        });     
+        });
+          
     }
 
     handleDateCheckout = (event) => {
         this.setState({
           endDate: event
         }, () => {
+            this.verifySesion();  
             this.calculatePrice();
-        });     
+        }); 
+             
     }
 
     handleChangeName(event) { this.setState({name: event.target.value});}
 
     submitFormData(ev){
         const sqlStartDate = this.state.startDate.toJSON().split("T")[0];
-        const sqlEndDate = this.state.endDate.toJSON().split("T")[0];       
+        const sqlEndDate = this.state.endDate.toJSON().split("T")[0];      
         ev.preventDefault();
         SaveBooking.saveBooking (this.props.room.id, 
                                 sqlStartDate, 
@@ -163,7 +176,7 @@ class FormConfirmation extends Component {
                                             <DatePicker
                                                 className=" form-control"
                                                 selected={ this.state.startDate}                                            
-                                                onChange = {this.handleDateCheckin}                                                                                                
+                                                onChange = {this.handleDateCheckin}                                                                                              
                                                 minDate={new Date()}
                                                 name="startDate"
                                                 dateFormat="dd/MM/yyyy"/>
