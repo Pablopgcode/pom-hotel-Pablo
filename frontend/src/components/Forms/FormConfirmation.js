@@ -19,13 +19,22 @@ class FormConfirmation extends Component {
             wedge: false,
             laundry: false,
             parking: false,
-            name: ''
+            name: 'friend',
+            offSeason: false,
         }
         this.handleCheck = this.handleCheck.bind(this);
         this.handleDateCheckin = this.handleDateCheckin.bind(this);
         this.handleDateCheckout = this.handleDateCheckout.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
     }
+
+    verifySesion (startDate, endDate){
+        let offSesions = [0,1,2,3,4,5,9,10,11]; /* I consider high season July, August and September */
+        if(offSesions.includes(startDate.getMonth()) && offSesions.includes(endDate.getMonth())){
+            this.setState({offSeason: true})       
+        }       
+    }
+
     calculatePrice(){
         GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id,  this.state.safebox, this.state.wedge, this.state.laundry, this.state.parking).then((res) => {
             this.setState({ totalPrice: res.data}); 
@@ -33,8 +42,9 @@ class FormConfirmation extends Component {
     }
 
     componentDidMount(){
+        this.verifySesion (this.state.startDate, this.state.endDate);
         GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id).then((res) => {
-            this.setState({ totalPrice: res.data});           
+            this.setState({ totalPrice: res.data});          
         })
     }
     

@@ -50,7 +50,6 @@ class FormSearch extends Component {
         this.props.onFilterChange(this.state)
     }
     render() {
-        console.log(addDays(new Date(),1))
         return (
             <div className="col-md-3">
                 <div className="sidebar-wrap img-raised" style={{ marginTop: '50px' }}>
