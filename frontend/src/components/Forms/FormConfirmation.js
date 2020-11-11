@@ -26,21 +26,14 @@ class FormConfirmation extends Component {
         this.handleDateCheckin = this.handleDateCheckin.bind(this);
         this.handleDateCheckout = this.handleDateCheckout.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
-        // this.handleShowSeason = this.handleShowSeason.bind(this);
     }
-
-    // verifySesion (startDate, endDate){
-    //     let offSesions = [0,1,2,3,4,5,9,10,11]; /* I consider high season July, August and September */
-    //     if(offSesions.includes(startDate.getMonth()) && offSesions.includes(endDate.getMonth())){
-    //         this.setState({offSeason: true})       
-    //     }       
-    // }
 
     verifySesion (){
         let offSesions = [0,1,2,3,4,5,9,10,11]; /* I consider high season July, August and September */
         if(offSesions.includes(this.state.startDate.getMonth()) && offSesions.includes(this.state.endDate.getMonth())){
-            this.setState({offSeason: true})
-            alert("THANK YOU")       
+            this.setState({offSeason: true})      
+        }else{
+            this.setState({offSeason: false})  
         }       
     }
 
@@ -51,7 +44,7 @@ class FormConfirmation extends Component {
     }
 
     componentDidMount(){
-        //this.verifySesion (this.state.startDate, this.state.endDate);
+        this.verifySesion (this.state.startDate, this.state.endDate);
         GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id).then((res) => {
             this.setState({ totalPrice: res.data});          
         })
@@ -167,6 +160,7 @@ class FormConfirmation extends Component {
                                 <img src={require("assets/img/Pagos.png")}></img>
                             </div>
                         </div>
+                        {this.state.offSeason != false  && <Alert  />}
                         <div class="form-group col-12"><hr></hr></div>
                             <div className="row">
                                 <div className="col-md-5">
@@ -205,7 +199,7 @@ class FormConfirmation extends Component {
                                     <input type="submit" value="Confirm Booking" className="btn btn-primary"></input>
                                 </div>
                             </div>
-                    </form> 
+                    </form>
                     {this.state.bookingId != 0 && <ThankPage bookingId={this.state.bookingId} startDate={this.state.startDate} endDate={this.state.endDate} totalPrice={this.state.totalPrice} name={this.state.name}/>}
                 </div>                    
         )        

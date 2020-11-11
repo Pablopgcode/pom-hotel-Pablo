@@ -10,6 +10,8 @@ public interface BookingLogicalService {
 
     Date stringToDate(String date);
 
+    public int getMonth(Date date);
+
     double calculateTotalPrice(Date checkIn, Date CheckOut, double pricePerNight, boolean safebox, boolean wedge, boolean laundry, boolean parking);
 
 }

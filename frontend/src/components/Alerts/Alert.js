@@ -12,14 +12,12 @@ class AlertD extends Component {
         }
     }
     render() {      
-        if (this.state.show) {
             return (               
-                <Alert className="dataempty" variant="success" onClose={() => this.setState({show: false})} dismissible>
+                <Alert className="discount" variant="success" onClose={() => this.setState({show: false}).bind(this)} dismissible>
                     <Alert.Heading>Discount!</Alert.Heading>
                     <p>5% for booking in low season</p>
                 </Alert>              
             );
-        }
     }
 }
   
