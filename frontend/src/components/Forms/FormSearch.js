@@ -5,6 +5,7 @@ import 'assets/css/bootstrap.min.css';
 import '../../assets/css/various-ui-comp.css'
 import TypeService from '../../services/typeService.js';
 import {now} from '../../services/dateservice';
+import { addDays } from 'date-fns';
 class FormSearch extends Component {
     /* Props */
     constructor(props) {
@@ -14,10 +15,10 @@ class FormSearch extends Component {
             reserved: [],
             guests: "1",
             startDate: now,
-            endDate: now,       
+            endDate: addDays(new Date(),1),
             type: "",
             minprice: "1",
-            maxprice: "1000"
+            maxprice: "1000",
         }
     }
     /* obtain types of rooms */
@@ -48,8 +49,8 @@ class FormSearch extends Component {
         ev.preventDefault();
         this.props.onFilterChange(this.state)
     }
-    
     render() {
+        console.log(addDays(new Date(),1))
         return (
             <div className="col-md-3">
                 <div className="sidebar-wrap img-raised" style={{ marginTop: '50px' }}>
@@ -77,12 +78,12 @@ class FormSearch extends Component {
                                         <label for="checkout">Check-out:</label>
                                         <div className="form-field">
                                             <DatePicker
-                                            className="datum form-control"
-                                            selected={ this.state.endDate<this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
-                                            onChange={(date) => this.setState({endDate: date})}
-                                            minDate={this.state.startDate}
-                                            name="endDate"
-                                            dateFormat="dd/MM/yyyy"
+                                                className="datum form-control"
+                                                selected={ this.state.endDate<=this.state.startDate ? addDays(this.state.startDate,1) : this.state.endDate || this.state.startDate}                                               
+                                                onChange={(date) => this.setState({endDate: date})}
+                                                minDate={addDays(new Date(),1)}
+                                                name="endDate"
+                                                dateFormat="dd/MM/yyyy"
                                             />
                                         </div>
                                     </div>

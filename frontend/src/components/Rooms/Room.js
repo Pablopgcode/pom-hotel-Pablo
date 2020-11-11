@@ -1,10 +1,7 @@
 import React from "react";
 import { Container } from "reactstrap";
 import {Link} from "react-router-dom";
-import AlertEmpty from "components/Alerts/AlertEmpty.js";
-import { isPropertyAccessExpression } from "typescript";
 const Room = (props) => {
-    
     return (
         <Container>       
             <div className="row" style={{margin: '50px'}}>    
@@ -18,11 +15,12 @@ const Room = (props) => {
                     <p className="price">for {props.guests} guests</p>
                     <p><Link className="btn btn-primary" to={{pathname: "/pay/" + props.id,
                                                               state: {
-                                                                  data: props
+                                                                  data: {
+                                                                        startDate: props.startDate,
+                                                                        endDate: props.endDate}
                                                               }}}
                     >Buy Now!</Link></p>
                 </div>
-                {/* <AlertEmpty show={props.show}/>  */}
             </div>                   
         </Container>      
     );

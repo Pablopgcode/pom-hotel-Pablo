@@ -7,15 +7,15 @@ import DarkFooter from "components/Footers/DarkFooter.js";
 import FormSearch from "components/Forms/FormSearch.js";
 import '../assets/css/various-ui-comp.css';
 import {isDateBetween, now} from '../services/dateservice';
+import { addDays } from 'date-fns';
 let excluded = [];
 class Rooms extends Component {
     constructor(props) {
         super(props)
         this.state = {
             rooms: [],
-            show: true,
             filter: {startDate: now,
-                     endDate: now}
+                     endDate:addDays(new Date(),1)}
         }           
     }
 
@@ -52,10 +52,7 @@ class Rooms extends Component {
                 validPricePerNightTo &&
                 validGuest &&
                 validType && validDates
-            ); 
-            if(this.state.filter.startDate === this.state.filter.endDate){
-                this.setState({show: true})
-            }         
+            );    
         });  
         console.log('Objeto filter renderizado: ',this.state.filter);  /* Objeto filter renderizado actual */
         console.log("roomsFiltered : ", roomsFiltered);
@@ -71,7 +68,7 @@ class Rooms extends Component {
                     {
                         roomsFiltered.map((room) => (
                             <div className="row" key={room.id}> 
-                                <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} guests={room.guests} description={room.description} booked={room.booked} startDate={this.state.filter.startDate} endDate={this.state.filter.endDate} show={this.state.show}/>                           
+                                <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} guests={room.guests} description={room.description} booked={room.booked} startDate={this.state.filter.startDate} endDate={this.state.filter.endDate}/>                           
                             </div>    
                         ))
                     }

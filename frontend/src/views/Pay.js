@@ -5,15 +5,24 @@ import Navbar from "components/Navbars/Navbar.js";
 import FormConfirmation from 'components/Forms/FormConfirmation';
 import RoomService from '../services/roomService.js';
 import Detail from 'components/Detail.js';
+import {now} from '../services/dateservice';
+import { addDays } from 'date-fns';
 class Pay extends Component {
     constructor(props) {
         super(props)
+        if (this.props.location.state){
         this.state = {
             room: {},
-            startDate: this.props.location.state.data.startDate,                            
+            startDate: this.props.location.state.data.startDate,                             
             endDate: this.props.location.state.data.endDate                               
+        }}
+        else {
+            this.state = {
+                room: {},
+                startDate: now,                             
+                endDate: addDays(new Date(),1)                               
+            }
         }
-        console.log('Datos Room: ',props.location.state.data);
     }
     
     componentDidMount(){
