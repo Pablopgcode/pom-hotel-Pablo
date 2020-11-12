@@ -7,14 +7,14 @@ class AlertD extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            
+            message : this.props.message
         }
     }
     render() {      
             return (               
                 <Alert className="discount" >
                     <Alert.Heading>Discount!</Alert.Heading>
-                    <p>5% for booking in low season</p>
+                    <p>{this.state.message}</p>
                 </Alert>              
             );
     }
