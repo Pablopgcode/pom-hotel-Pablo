@@ -105,17 +105,8 @@ class FormConfirmation extends Component {
         console.log("Precio Total: ", this.state.totalPrice);
         return (
                 <div className="container formc">
-                    <form id="booking" onSubmit={(e)=> this.submitFormData(e)} >
-                        <div className="row form-group">
-                            <div id="checkOptions">
-                                <h5> Add your options...</h5>
-                                <label><input type="checkbox"  name="safebox" checked={this.state.safe} onChange={this.handleCheck} />Safe box 12&#8364;/day</label>
-                                <label><input type="checkbox"  name="wedge" checked={this.state.wedge} onChange={this.handleCheck}/>Wedge 5&#8364;/day</label>
-                                <label><input type="checkbox"  name="laundry" checked={this.state.laundry} onChange={this.handleCheck}/>Laundry service 7&#8364;/day</label>
-                                <label><input type="checkbox"  name="parking" checked={this.state.parking} onChange={this.handleCheck}/>Parking inside 14&#8364;/day</label>
-                            </div>
-                        </div>
-                        <hr></hr>
+                    <form id="booking" onSubmit={(e)=> this.submitFormData(e)} >                      
+                        <br></br>
                         <div className="row form-group">
                             <div className="col-md-12 padding-bottom">
                                 <label>Your Name, First Name and Last Name</label>
@@ -136,8 +127,49 @@ class FormConfirmation extends Component {
                                 <input type="text" class="form-control"></input>
                             </div>
                         </div>
-                        <h4>INVOICE</h4>
+                        <div class="form-group col-12"><hr></hr>
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <div className="form-group">
+                                        <label for="checkin">Check-in:</label>
+                                        <div className="form-field">
+                                            <DatePicker
+                                                className=" form-control"
+                                                selected={ this.state.startDate}                                            
+                                                onChange = {this.handleDateCheckin}                                                                                              
+                                                minDate={new Date()}
+                                                name="startDate"
+                                                dateFormat="dd/MM/yyyy"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-4">
+                                    <div className="form-group">
+                                        <label for="checkout">Check-out:</label>
+                                        <div className="form-field">
+                                            <DatePicker
+                                            className=" form-control"
+                                            selected= {this.state.endDate < this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
+                                            onChange = {this.handleDateCheckout}             
+                                            minDate={this.state.startDate}
+                                            name="endDate"
+                                            dateFormat="dd/MM/yyyy"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>
                         <div className="row form-group">
+                            <div>
+                                <p className="optio">If you wish you can add options ...</p>
+                                <label><input type="checkbox"  name="safebox" checked={this.state.safe} onChange={this.handleCheck} />Safe box 12&#8364;/day</label>
+                                <label><input type="checkbox"  name="wedge" checked={this.state.wedge} onChange={this.handleCheck}/>Wedge 5&#8364;/day</label>
+                                <label><input type="checkbox"  name="laundry" checked={this.state.laundry} onChange={this.handleCheck}/>Laundry service 7&#8364;/day</label>
+                                <label><input type="checkbox"  name="parking" checked={this.state.parking} onChange={this.handleCheck}/>Parking inside 14&#8364;/day</label>
+                            </div>
+                        </div><hr></hr>
+                        <h4>INVOICE</h4>
+                        <div className="row form-group">                                             
                             <div className="col-md-4 padding-bottom">
                                 <label>Card number</label>
                                 <input type="text" class="form-control"></input>
@@ -158,50 +190,19 @@ class FormConfirmation extends Component {
                                 <label>Admitted</label>
                                 <br></br>
                                 <img src={require("assets/img/Pagos.png")}></img>
-                            </div>
+                            </div> 
+                            <div className="col-md-2">
+                                <label>Total Price</label>
+                                <input type="text" className="form-control befprice" disabled value={this.state.totalPrice}></input>
+                            </div>                   
                         </div>
-                        {this.state.offSeason != false  && <Alert  />}
-                        <div class="form-group col-12"><hr></hr></div>
-                            <div className="row">
-                                <div className="col-md-5">
-                                    <div className="form-group">
-                                        <label for="checkin">Check-in:</label>
-                                        <div className="form-field">
-                                            <DatePicker
-                                                className=" form-control"
-                                                selected={ this.state.startDate}                                            
-                                                onChange = {this.handleDateCheckin}                                                                                              
-                                                minDate={new Date()}
-                                                name="startDate"
-                                                dateFormat="dd/MM/yyyy"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-5">
-                                    <div className="form-group">
-                                        <label for="checkout">Check-out:</label>
-                                        <div className="form-field">
-                                            <DatePicker
-                                            className=" form-control"
-                                            selected= {this.state.endDate < this.state.startDate ? this.state.startDate : this.state.endDate || this.state.startDate}
-                                            onChange = {this.handleDateCheckout}             
-                                            minDate={this.state.startDate}
-                                            name="endDate"
-                                            dateFormat="dd/MM/yyyy"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                    <label>Total Price</label>
-                                    <input type="text" className="form-control" disabled value={this.state.totalPrice}></input>
-                                </div>
-                                <div className="form-group text-center col-md-12"><hr></hr>
-                                    <input type="submit" value="Confirm Booking" className="btn btn-primary"></input>
-                                </div>
-                            </div>
-                    </form>
-                    {this.state.bookingId != 0 && <ThankPage bookingId={this.state.bookingId} startDate={this.state.startDate} endDate={this.state.endDate} totalPrice={this.state.totalPrice} name={this.state.name}/>}
-                </div>                    
+                        <div className="form-group text-center col-md-12"><hr></hr>
+                            <input type="submit" value="Confirm Booking" className="btn btn-primary"></input>
+                        </div>
+                        {this.state.offSeason != false  && <Alert />}    
+                        {this.state.bookingId != 0 && <ThankPage bookingId={this.state.bookingId} startDate={this.state.startDate} endDate={this.state.endDate} totalPrice={this.state.totalPrice} name={this.state.name}/>}
+                    </form>                   
+                </div>                                              
         )        
     }
 }

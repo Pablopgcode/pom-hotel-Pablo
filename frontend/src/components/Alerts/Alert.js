@@ -13,7 +13,7 @@ class AlertD extends Component {
     }
     render() {      
             return (               
-                <Alert className="discount" onClose={() => this.setState({show: false})} >
+                <Alert className="" onClose={() => this.setState({show: false})} >
                     <Alert.Heading>Discount!</Alert.Heading>
                     <p>5% for booking in low season</p>
                 </Alert>              

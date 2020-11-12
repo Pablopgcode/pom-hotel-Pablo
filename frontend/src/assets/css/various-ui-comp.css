@@ -1150,10 +1150,10 @@ select option {
 }
 
 input[type="checkbox"]{
-  display:inline-block;
+  /* display:inline-block; */
   width:19px;
   height:19px;
-  margin:-1px 10px 2px 20px;
+  margin:-1px 20px 2px 20px;
   vertical-align:middle;
 	box-shadow: 3px 0 3px 0 rgba(0,0,0,0.2);
 }
@@ -1171,9 +1171,9 @@ input[type="checkbox"]{
 }
 
 .discount{
-  width:15%;
-  height: 8%;
-  /* padding-right: 50px; */
+  width:14%;
+  height: 10%;
+  padding-right: 50px;
   border-radius: 20px 0px 20px 0px;
   -moz-border-radius: 20px 0px 20px 0px;
   -webkit-border-radius: 20px 0px 20px 0px;
@@ -1181,9 +1181,16 @@ input[type="checkbox"]{
   position: absolute;
   right: 4%;
   margin-top: 1%;
-  text-decoration: underline;
 }
 
 .formc{
-  background-color: #e2e0e0;
+  background-color: #ebe8e8;
+}
+
+.optio{
+  margin-left: 24px;
+}
+
+.befprice{
+  font-weight: bold;
 }
