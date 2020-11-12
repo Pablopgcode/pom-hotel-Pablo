@@ -24,7 +24,7 @@ function DarkFooter(){
                     <div className='col-12 col-md-6 col-lg-3 colorlib-widget'>
                         <h5>Contact Information</h5>
                         <ul className='colorlib-footer-links'>
-                            <li>Aulas Formación B-3, <br /> Carretera Nacional II (complejo seat Autovia a-2), KM 585, Martorell, 08760, Barcelona </li>
+                            <li>Aulas Formación B-3, <br /> Carretera Nacional II (complejo Seat Autovia a-2), KM 585, Martorell, 08760, Barcelona </li>
                             <li><a href='tel://1234567920'>+ 1235 2355 98</a></li>
                             <li><a href='mailto:info@yoursite.com'>pom@party.com</a></li>
                             <li><a href='#'>pomhotel.com</a></li>

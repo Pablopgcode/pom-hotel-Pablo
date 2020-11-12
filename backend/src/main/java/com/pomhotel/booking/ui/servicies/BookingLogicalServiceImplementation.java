@@ -21,20 +21,30 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
     static final int PARKING_DAY = 14;
     //-- Low Season 5% discount
     static final double LOW_SEASON_DISCOUNT = 0.05;
+    //-- Discount of 2% for bookings minim days
+    static final int MINIM_DAYS = 7;
+    static final double MINIM_DAYS_DISCOUNT = 0.02;
     //--- Functions ----------------------------------------------------
     @Override
     public double calculateTotalPrice(Date checkIn, Date checkOut, double pricePerNight, boolean safebox, boolean wedge, boolean laundry, boolean parking) {
         int [] offSesions = {0,1,2,3,4,5,9,10,11}; /* I consider high season July, August and September */
         boolean lowSeason = false;
+        boolean minimDays = false;
         int month1 = getMonth(checkIn);
         int month2 = getMonth(checkOut);
+        long nights = getDaysBetweenTwoDates(checkIn, checkOut);
+        long optionals = 0;
+        //-- Calculate discount by minim days of booking
+        minimDays = (nights > MINIM_DAYS)? true : false;
+
+        //-- Calculate discount for low season
         for(int i=0; i < offSesions.length; i++){
             if(offSesions[i] == month1 && offSesions[i] == month2){
                 lowSeason = true;
             }
         }
-        long nights = getDaysBetweenTwoDates(checkIn, checkOut);
-        long optionals = 0;
+
+        //-- Calculate last price with options
         if(safebox){
             optionals += SAFEBOX_DAY;
         }
@@ -50,6 +60,9 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
         double totalPrice = nights * (pricePerNight + optionals);
         if (lowSeason){
             totalPrice -= (totalPrice * LOW_SEASON_DISCOUNT);
+        }
+        if (minimDays){
+            totalPrice -= (totalPrice * MINIM_DAYS_DISCOUNT);
         }
 
         return totalPrice;

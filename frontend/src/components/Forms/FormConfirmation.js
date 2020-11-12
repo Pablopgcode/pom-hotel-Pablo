@@ -102,7 +102,6 @@ class FormConfirmation extends Component {
     }
     
     render() {
-        console.log("Precio Total: ", this.state.totalPrice);
         return (
                 <div className="container formc">
                     <form id="booking" onSubmit={(e)=> this.submitFormData(e)} >                      
@@ -194,12 +193,12 @@ class FormConfirmation extends Component {
                             <div className="col-md-2">
                                 <label>Total Price</label>
                                 <input type="text" className="form-control befprice" disabled value={this.state.totalPrice}></input>
-                            </div>                   
+                            </div> 
+                            {this.state.offSeason != false  && <Alert />}                    
                         </div>
                         <div className="form-group text-center col-md-12"><hr></hr>
                             <input type="submit" value="Confirm Booking" className="btn btn-primary"></input>
-                        </div>
-                        {this.state.offSeason != false  && <Alert />}    
+                        </div>  
                         {this.state.bookingId != 0 && <ThankPage bookingId={this.state.bookingId} startDate={this.state.startDate} endDate={this.state.endDate} totalPrice={this.state.totalPrice} name={this.state.name}/>}
                     </form>                   
                 </div>                                              
