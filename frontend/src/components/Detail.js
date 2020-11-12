@@ -29,13 +29,14 @@ const Detail = (props) => {
                                 <input type="text" className="form-control" value={props.price} readonly></input>
                             </div>
                         </div>
+
                         <div className="row form-group">
-                            <div className="col-md-6 padding-bottom">
+                            <div className="col-md-12 padding-bottom">
                                 <div className="room-img">
                                 <img className="img-raised" src={props.image}></img>
                             </div>
                         </div>
-                        <div className="col-md-6 padding-bottom">
+                        <div className="col-md-12 padding-bottom">
                             <label>Description</label>
                             <textarea type="text" className="form-control textarea" readonly>{props.description}</textarea>
                         </div>
