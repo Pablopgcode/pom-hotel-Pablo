@@ -51,6 +51,7 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
         if (lowSeason){
             totalPrice -= (totalPrice * LOW_SEASON_DISCOUNT);
         }
+
         return totalPrice;
     }
 

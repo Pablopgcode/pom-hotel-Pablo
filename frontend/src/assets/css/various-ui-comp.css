@@ -1173,12 +1173,17 @@ input[type="checkbox"]{
 .discount{
   width:15%;
   height: 8%;
-  padding-right: 50px;
-  border-radius: 35px 0px 35px 0px;
-  -moz-border-radius: 35px 0px 35px 0px;
-  -webkit-border-radius: 35px 0px 35px 0px;
+  /* padding-right: 50px; */
+  border-radius: 20px 0px 20px 0px;
+  -moz-border-radius: 20px 0px 20px 0px;
+  -webkit-border-radius: 20px 0px 20px 0px;
+  background-color: cornflowerblue;
   position: absolute;
-  left: 26%;
-  margin-top: 7%;
+  right: 4%;
+  margin-top: 1%;
   text-decoration: underline;
+}
+
+.formc{
+  background-color: #e2e0e0;
 }

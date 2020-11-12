@@ -19,7 +19,7 @@ class FormConfirmation extends Component {
             wedge: false,
             laundry: false,
             parking: false,
-            name: 'friend',
+            name: '',
             offSeason: false,
         }
         this.handleCheck = this.handleCheck.bind(this);
@@ -104,7 +104,7 @@ class FormConfirmation extends Component {
     render() {
         console.log("Precio Total: ", this.state.totalPrice);
         return (
-                <div className="container">
+                <div className="container formc">
                     <form id="booking" onSubmit={(e)=> this.submitFormData(e)} >
                         <div className="row form-group">
                             <div id="checkOptions">

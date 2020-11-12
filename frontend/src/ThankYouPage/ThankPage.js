@@ -29,7 +29,7 @@ class ThankPage extends Component {
                     <div>
                         <p className="lead thText">Dear {this.state.name}, your reservation number is:</p><p className="lead lastPrice">#{this.state.bookingId}</p><p className="lead thText"> 
                         Your chosen dates are between {this.state.startDate} and {this.state.endDate}
-                        . The last final price is {this.state.totalPrice}&#8364;.</p>
+                        . The last final price is {this.state.totalPrice}&#8364;</p>
                     </div>
                 </row>
                 <p className="lead"><a class="btn btn-primary btn-sm" href="/home/" role="button">Go to homepage</a></p>
