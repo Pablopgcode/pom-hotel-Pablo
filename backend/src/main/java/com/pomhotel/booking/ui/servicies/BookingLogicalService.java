@@ -13,6 +13,8 @@ public interface BookingLogicalService {
 
     public int getMonth(Date date);
 
+    public double CalculateFinalPrice (double pricePerNight, long nights, long optionals, double discounts);
+
     NewPriceDTO calculateTotalPrice(Date checkIn, Date CheckOut, double pricePerNight, boolean safebox, boolean wedge, boolean laundry, boolean parking);
 
 }

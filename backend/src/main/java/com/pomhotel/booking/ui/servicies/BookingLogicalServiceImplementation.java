@@ -29,7 +29,6 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
     @Override
     public NewPriceDTO calculateTotalPrice(Date checkIn, Date checkOut, double pricePerNight, boolean safebox, boolean wedge, boolean laundry, boolean parking) {
         NewPriceDTO newPrice= new NewPriceDTO();
-
         int [] offSesions = {0,1,2,3,4,5,9,10,11}; /* I consider high season July, August and September */
         boolean lowSeason = false;
         boolean minimDays = false;
@@ -37,8 +36,10 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
         int month2 = getMonth(checkOut);
         long nights = getDaysBetweenTwoDates(checkIn, checkOut);
         long optionals = 0;
+        double discounts = 0;
         String message = "";
-        //-- Calculate discount by minim days of booking
+
+        //-- Discount by minim of booking days?
         minimDays = (nights > MINIM_DAYS)? true : false;
 
         //-- Verify low season
@@ -61,26 +62,35 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
         if(parking){
             optionals += PARKING_DAY;
         }
-
-        double totalPrice = nights * (pricePerNight + optionals);
+        //-- Calculate total percent discount & message to show
         if (lowSeason){
-            totalPrice -= (totalPrice * LOW_SEASON_DISCOUNT);
+            discounts = LOW_SEASON_DISCOUNT;
             message = "5% for booking in low season";
         }
         if (minimDays){
-            totalPrice -= (totalPrice * MINIM_DAYS_DISCOUNT);
+            discounts = MINIM_DAYS_DISCOUNT;
             message = "2% for booking more than 7 days";
+        }if (!minimDays && !lowSeason){
+            discounts = 1;
         }
         if (lowSeason && minimDays){
-            totalPrice -= (totalPrice * (MINIM_DAYS_DISCOUNT + LOW_SEASON_DISCOUNT));
+            discounts = MINIM_DAYS_DISCOUNT + LOW_SEASON_DISCOUNT;
             message = "7% for booking more than 7 days in low season";
         }
 
+        double totalPrice = CalculateFinalPrice (pricePerNight, nights, optionals, discounts);
         //-- Create dto
         newPrice.setLastPrice(totalPrice);
         newPrice.setMessage(message);
-        
+        //-- return object
         return newPrice;
+    }
+
+    @Override
+    public double CalculateFinalPrice (double pricePerNight, long nights, long optionals, double discounts){
+        double totalPrice = nights * (pricePerNight + optionals);
+        totalPrice -= totalPrice * discounts;
+        return totalPrice;
     }
 
     @Override
