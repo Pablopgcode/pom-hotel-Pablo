@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import GetTotalPrice from '../../services/bookingService.js';
 import SaveBooking from '../../services/bookingService.js';
 import ThankPage from '../../ThankYouPage/ThankPage.js';
-import Alert from '../../components/Alerts/Alert.js'
+import AlertD from '../../components/Alerts/AlertD.js'
 class FormConfirmation extends Component {    
     constructor(props) {
         super(props)
@@ -178,7 +178,7 @@ class FormConfirmation extends Component {
                                 <label>Total Price</label>
                                 <input type="text" className="form-control befprice" disabled value={this.state.totalPrice}></input>
                             </div> 
-                            <Alert message={this.state.message}/>                    
+                            <AlertD msg={this.state.message} />                 
                         </div>
                         <div className="form-group text-center col-md-12"><hr></hr>
                             <input type="submit" value="Confirm Booking" className="btn btn-primary"></input>
