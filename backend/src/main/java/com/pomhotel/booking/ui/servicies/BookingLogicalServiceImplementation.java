@@ -5,9 +5,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 //--- Service ----------------------------------------------------------
@@ -25,6 +23,7 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
     //-- Discount of 2% for bookings minim days
     static final int MINIM_DAYS = 7;
     static final double MINIM_DAYS_DISCOUNT = 0.02;
+
     //--- Functions ----------------------------------------------------
     @Override
     public NewPriceDTO calculateTotalPrice(Date checkIn, Date checkOut, double pricePerNight, boolean safebox, boolean wedge, boolean laundry, boolean parking) {

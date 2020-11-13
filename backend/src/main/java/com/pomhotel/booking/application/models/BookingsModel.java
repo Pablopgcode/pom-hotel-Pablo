@@ -2,6 +2,7 @@ package com.pomhotel.booking.application.models;
 
 import java.sql.Date;
 
+
 //--- Model --------------------------------------------------------
 public class BookingsModel {
 
@@ -19,6 +20,7 @@ public class BookingsModel {
     //--- Constructor ----------------------------------------------
     public BookingsModel() {
     }
+
 
     //--- Getters & Setters ----------------------------------------
     public long getId() {
@@ -93,5 +95,21 @@ public class BookingsModel {
     }
     public void setRoomsByFKRoomId(RoomsModel roomsByFKRoomId) {
         this.roomsByFKRoomId = roomsByFKRoomId;
+    }
+
+    @Override
+    public String toString() {
+        return "BookingsModel{" +
+                "id=" + id +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", totalPrice=" + totalPrice +
+                ", clientsByFkClientId=" + clientsByFkClientId +
+                ", roomsByFKRoomId=" + roomsByFKRoomId +
+                ", safebox=" + safebox +
+                ", wedge=" + wedge +
+                ", laundry=" + laundry +
+                ", parking=" + parking +
+                '}';
     }
 }

@@ -72,13 +72,15 @@ public class BookingRest {
     @PostMapping("/booknow")
     public long bookingnow(@RequestBody @Valid NewBookDTO dto) {
         BookingsModel model = new BookingsModel();
-        NewPriceDTO newPrice = new NewPriceDTO();
+        RoomsModel room = roomsService.findById(dto.roomId);
         long id = 0;
+
         try {
-            newPrice = bookingLogicalService.calculateTotalPrice(Date.valueOf(dto.checkIn), Date.valueOf(dto.checkOut), model.roomsByFKRoomId.pricePerNight, dto.safebox, dto.wedge, dto.laundry, dto.parking);
+            NewPriceDTO newPrice = bookingLogicalService.calculateTotalPrice(Date.valueOf(dto.checkIn), Date.valueOf(dto.checkOut), room.pricePerNight, dto.safebox, dto.wedge, dto.laundry, dto.parking);
+
             model.checkIn = Date.valueOf(dto.checkIn);
             model.checkOut = Date.valueOf(dto.checkOut);
-            model.roomsByFKRoomId = roomsService.findById(dto.roomId);
+            model.roomsByFKRoomId = room;
             model.clientsByFkClientId = clientsService.findClientByUsername("Garcia1989");
             model.safebox = dto.safebox;
             model.wedge = dto.wedge;
@@ -86,6 +88,7 @@ public class BookingRest {
             model.parking = dto.parking;
             model.totalPrice = newPrice.getLastPrice();
             id = bookingsService.saveOrUpdate(model);
+
         }catch (Exception e) {
             e.printStackTrace();
         }
