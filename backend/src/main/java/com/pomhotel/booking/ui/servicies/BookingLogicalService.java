@@ -1,6 +1,7 @@
 package com.pomhotel.booking.ui.servicies;
 
 
+import com.pomhotel.booking.ui.dto.NewPriceDTO;
 import java.sql.Date;
 
 //--- Service Interface -------------------------------------------
@@ -12,6 +13,6 @@ public interface BookingLogicalService {
 
     public int getMonth(Date date);
 
-    double calculateTotalPrice(Date checkIn, Date CheckOut, double pricePerNight, boolean safebox, boolean wedge, boolean laundry, boolean parking);
+    NewPriceDTO calculateTotalPrice(Date checkIn, Date CheckOut, double pricePerNight, boolean safebox, boolean wedge, boolean laundry, boolean parking);
 
 }

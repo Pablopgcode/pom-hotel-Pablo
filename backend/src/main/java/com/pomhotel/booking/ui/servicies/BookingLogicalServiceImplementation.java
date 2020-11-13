@@ -1,5 +1,6 @@
 package com.pomhotel.booking.ui.servicies;
 
+import com.pomhotel.booking.ui.dto.NewPriceDTO;
 import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -26,7 +27,9 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
     static final double MINIM_DAYS_DISCOUNT = 0.02;
     //--- Functions ----------------------------------------------------
     @Override
-    public double calculateTotalPrice(Date checkIn, Date checkOut, double pricePerNight, boolean safebox, boolean wedge, boolean laundry, boolean parking) {
+    public NewPriceDTO calculateTotalPrice(Date checkIn, Date checkOut, double pricePerNight, boolean safebox, boolean wedge, boolean laundry, boolean parking) {
+        NewPriceDTO newPrice= new NewPriceDTO();
+
         int [] offSesions = {0,1,2,3,4,5,9,10,11}; /* I consider high season July, August and September */
         boolean lowSeason = false;
         boolean minimDays = false;
@@ -34,17 +37,18 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
         int month2 = getMonth(checkOut);
         long nights = getDaysBetweenTwoDates(checkIn, checkOut);
         long optionals = 0;
+        String message = "";
         //-- Calculate discount by minim days of booking
         minimDays = (nights > MINIM_DAYS)? true : false;
 
-        //-- Calculate discount for low season
+        //-- Verify low season
         for(int i=0; i < offSesions.length; i++){
             if(offSesions[i] == month1 && offSesions[i] == month2){
                 lowSeason = true;
             }
         }
 
-        //-- Calculate last price with options
+        //-- Calculate total price options
         if(safebox){
             optionals += SAFEBOX_DAY;
         }
@@ -57,15 +61,26 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
         if(parking){
             optionals += PARKING_DAY;
         }
+
         double totalPrice = nights * (pricePerNight + optionals);
         if (lowSeason){
             totalPrice -= (totalPrice * LOW_SEASON_DISCOUNT);
+            message = "5% for booking in low season";
         }
         if (minimDays){
             totalPrice -= (totalPrice * MINIM_DAYS_DISCOUNT);
+            message = "2% for booking more than 7 days";
+        }
+        if (lowSeason && minimDays){
+            totalPrice -= (totalPrice * (MINIM_DAYS_DISCOUNT + LOW_SEASON_DISCOUNT));
+            message = "7% for booking more than 7 days in low season";
         }
 
-        return totalPrice;
+        //-- Create dto
+        newPrice.setLastPrice(totalPrice);
+        newPrice.setMessage(message);
+        
+        return newPrice;
     }
 
     @Override
@@ -88,3 +103,4 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
     }
 
 }
+

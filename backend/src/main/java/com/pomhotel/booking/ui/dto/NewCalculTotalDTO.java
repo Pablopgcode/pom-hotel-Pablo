@@ -1,7 +1,5 @@
 package com.pomhotel.booking.ui.dto;
 
-import com.pomhotel.booking.application.models.RoomsModel;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;

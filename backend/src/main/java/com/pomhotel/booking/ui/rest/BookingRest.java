@@ -7,6 +7,7 @@ import com.pomhotel.booking.application.services.ClientLoginService;
 import com.pomhotel.booking.application.services.RoomsService;
 import com.pomhotel.booking.ui.dto.NewBookDTO;
 import com.pomhotel.booking.ui.dto.NewCalculTotalDTO;
+import com.pomhotel.booking.ui.dto.NewPriceDTO;
 import com.pomhotel.booking.ui.servicies.BookingLogicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,25 +58,24 @@ public class BookingRest {
     }
 
     @PostMapping("/getTotalPrice")
-    public Double getTotalPrice(@RequestBody @Valid NewCalculTotalDTO dto){
-        Double totalPrice = 0.0;
+    public NewPriceDTO getTotalPrice(@RequestBody @Valid NewCalculTotalDTO dto){
+        NewPriceDTO newPrice = new NewPriceDTO();
         try{
             RoomsModel model = roomsService.findById(dto.roomId);
-            totalPrice = bookingLogicalService.calculateTotalPrice(dto.checkIn, dto.checkOut, model.pricePerNight, dto.safebox, dto.wedge, dto.laundry, dto.parking);
-            if (totalPrice < 0){
-                totalPrice = 0.0;
-            }
+            newPrice = bookingLogicalService.calculateTotalPrice(dto.checkIn, dto.checkOut, model.pricePerNight, dto.safebox, dto.wedge, dto.laundry, dto.parking);
         }catch (Exception e){
             e.printStackTrace();
         }
-        return totalPrice;
+        return newPrice;
     }
 
     @PostMapping("/booknow")
     public long bookingnow(@RequestBody @Valid NewBookDTO dto) {
         BookingsModel model = new BookingsModel();
+        NewPriceDTO newPrice = new NewPriceDTO();
         long id = 0;
         try {
+            newPrice = bookingLogicalService.calculateTotalPrice(Date.valueOf(dto.checkIn), Date.valueOf(dto.checkOut), model.roomsByFKRoomId.pricePerNight, dto.safebox, dto.wedge, dto.laundry, dto.parking);
             model.checkIn = Date.valueOf(dto.checkIn);
             model.checkOut = Date.valueOf(dto.checkOut);
             model.roomsByFKRoomId = roomsService.findById(dto.roomId);
@@ -84,12 +84,12 @@ public class BookingRest {
             model.wedge = dto.wedge;
             model.laundry = dto.laundry;
             model.parking = dto.parking;
-            model.totalPrice = bookingLogicalService.calculateTotalPrice(model.checkIn, model.checkOut, model.roomsByFKRoomId.pricePerNight, model.safebox, model.wedge, model.laundry, model.parking);
+            model.totalPrice = newPrice.getLastPrice();
             id = bookingsService.saveOrUpdate(model);
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return id;
+            return id;
     }
 
     @DeleteMapping("/booknow/{id}")

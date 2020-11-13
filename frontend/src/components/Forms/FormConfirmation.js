@@ -11,17 +11,17 @@ class FormConfirmation extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            lastPriceObj: {},
             startDate: this.props.startDate,
             endDate: this.props.endDate,
-            totalPrice: null,
+            totalPrice: 0,
+            message: '',
             bookingId: 0,
             safebox: false,
             wedge: false,
             laundry: false,
             parking: false,
             name: '',
-            alertMessage: false,
-            discountApply: ''
         }
         this.handleCheck = this.handleCheck.bind(this);
         this.handleDateCheckin = this.handleDateCheckin.bind(this);
@@ -29,41 +29,8 @@ class FormConfirmation extends Component {
         this.handleChangeName = this.handleChangeName.bind(this);
     }
 
-    discountApplied(){
-        let offSesions = [0,1,2,3,4,5,9,10,11]; /* I consider high season July, August and September */
-        let days = Math.floor(Math.floor(this.state.endDate.getTime() - this.state.startDate.getTime())/(1000 * 60 * 60 * 24))
-        let offSeason = false;  
-        if (offSesions.includes(this.state.startDate.getMonth()) && offSesions.includes(this.state.endDate.getMonth())){
-            offSeason = true;
-        }
-        //Discounts
-        if (offSeason == true && days > 7){
-            this.setState({discountApply : '7% for booking more than 7 days in low season'})
-            this.setState({alertMessage: true}) 
-        }
-        if (offSeason == true && days <= 7){
-            this.setState({discountApply : '5% for booking in low season'})
-            this.setState({alertMessage: true})    
-        }
-        if (offSeason == false && days > 7){
-            this.setState({discountApply : '2% for booking more than 7 days'})  
-            this.setState({alertMessage: true}) 
-        }
-        if (offSeason == false && days <= 7){
-            this.setState({discountApply : ''})
-            this.setState({alertMessage: false})          
-        }      
-    }
-
-    calculatePrice(){
-        GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id,  this.state.safebox, this.state.wedge, this.state.laundry, this.state.parking).then((res) => {
-            this.setState({ totalPrice: res.data}); 
-        })
-    }
-
     componentDidMount(){
-        this.discountApplied();
-        GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id).then((res) => {this.setState({ totalPrice: res.data});})
+        GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id, this.state.safebox, this.state.wedge, this.state.laundry, this.state.parking).then((res) => {this.setState({ lastPriceObj: res.data, totalPrice: res.data.lastPrice, message: res.data.message });})
     }
     
     /* handle checkboxes */
@@ -83,7 +50,6 @@ class FormConfirmation extends Component {
         this.setState({
           startDate: event
         }, () => {
-            this.discountApplied(); 
             this.calculatePrice();
         });          
     }
@@ -92,9 +58,12 @@ class FormConfirmation extends Component {
         this.setState({
           endDate: event
         }, () => {
-            this.discountApplied();  
             this.calculatePrice();
         });             
+    }
+
+    calculatePrice(){
+        GetTotalPrice.getTotalPrice(this.state.startDate, this.state.endDate, this.props.room.id, this.state.safebox, this.state.wedge, this.state.laundry,  this.state.parking).then((res) => {this.setState({ lastPriceObj: res.data, totalPrice: res.data.lastPrice, message: res.data.message });})
     }
 
     handleChangeName(event) { this.setState({name: event.target.value});}
@@ -103,22 +72,20 @@ class FormConfirmation extends Component {
         const sqlStartDate = this.state.startDate.toJSON().split("T")[0];
         const sqlEndDate = this.state.endDate.toJSON().split("T")[0];      
         ev.preventDefault();
-        SaveBooking.saveBooking (this.props.room.id, 
-                                sqlStartDate, 
-                                sqlEndDate,
-                                this.state.totalPrice,
-                                this.state.safebox,
-                                this.state.wedge,
-                                this.state.laundry,
-                                this.state.parking).then((res) => {
-                                    this.setState({bookingId: res.data});                    
-                                })
+        SaveBooking.saveBooking (
+            this.props.room.id, 
+            sqlStartDate, 
+            sqlEndDate,
+            this.state.totalPrice,
+            this.state.safebox,
+            this.state.wedge,
+            this.state.laundry,
+            this.state.parking).then((res) => {
+            this.setState({bookingId: res.data});                    
+        })
     }
     
     render() {
-        console.log("ALERT?",this.state.alertMessage)
-        console.log("MESSAGE",this.state.discountApply)
-
         return (
                 <div className="container formc">
                     <form id="booking" onSubmit={(e)=> this.submitFormData(e)} >                      
@@ -211,7 +178,7 @@ class FormConfirmation extends Component {
                                 <label>Total Price</label>
                                 <input type="text" className="form-control befprice" disabled value={this.state.totalPrice}></input>
                             </div> 
-                            {this.state.alertMessage != false  && <Alert message={this.state.discountApply}/>}                    
+                            <Alert message={this.state.message}/>                    
                         </div>
                         <div className="form-group text-center col-md-12"><hr></hr>
                             <input type="submit" value="Confirm Booking" className="btn btn-primary"></input>
