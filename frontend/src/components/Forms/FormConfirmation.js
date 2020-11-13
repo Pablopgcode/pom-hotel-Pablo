@@ -178,7 +178,7 @@ class FormConfirmation extends Component {
                                 <label>Total Price</label>
                                 <input type="text" className="form-control befprice" disabled value={this.state.totalPrice}></input>
                             </div> 
-                            <AlertD msg={this.state.message} />                 
+                            {this.state.message != '' && <AlertD msg={this.state.message} />}                 
                         </div>
                         <div className="form-group text-center col-md-12"><hr></hr>
                             <input type="submit" value="Confirm Booking" className="btn btn-primary"></input>
