@@ -1,73 +1,94 @@
 package com.pomhotel.booking.application.services;
 
 import com.pomhotel.booking.application.models.BookingsModel;
-import com.pomhotel.booking.application.models.ClientsModel;
-import com.pomhotel.booking.application.models.RoomsModel;
-import com.pomhotel.booking.application.models.RoomtypesModel;
+import com.pomhotel.booking.ui.rest.BookingRest;
+import com.pomhotel.booking.ui.servicies.BookingLogicalService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import java.sql.Date;
-import java.util.Calendar;
-import java.util.List;
-
+import org.springframework.test.web.servlet.MockMvc;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @SpringBootTest
+@AutoConfigureMockMvc
 public class BookingsServiceImplementationTest {
     @Autowired
+    private MockMvc mockMvc;
+    @Autowired
     private BookingsService bookingService;
-    private ClientsModel client;
-    private RoomsModel room;
-    private RoomtypesModel type;
-    private List<Date> booked;
-    private List<RoomsModel> typesList;
-    private List<BookingsModel> booksList;
+    private RoomsService roomsService;
+    private ClientLoginService clientsLoginService;
+    private BookingLogicalService bookingLogicalService;
+
     @Test
-    public void ShouldinjectedBean()
-    {
+    public void ShouldinjectedBean(){
         assertThat(bookingService).isNotNull();
     }
 
+
     @Test
-    public void ShouldAddInBDBookingWhenSave() throws Exception {
-//        room.setId(2);
-//        room.setCode("SU2");
-//        room.setPricePerNight(100.0);
-//        room.setImage("img1.jpg");
-//        room.setGuests(2);
-//        room.setRoomtypesByFkRoomtypeId(type);
-//        room.setBooked(booked);
-//
-//        typesList.add(room);/////////////////////////
-//        type.setId(10);
-//        type.setName("Suite");
-//        type.setDescription("Lorem ipsum");
-//        type.setRoomsById(typesList);
-//
-//        booksList.add(2);///////////////////////
-//        client.setId(1);
-//        client.setName("Pablo");
-//        client.setLastname("P");
-//        client.setEmail("email@gmail.com");
-//        client.setBookingsById(booksList);
-//
-//        BookingsModel booking = new BookingsModel();
-//        booking.setId(23);
-//        booking.setCheckIn(new Date(Calendar.getInstance().getTime().getTime()));
-//        booking.setCheckOut(new Date(Calendar.getInstance().getTime().getTime()));
-//        booking.setTotalPrice(600.0);
-//        booking.setClientsByFkClientId(client);
-//        booking.setSafebox(true);
-//        booking.setWedge(false);
-//        booking.setLaundry(true);
-//        booking.setParking(false);
-//        booking.setRoomsByFKRoomId(room);
-//
-//        long id = bookingService.saveOrUpdate(booking);
-//        assertThat(booking.getId()).isEqualTo(id);
+    void TestGetBookingById() throws Exception{
+         BookingsModel bookingsModel = new BookingsModel();
+         bookingsModel.setId(1);
+         bookingsModel.setTotalPrice(50.00);
+         var bookingService = Mockito.mock(BookingsService.class);
+         Mockito.when(bookingService.findById(1)).thenReturn(bookingsModel);
+         BookingRest bookingRest = new BookingRest(roomsService, bookingService, clientsLoginService, bookingLogicalService);
+         assertEquals(bookingRest.getBooking(1), bookingsModel);
     }
+
+    @Test
+    public void ShouldAddInBDBookingWhenSave() throws Exception {}
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*@Test
+    void testGetAll() throws Exception{
+        this.mockMvc.perform(get("api/bookings/{id}").param("id", "1"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.totalPrice").value(20.00));
+    }
+    @Test
+    void testGetById() throws Exception{
+        this.mockMvc.perform(post("/greeting")
+                .content("Manuel"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content").value("Hello, Manuel!"));
+    }*/
+
+
+
 
 
 
