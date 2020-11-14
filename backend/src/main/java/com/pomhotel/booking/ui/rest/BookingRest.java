@@ -77,7 +77,6 @@ public class BookingRest {
 
         try {
             NewPriceDTO newPrice = bookingLogicalService.calculateTotalPrice(Date.valueOf(dto.checkIn), Date.valueOf(dto.checkOut), room.pricePerNight, dto.safebox, dto.wedge, dto.laundry, dto.parking);
-
             model.checkIn = Date.valueOf(dto.checkIn);
             model.checkOut = Date.valueOf(dto.checkOut);
             model.roomsByFKRoomId = room;
