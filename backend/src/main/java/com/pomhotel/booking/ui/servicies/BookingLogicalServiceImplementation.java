@@ -43,7 +43,7 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
 
         //-- Verify low season
         for(int i=0; i < offSesions.length; i++){
-            if(offSesions[i] == month1 && offSesions[i] == month2){
+            if(offSesions[i] == month1 || offSesions[i] == month2){
                 lowSeason = true;
             }
         }
@@ -62,6 +62,7 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
             optionals += PARKING_DAY;
         }
         //-- Calculate total percent discount & message to show
+
         if (lowSeason){
             discounts = LOW_SEASON_DISCOUNT;
             message = "5% for booking in low season";
@@ -88,7 +89,9 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
     @Override
     public double CalculateFinalPrice (double pricePerNight, long nights, long optionals, double discounts){
         double totalPrice = nights * (pricePerNight + optionals);
-        totalPrice -= totalPrice * discounts;
+        totalPrice = (discounts == 1)? totalPrice : (totalPrice -= totalPrice * discounts);
+        if (totalPrice < 0){ totalPrice = 0;}
+        //totalPrice -= totalPrice * discounts;
         return totalPrice;
     }
 
