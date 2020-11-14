@@ -45,7 +45,6 @@ public class BookingsServiceImplementation implements BookingsService{
 
     @Override
     public long saveOrUpdate(BookingsModel model) {
-        System.out.println(model);
         long id = repository.saveOrUpdate(factory.createEntity(model));
         return id;
     }

@@ -18,6 +18,20 @@ public class BookingsModel {
     public boolean laundry;
     public boolean parking;
     //--- Constructor ----------------------------------------------
+
+    public BookingsModel(long id, Date checkIn, Date checkOut, Double totalPrice, ClientsModel clientsByFkClientId, RoomsModel roomsByFKRoomId, boolean safebox, boolean wedge, boolean laundry, boolean parking) {
+        this.id = id;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.totalPrice = totalPrice;
+        this.clientsByFkClientId = clientsByFkClientId;
+        this.roomsByFKRoomId = roomsByFKRoomId;
+        this.safebox = safebox;
+        this.wedge = wedge;
+        this.laundry = laundry;
+        this.parking = parking;
+    }
+
     public BookingsModel() {
     }
 

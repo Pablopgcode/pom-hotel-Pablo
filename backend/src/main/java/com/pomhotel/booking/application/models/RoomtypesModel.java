@@ -11,6 +11,14 @@ public class RoomtypesModel {
     public List<RoomsModel> roomsById;
 
     //--- Constructor ----------------------------------------------
+
+    public RoomtypesModel(long id, String name, String description, List<RoomsModel> roomsById) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.roomsById = roomsById;
+    }
+
     public RoomtypesModel() {
     }
 

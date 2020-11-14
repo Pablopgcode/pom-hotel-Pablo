@@ -15,6 +15,18 @@ public class RoomsModel {
     public RoomtypesModel roomtypesByFkRoomtypeId;
     public List<Date> booked;
     //--- Constructor ----------------------------------------------
+
+    public RoomsModel(long id, String code, String description, Double pricePerNight, String image, int guests, RoomtypesModel roomtypesByFkRoomtypeId, List<Date> booked) {
+        this.id = id;
+        this.code = code;
+        this.description = description;
+        this.pricePerNight = pricePerNight;
+        this.image = image;
+        this.guests = guests;
+        this.roomtypesByFkRoomtypeId = roomtypesByFkRoomtypeId;
+        this.booked = booked;
+    }
+
     public RoomsModel() {
     }
 

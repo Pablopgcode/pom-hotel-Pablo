@@ -13,6 +13,15 @@ public class ClientsModel {
     public List<BookingsModel> bookingsById;
 
     //--- Constructor ----------------------------------------------
+
+    public ClientsModel(long id, String name, String lastname, String email, List<BookingsModel> bookingsById) {
+        this.id = id;
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.bookingsById = bookingsById;
+    }
+
     public ClientsModel() {
     }
 
