@@ -6,6 +6,8 @@ import com.pomhotel.booking.BookingApplication;
 import com.pomhotel.booking.application.models.BookingsModel;
 import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.application.models.RoomtypesModel;
+import com.pomhotel.booking.ui.dto.NewCalculTotalDTO;
+import com.pomhotel.booking.ui.dto.NewPriceDTO;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,11 +19,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -57,7 +57,7 @@ public class BookingRestTest {
     }
 
     @Test
-    @DisplayName("Test: Find room by id on API REST")
+    @DisplayName("Test: Find book by id on API REST")
     void ShouldfindBookingByIdOnApi() throws Exception {
         List<RoomsModel> rooms = new ArrayList<>();
         RoomtypesModel type = new RoomtypesModel();
@@ -90,6 +90,28 @@ public class BookingRestTest {
                 .andExpect(jsonPath("$.id").value(1));
     }
 
+    @Test
+    @DisplayName("Test: Obtain final price on API REST")     //////////////////////////////////// PETA
+    void ShouldGetBookinFinalPriceOnApi() throws Exception {
+        NewCalculTotalDTO calculTotal = new NewCalculTotalDTO();
+        NewPriceDTO newPrice = new NewPriceDTO();
+        newPrice.setLastPrice(300.00);
+        newPrice.setMessage("5% for booking in low season");
+        calculTotal.setCheckIn(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
+        calculTotal.setCheckOut(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
+        calculTotal.setLaundry(false);
+        calculTotal.setSafebox(false);
+        calculTotal.setWedge(false);
+        calculTotal.setParking(false);
+        calculTotal.setRoomId(1);
+        when(bookingMock.getTotalPrice(calculTotal)).thenReturn(newPrice);
+        this.mvc.perform(get("/boot/getTotalPrice")
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.lastPrice").value(300.00))
+                .andExpect(jsonPath("$.message").value("5% for booking in low season"));
+    }
 
 
 
