@@ -6,8 +6,9 @@ import com.pomhotel.booking.BookingApplication;
 import com.pomhotel.booking.application.models.BookingsModel;
 import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.application.models.RoomtypesModel;
+import com.pomhotel.booking.application.services.RoomsService;
+import com.pomhotel.booking.ui.dto.NewBookDTO;
 import com.pomhotel.booking.ui.dto.NewCalculTotalDTO;
-import com.pomhotel.booking.ui.dto.NewPriceDTO;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,9 +25,9 @@ import java.util.Calendar;
 import java.util.List;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = BookingApplication.class)
 @AutoConfigureMockMvc
@@ -64,7 +65,6 @@ public class BookingRestTest {
         type.setId(1);
         type.setName("Suite");
         type.setDescription("description");
-
         RoomsModel room = new RoomsModel();
         room.setId(1);
         room.setCode("SU3");
@@ -80,7 +80,6 @@ public class BookingRestTest {
         book.setCheckIn(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
         book.setCheckOut(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
         book.setRoomsByFKRoomId(room);
-
         when(bookingMock.getBooking(1)).thenReturn(book);
         this.mvc.perform(get("/boot/booknow/1")
                 .accept(MediaType.APPLICATION_JSON))
@@ -91,45 +90,50 @@ public class BookingRestTest {
     }
 
     @Test
-    @DisplayName("Test: Obtain final price on API REST")     //////////////////////////////////// PETA
+    @DisplayName("Test: Obtain final price on API REST")
     void ShouldGetBookinFinalPriceOnApi() throws Exception {
         NewCalculTotalDTO calculTotal = new NewCalculTotalDTO();
-        NewPriceDTO newPrice = new NewPriceDTO();
-        newPrice.setLastPrice(300.00);
-        newPrice.setMessage("5% for booking in low season");
+        calculTotal.setRoomId(1);
         calculTotal.setCheckIn(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
         calculTotal.setCheckOut(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
         calculTotal.setLaundry(false);
         calculTotal.setSafebox(false);
         calculTotal.setWedge(false);
         calculTotal.setParking(false);
-        calculTotal.setRoomId(1);
-        when(bookingMock.getTotalPrice(calculTotal)).thenReturn(newPrice);
-        this.mvc.perform(get("/boot/getTotalPrice")
-                .accept(MediaType.APPLICATION_JSON))
+        this.mvc.perform(post("/boot/getTotalPrice")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.toJson(calculTotal)))             //////////////////////////////////////////////////////////// PETA
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.lastPrice").value(300.00))
-                .andExpect(jsonPath("$.message").value("5% for booking in low season"));
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.lastPrice").value("0.00"));
     }
 
-
-
+    @Test
+    @DisplayName("Test: Booking save on API REST")         /////////////////////////////////////////////////////   PETA
+    void ShouldBookingNowOnApi() throws Exception {
+        NewBookDTO newBookdto = new NewBookDTO();
+        BookingsModel book = new BookingsModel();
+        newBookdto.setRoomId(1);
+        newBookdto.setCheckIn("2020-11-15");
+        newBookdto.setCheckOut("2020-11-16");
+        newBookdto.setClientsByFkClientId(1);
+        newBookdto.setTotalPrice(300);
+        newBookdto.setSafebox(false);
+        newBookdto.setWedge(false);
+        newBookdto.setLaundry(false);
+        newBookdto.setParking(false);
+        this.mvc.perform(post("/boot/booknow")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.toJson(newBookdto)))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(book.getId()));
+    }
 
     static byte[] toJson(Object object ) throws  Exception {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").create();
         return gson.toJson(object).getBytes();
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }

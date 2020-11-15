@@ -12,8 +12,4 @@ public interface RoomTypesService {
 
     void saveOrUpdate(RoomtypesModel model);
 
-    void deleteById(long id);
-
-    void delete(RoomtypesModel model);
-
 }

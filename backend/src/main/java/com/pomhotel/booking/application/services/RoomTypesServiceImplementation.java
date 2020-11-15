@@ -45,14 +45,4 @@ public class RoomTypesServiceImplementation implements RoomTypesService {
         repository.saveOrUpdate(factory.createEntity(model));
     }
 
-    @Override
-    public void deleteById(long id) {
-        repository.deleteById(id);
-    }
-
-    @Override
-    public void delete(RoomtypesModel model) {
-        repository.delete(factory.createEntity(model));
-    }
-
 }

@@ -65,15 +65,4 @@ public class BookingsServiceImplementation implements BookingsService{
          }
          return reservedDates;
     }
-
-    @Override
-    public void deleteById(long id) {
-        repository.deleteById(id);
-    }
-
-    @Override
-    public void delete(BookingsModel model) {
-        repository.delete(factory.createEntity(model));
-    }
-
 }

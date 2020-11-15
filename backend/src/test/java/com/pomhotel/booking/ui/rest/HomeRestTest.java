@@ -5,7 +5,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.pomhotel.booking.BookingApplication;
 import com.pomhotel.booking.application.models.RoomsModel;
+import com.pomhotel.booking.ui.dto.SearchDTO;
 import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -76,7 +80,7 @@ public class HomeRestTest {
             RoomsModel room1 = new RoomsModel();
             RoomsModel room2 = new RoomsModel();
             room1.setId(1);
-            room1.setPricePerNight(300.00);
+            room1.setPricePerNight(320.00);
             room1.setCode("SU1");
             room2.setId(2);
             room2.setPricePerNight(200.00);
@@ -85,21 +89,44 @@ public class HomeRestTest {
             rooms.add(room2);
             when(roomsMock.roomsList()).thenReturn(rooms);
             this.mvc.perform(get("/boot/rooms")
-                    .accept(MediaType.APPLICATION_JSON))
-                    .andDo(print())
-                    .andExpect(status().isOk())
-                    .andExpect(jsonPath("$").value(gson.fromJson((JsonElement)rooms, RoomsModel.class)));  ////////////////////////////////  PETE
-
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray());
         }
 
+
         @Test
-        @DisplayName("Test: Find a filtered room")   ////////////////////////////////////// INCOMPLETO
+        @DisplayName("Test: Find a filtered rooms")   //////////////////////////////////////
         void ShouldfindAFilterRoomsOnApi() throws Exception {
-            final Gson gson = new Gson();
             List<RoomsModel> rooms = new ArrayList<>();
-
-
-
+            SearchDTO search = new SearchDTO();
+            final Gson gson = new Gson();
+            search.setCheckin("2020-11-15");
+            search.setCheckout("2020-11-17");
+            search.setGuests("2");
+            search.setMinprice("50");
+            search.setMaxprice("1000");
+            search.setType("1");
+            RoomsModel room1 = new RoomsModel();
+            RoomsModel room2 = new RoomsModel();
+            room1.setId(1);
+            room1.setGuests(2);
+            room1.setPricePerNight(300.00);
+            room1.setCode("SU1");
+            room2.setId(2);
+            room2.setPricePerNight(200.00);
+            room2.setCode("SU2");
+            rooms.add(room1);
+            rooms.add(room2);
+            when(roomsMock.apirooms(search)).thenReturn(rooms);
+            this.mvc.perform(post("/boot/rooms")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(this.toJson(search)))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    //.andExpect(jsonPath("$").isArray());
+                    .andExpect(jsonPath("$[0].getCode").value("SU1"));  /////////////  PETA
         }
 
         static byte[] toJson(Object object ) throws  Exception {

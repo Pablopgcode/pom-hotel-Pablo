@@ -14,8 +14,4 @@ public interface RoomsService {
 
     void saveOrUpdate(RoomsModel model);
 
-    void deleteById(long id);
-
-    void delete(RoomsModel model);
-
 }

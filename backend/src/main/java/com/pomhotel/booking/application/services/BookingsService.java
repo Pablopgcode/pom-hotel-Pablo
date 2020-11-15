@@ -14,10 +14,5 @@ public interface BookingsService {
 
     long saveOrUpdate(BookingsModel model);
 
-    void deleteById(long id);
-
-    void delete(BookingsModel model);
-
-
     public List<Date> getReservedDates(long id);
 }
