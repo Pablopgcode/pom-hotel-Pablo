@@ -94,10 +94,12 @@ public class BookingsServiceImplementationTest {
     public void ShouldAddInBDBookingWhenSave() throws Exception {
         var bookingService = Mockito.mock(BookingsService.class);
         Mockito.when(bookingService.saveOrUpdate(bookingsModel)).thenReturn(bookingsModel.getId());
+        Mockito.when(bookingService.findById(bookingsModel.getId())).thenReturn(bookingsModel);
         BookingRest bookingRest = new BookingRest(roomsService, bookingService, clientsLoginService, bookingLogicalService);
-        long id = bookingService.saveOrUpdate(bookingsModel);
+        BookingsModel model = bookingService.findById(bookingService.saveOrUpdate(bookingsModel));
         assertNotNull(bookingRest);
         assertNotEquals(null, bookingRest);
+        assertEquals(model.getTotalPrice(), 2500.00 );
     }
 
     @Test

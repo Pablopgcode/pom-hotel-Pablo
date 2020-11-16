@@ -62,7 +62,6 @@ public class RoomsServiceImplementationTest {
         //Mockito.when(roomsService.saveOrUpdate(room)).thenReturn(bookingsModel.getId());
         assertNotNull(room);
         assertNotEquals(null, room);
-
     }
 
     @Test
@@ -76,7 +75,6 @@ public class RoomsServiceImplementationTest {
     @Test
     @DisplayName("Test: Get filtered room")
     public void ShouldGetAFilteredRoom() throws Exception {
-
 
 
 
