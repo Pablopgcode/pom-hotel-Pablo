@@ -22,7 +22,7 @@ function Home() {
       
     <React.Fragment>
         <Navbar />     
-        <Header image={require("assets/img/chica_piscina.jpg")}/>
+        <Header image={require("assets/img/mynamar.jpg")}/>
         <Middlehome />  
         <DarkFooter />
     </React.Fragment>           
