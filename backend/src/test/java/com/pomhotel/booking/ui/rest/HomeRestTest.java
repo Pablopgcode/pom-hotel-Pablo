@@ -7,6 +7,7 @@ import com.pomhotel.booking.BookingApplication;
 import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.ui.dto.SearchDTO;
 import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class HomeRestTest {
 
+        List<RoomsModel> rooms = new ArrayList<>();
+        SearchDTO search = new SearchDTO();
+        final Gson gson = new Gson();
+        RoomsModel room = new RoomsModel();
+        RoomsModel room1 = new RoomsModel();
+        RoomsModel room2 = new RoomsModel();
+
         @Autowired
         private MockMvc mvc;
 
@@ -48,6 +56,30 @@ public class HomeRestTest {
                     .build();
         }
 
+        @BeforeEach
+        public void setUp() {
+            room.setId(1);
+            room.setPricePerNight(300.00);
+            room.setCode("SU1");
+
+            room1.setId(1);
+            room1.setPricePerNight(320.00);
+            room1.setCode("SU1");
+
+            room2.setId(2);
+            room2.setPricePerNight(200.00);
+            room2.setCode("SU2");
+            rooms.add(room1);
+            rooms.add(room2);
+
+            search.setCheckin("2020-11-15");
+            search.setCheckout("2020-11-17");
+            search.setGuests("2");
+            search.setMinprice("50");
+            search.setMaxprice("1000");
+            search.setType("1");
+        }
+
         @Test
         @DisplayName("Test: Access to rooms endpoint")
         public void ShouldReturnOkWhenVisitRooms() throws  Exception{
@@ -59,10 +91,6 @@ public class HomeRestTest {
         @Test
         @DisplayName("Test: Find room by id on API REST")
         void ShouldfindRoomByIdOnApi() throws Exception {
-            RoomsModel room = new RoomsModel();
-            room.setId(1);
-            room.setPricePerNight(300.00);
-            room.setCode("SU1");
             when(roomsMock.getRoomsById(1)).thenReturn(room);
             this.mvc.perform(get("/boot/rooms/1")
                 .accept(MediaType.APPLICATION_JSON))
@@ -75,18 +103,6 @@ public class HomeRestTest {
         @Test
         @DisplayName("Test: Find all rooms on API REST")
         void ShouldfindAllRoomsOnApi() throws Exception {
-            final Gson gson = new Gson();
-            List<RoomsModel> rooms = new ArrayList<>();
-            RoomsModel room1 = new RoomsModel();
-            RoomsModel room2 = new RoomsModel();
-            room1.setId(1);
-            room1.setPricePerNight(320.00);
-            room1.setCode("SU1");
-            room2.setId(2);
-            room2.setPricePerNight(200.00);
-            room2.setCode("SU2");
-            rooms.add(room1);
-            rooms.add(room2);
             when(roomsMock.roomsList()).thenReturn(rooms);
             this.mvc.perform(get("/boot/rooms")
                 .accept(MediaType.APPLICATION_JSON))
@@ -95,19 +111,11 @@ public class HomeRestTest {
                 .andExpect(jsonPath("$").isArray());
         }
 
-
         @Test
         @DisplayName("Test: Find a filtered rooms")   //////////////////////////////////////
         void ShouldfindAFilterRoomsOnApi() throws Exception {
-            List<RoomsModel> rooms = new ArrayList<>();
-            SearchDTO search = new SearchDTO();
-            final Gson gson = new Gson();
-            search.setCheckin("2020-11-15");
-            search.setCheckout("2020-11-17");
-            search.setGuests("2");
-            search.setMinprice("50");
-            search.setMaxprice("1000");
-            search.setType("1");
+
+
             RoomsModel room1 = new RoomsModel();
             RoomsModel room2 = new RoomsModel();
             room1.setId(1);

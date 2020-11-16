@@ -59,7 +59,6 @@ public class BookingRest {
 
 
     @RequestMapping(value="/getTotalPrice", method=RequestMethod.POST, produces="application/json")
-    //public ResponseEntity<NewPriceDTO> getTotalPrice(@RequestBody @Valid NewCalculTotalDTO dto){
     public NewPriceDTO getTotalPrice(@RequestBody @Valid NewCalculTotalDTO dto){
         NewPriceDTO newPrice = new NewPriceDTO();
         try{
@@ -68,7 +67,6 @@ public class BookingRest {
         }catch (Exception e){
             e.printStackTrace();
         }
-        //return new ResponseEntity(newPrice, HttpStatus.ACCEPTED);
         return newPrice;
 
     }
@@ -78,7 +76,6 @@ public class BookingRest {
         BookingsModel model = new BookingsModel();
         RoomsModel room = roomsService.findById(dto.roomId);
         long id = 0;
-
         try {
             NewPriceDTO newPrice = bookingLogicalService.calculateTotalPrice(Date.valueOf(dto.checkIn), Date.valueOf(dto.checkOut), room.pricePerNight, dto.safebox, dto.wedge, dto.laundry, dto.parking);
             model.checkIn = Date.valueOf(dto.checkIn);
@@ -91,7 +88,6 @@ public class BookingRest {
             model.parking = dto.parking;
             model.totalPrice = newPrice.getLastPrice();
             id = bookingsService.saveOrUpdate(model);
-
         }catch (Exception e) {
             e.printStackTrace();
         }

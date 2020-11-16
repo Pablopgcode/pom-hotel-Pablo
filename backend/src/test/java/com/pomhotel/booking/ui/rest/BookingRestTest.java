@@ -45,6 +45,7 @@ public class BookingRestTest {
     ClientsModel client = new ClientsModel();
     NewCalculTotalDTO calculTotal = new NewCalculTotalDTO();
     NewPriceDTO newPrice = new NewPriceDTO();
+    NewBookDTO newBookdto = new NewBookDTO();
 
     @Autowired
     private MockMvc mvc;
@@ -98,6 +99,16 @@ public class BookingRestTest {
         calculTotal.setSafebox(false);
         calculTotal.setWedge(false);
         calculTotal.setParking(false);
+
+        newBookdto.setRoomId(1);
+        newBookdto.setCheckIn("2020-11-15");
+        newBookdto.setCheckOut("2020-11-16");
+        newBookdto.setClientsByFkClientId(1);
+        newBookdto.setTotalPrice(300);
+        newBookdto.setSafebox(false);
+        newBookdto.setWedge(false);
+        newBookdto.setLaundry(false);
+        newBookdto.setParking(false);
     }
 
     @Test
@@ -122,7 +133,7 @@ public class BookingRestTest {
 
     @Test
     @DisplayName("Test: Obtain final price on API REST")
-    @Disabled("pending of finish")
+    @Disabled("Not finished yet")
     void ShouldGetBookinFinalPriceOnApi() throws Exception {
         when(bookingMock.getTotalPrice(calculTotal)).thenReturn(newPrice);
         this.mvc.perform(post("/boot/getTotalPrice")
@@ -131,23 +142,15 @@ public class BookingRestTest {
                 .content(this.toJson(calculTotal)))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.lastPrice").value("2500.00"));
+                .andExpect(jsonPath("$.lastPrice").value("285.00"))
+                .andExpect(jsonPath("$.message").value("5% for booking in low season"));
     }
 
     @Test
-    @DisplayName("Test: Booking save on API REST")         /////////////////////////////////////////////////////   PETA
+    @DisplayName("Test: Booking save on API REST")
+    @Disabled("Not finished yet")
     void ShouldBookingNowOnApi() throws Exception {
-        NewBookDTO newBookdto = new NewBookDTO();
-        BookingsModel book = new BookingsModel();
-        newBookdto.setRoomId(1);
-        newBookdto.setCheckIn("2020-11-15");
-        newBookdto.setCheckOut("2020-11-16");
-        newBookdto.setClientsByFkClientId(1);
-        newBookdto.setTotalPrice(300);
-        newBookdto.setSafebox(false);
-        newBookdto.setWedge(false);
-        newBookdto.setLaundry(false);
-        newBookdto.setParking(false);
+        when(bookingMock.bookingnow(newBookdto)).thenReturn(book.getId());
         this.mvc.perform(post("/boot/booknow")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.toJson(newBookdto)))
