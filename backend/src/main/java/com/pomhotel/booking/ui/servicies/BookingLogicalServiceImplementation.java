@@ -91,7 +91,6 @@ public class BookingLogicalServiceImplementation implements BookingLogicalServic
         double totalPrice = nights * (pricePerNight + optionals);
         totalPrice = (discounts == 1)? totalPrice : (totalPrice -= totalPrice * discounts);
         if (totalPrice < 0){ totalPrice = 0;}
-        //totalPrice -= totalPrice * discounts;
         return totalPrice;
     }
 
