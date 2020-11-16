@@ -6,7 +6,7 @@ import com.pomhotel.booking.application.models.LoginsModel;
 //--- Service Interface -------------------------------------------
 public interface ClientLoginService {
 
-    boolean createClientAndLogin(LoginsModel login);
+    //boolean createClientAndLogin(LoginsModel login);
 
     ClientsModel findClientByUsername(String username);
 

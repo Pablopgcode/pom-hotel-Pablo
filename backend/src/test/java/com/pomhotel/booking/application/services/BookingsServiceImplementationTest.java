@@ -5,14 +5,13 @@ import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.application.models.RoomtypesModel;
 import com.pomhotel.booking.ui.rest.BookingRest;
 import com.pomhotel.booking.ui.servicies.BookingLogicalService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
-
 import java.sql.Date;
 import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,8 +21,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class BookingsServiceImplementationTest {
-    @Autowired
-    private MockMvc mockMvc;
+
+    BookingsModel bookingsModel = new BookingsModel();
+    List<RoomsModel> rooms = new ArrayList<>();
+    List<BookingsModel> bookings = new ArrayList<>();
+    RoomtypesModel type = new RoomtypesModel();
+
     @Autowired
     private BookingsService bookingService;
     @Autowired
@@ -33,6 +36,41 @@ public class BookingsServiceImplementationTest {
     @Autowired
     private BookingLogicalService bookingLogicalService;
 
+    @BeforeEach
+    void setUp(){
+
+        RoomsModel room1 = new RoomsModel();
+        RoomsModel room2 = new RoomsModel();
+
+        type.setId(9);
+        type.setName("Suite");
+        type.setDescription("description");
+
+        room1.setId(90);
+        room1.setCode("SU3");
+        room1.setDescription("description");
+        room1.setPricePerNight(100.0);
+        room1.setImage("img.jpg");
+        room1.setGuests(2);
+        room1.setRoomtypesByFkRoomtypeId(type);
+        room2.setId(91);
+        room2.setCode("SU4");
+        room2.setDescription("description 2");
+        room2.setPricePerNight(150.0);
+        room2.setImage("img2.jpg");
+        room2.setGuests(2);
+        room2.setRoomtypesByFkRoomtypeId(type);
+
+        rooms.add(room1);
+        rooms.add(room2);
+
+        bookingsModel.setTotalPrice(2500.00);
+        bookingsModel.setCheckIn(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
+        bookingsModel.setCheckOut(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
+        bookingsModel.setRoomsByFKRoomId(room1);
+
+        bookings.add(bookingsModel);
+    }
 
     @Test
     @DisplayName("Bean injection")
@@ -44,7 +82,6 @@ public class BookingsServiceImplementationTest {
     @Test
     @DisplayName("Test: Obtain booking by id")
     public void ShouldGetBookingById() throws Exception {
-        BookingsModel bookingsModel = new BookingsModel();
         bookingsModel.setId(108);
         var bookingService = Mockito.mock(BookingsService.class);
         Mockito.when(bookingService.findById(108)).thenReturn(bookingsModel);
@@ -53,40 +90,22 @@ public class BookingsServiceImplementationTest {
     }
 
     @Test
-    @DisplayName("Test: Create bookings with service")    /////////////////////////////////////////////////////////////
+    @DisplayName("Test: Create bookings with service")
     public void ShouldAddInBDBookingWhenSave() throws Exception {
-        BookingsModel bookingsModel = new BookingsModel();
-        List<RoomsModel> rooms = new ArrayList<>();
-        RoomtypesModel type = new RoomtypesModel();
-        type.setId(9);
-        type.setName("Suite");
-        type.setDescription("description");
-        RoomsModel room = new RoomsModel();
-        room.setId(10);
-        room.setCode("SU3");
-        room.setDescription("description");
-        room.setPricePerNight(100.0);
-        room.setImage("img.jpg");
-        room.setGuests(2);
-        room.setRoomtypesByFkRoomtypeId(type);
-        bookingsModel.setTotalPrice(2500.00);
-        bookingsModel.setCheckIn(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
-        bookingsModel.setCheckOut(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
-        bookingsModel.setRoomsByFKRoomId(room);
         var bookingService = Mockito.mock(BookingsService.class);
         Mockito.when(bookingService.saveOrUpdate(bookingsModel)).thenReturn(bookingsModel.getId());
         BookingRest bookingRest = new BookingRest(roomsService, bookingService, clientsLoginService, bookingLogicalService);
         long id = bookingService.saveOrUpdate(bookingsModel);
         assertNotNull(bookingRest);
         assertNotEquals(null, bookingRest);
-        //assertEquals(111,bookingRest.getBooking(111));   /////////////////////////////// Peta con esta condición
     }
 
     @Test
     @DisplayName("Test: Get all bookings")
     public void ShouldGetAllBookings() throws Exception {
-        List<BookingsModel> bookingsCreated = (List<BookingsModel>)bookingService.findAll();
-        assertEquals(3,bookingsCreated.size());
+        var bookingService = Mockito.mock(BookingsService.class);
+        Mockito.when(bookingService.findAll()).thenReturn(bookings);
+        assertEquals(1,bookings.size());
     }
 
 
@@ -94,7 +113,6 @@ public class BookingsServiceImplementationTest {
     @DisplayName("Test: Get all reserved dates of a room")
     public void ShouldGetAllReservedDatesOfARoom() throws Exception {
         List<Date> reserved = bookingService.getReservedDates(1);
-
     }
 }
 

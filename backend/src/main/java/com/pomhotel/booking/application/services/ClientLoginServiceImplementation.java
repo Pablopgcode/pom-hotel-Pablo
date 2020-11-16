@@ -26,10 +26,10 @@ public class ClientLoginServiceImplementation implements ClientLoginService {
     }
 
     //--- Functions ----------------------------------------------------
-    @Override
-    public boolean createClientAndLogin(LoginsModel login) {
-        return repository.createClientAndLogin(loginsFactory.createEntity(login));
-    }
+//    @Override
+//    public boolean createClientAndLogin(LoginsModel login) {
+//        return repository.createClientAndLogin(loginsFactory.createEntity(login));
+//    }
 
     @Override
     public ClientsModel findClientByUsername(String username) {
