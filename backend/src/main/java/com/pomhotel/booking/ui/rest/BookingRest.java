@@ -68,7 +68,6 @@ public class BookingRest {
             e.printStackTrace();
         }
         return newPrice;
-
     }
 
     @PostMapping("/booknow")

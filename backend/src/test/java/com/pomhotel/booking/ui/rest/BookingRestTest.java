@@ -23,7 +23,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import java.util.ArrayList;
@@ -134,7 +133,7 @@ public class BookingRestTest {
 
     @Test
     @DisplayName("Test: Obtain final price on API REST")
-    @Disabled("Not finished yet")
+    //@Disabled("Not finished yet")
     void ShouldGetBookinFinalPriceOnApi() throws Exception {
         when(bookingMock.getTotalPrice(calculTotal)).thenReturn(newPrice).thenReturn(newPrice);
         this.mvc.perform(post("/boot/getTotalPrice")
@@ -145,7 +144,6 @@ public class BookingRestTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.lastPrice").value("285.00"))
                 .andExpect(jsonPath("$.message").value("5% for booking in low season"));
-
     }
 
     @Test
