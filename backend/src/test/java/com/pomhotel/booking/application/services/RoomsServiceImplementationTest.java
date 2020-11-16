@@ -28,10 +28,10 @@ public class RoomsServiceImplementationTest {
     @BeforeEach
     public void setUp() {
         type.setId(9);
-        type.setName("Suite");
+        type.setName("Suite especial");
         type.setDescription("description");
-        room.setId(10);
-        room.setCode("SU3");
+        room.setId(30);
+        room.setCode("SU5");
         room.setDescription("description");
         room.setPricePerNight(100.0);
         room.setImage("img.jpg");
@@ -50,8 +50,15 @@ public class RoomsServiceImplementationTest {
     @DisplayName("Test: Obtain room by id")
     public void ShouldGetRoomById() throws Exception {
         var roomService = Mockito.mock(RoomsService.class);
-        Mockito.when(roomService.findById(10)).thenReturn(room);
-        assertEquals(10, room.getId());
+        Mockito.when(roomService.findById(30)).thenReturn(room);
+        assertEquals(30, room.getId());
+    }
+
+    @Test
+    @DisplayName("Test: Obtain room by id without mock")
+    public void ShouldGetRoomByIdWithoutMock() throws Exception {
+        RoomsModel room = roomsService.findById(1);
+        assertEquals(room.getCode(), "SU1");
     }
 
 
@@ -59,9 +66,15 @@ public class RoomsServiceImplementationTest {
     @DisplayName("Test: Creates or update rooms on BD")
     public void ShouldAddInBDRoomWhenSave() throws Exception {
         var roomsService = Mockito.mock(RoomsService.class);
-        //Mockito.when(roomsService.saveOrUpdate(room)).thenReturn(bookingsModel.getId());
         assertNotNull(room);
         assertNotEquals(null, room);
+    }
+
+    @Test
+    @DisplayName("Test: Creates or update rooms on BD witohout mock")
+    public void ShouldAddInBDRoomWhenSaveWithoutMock() throws Exception {
+        roomsService.saveOrUpdate(room);
+        assertNotNull(room);
     }
 
     @Test
@@ -73,11 +86,15 @@ public class RoomsServiceImplementationTest {
     }
 
     @Test
+    @DisplayName("Test: Get all rooms without mock")
+    public void ShouldGetAllRoomsWithoutMock() throws Exception {
+        List<RoomsModel> rooms2 = roomsService.findAll();
+        assertEquals(17,rooms2.size());
+    }
+
+    @Test
     @DisplayName("Test: Get filtered room")
     public void ShouldGetAFilteredRoom() throws Exception {
-
-
-
-
+        RoomsModel room1 = new RoomsModel();
     }
 }

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -21,7 +22,7 @@ public class RoomTypesServiceImplementationTest {
     RoomtypesModel type1 = new RoomtypesModel();
     RoomtypesModel type2 = new RoomtypesModel();
 
-    @MockBean
+    @Autowired
     private RoomTypesService roomTypesService;
 
     @BeforeEach
@@ -51,10 +52,24 @@ public class RoomTypesServiceImplementationTest {
     }
 
     @Test
+    @DisplayName("Test: Get all types without mock")
+    public void ShouldGetAllRoomsWithoutMock() throws Exception {
+        List<RoomtypesModel> types2 = roomTypesService.findAll();
+        assertEquals(5,types2.size());
+    }
+
+    @Test
     @DisplayName("Test: Obtain type by id")
     public void ShouldGetTypeById() throws Exception {
         var roomTypesService = Mockito.mock(RoomTypesService.class);
         Mockito.when(roomTypesService.findById(1)).thenReturn(type1);
         assertEquals(25, type1.getId());
+    }
+
+    @Test
+    @DisplayName("Test: Obtain type by id without mock")
+    public void ShouldGetTypeByIdWithoutMock() throws Exception {
+        RoomtypesModel type3 = roomTypesService.findById(1);
+        assertEquals("Suite room", type3.getName());
     }
 }

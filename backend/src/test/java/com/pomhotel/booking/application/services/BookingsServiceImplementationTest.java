@@ -1,11 +1,13 @@
 package com.pomhotel.booking.application.services;
 
 import com.pomhotel.booking.application.models.BookingsModel;
+import com.pomhotel.booking.application.models.ClientsModel;
 import com.pomhotel.booking.application.models.RoomsModel;
 import com.pomhotel.booking.application.models.RoomtypesModel;
 import com.pomhotel.booking.ui.rest.BookingRest;
 import com.pomhotel.booking.ui.servicies.BookingLogicalService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -32,6 +34,8 @@ public class BookingsServiceImplementationTest {
     @Autowired
     private RoomsService roomsService;
     @Autowired
+    private BookingRest bookingRest;
+    @Autowired
     private ClientLoginService clientsLoginService;
     @Autowired
     private BookingLogicalService bookingLogicalService;
@@ -41,12 +45,19 @@ public class BookingsServiceImplementationTest {
 
         RoomsModel room1 = new RoomsModel();
         RoomsModel room2 = new RoomsModel();
+        ClientsModel client = new ClientsModel();
+
+        client.setId(1);
+        client.setName("Pablo");
+        client.setLastname("P");
+        client.setEmail("correo@coore.es");
+        client.setBookingsById(bookings);
 
         type.setId(9);
-        type.setName("Suite");
+        type.setName("Suite especial");
         type.setDescription("description");
 
-        room1.setId(90);
+        room1.setId(15);//90
         room1.setCode("SU3");
         room1.setDescription("description");
         room1.setPricePerNight(100.0);
@@ -64,6 +75,7 @@ public class BookingsServiceImplementationTest {
         rooms.add(room1);
         rooms.add(room2);
 
+        bookingsModel.setClientsByFkClientId(client);
         bookingsModel.setTotalPrice(2500.00);
         bookingsModel.setCheckIn(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
         bookingsModel.setCheckOut(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
@@ -90,6 +102,13 @@ public class BookingsServiceImplementationTest {
     }
 
     @Test
+    @DisplayName("Test: Obtain booking by id without mock")
+    public void ShouldGetBookingByIdWithoutMock() throws Exception {
+        BookingsModel book = bookingService.findById(108);
+        assertEquals(book.getTotalPrice(), 2646);
+    }
+
+    @Test
     @DisplayName("Test: Create bookings with service")
     public void ShouldAddInBDBookingWhenSave() throws Exception {
         var bookingService = Mockito.mock(BookingsService.class);
@@ -103,6 +122,14 @@ public class BookingsServiceImplementationTest {
     }
 
     @Test
+    @DisplayName("Test: Create bookings with service without mock")
+    public void ShouldAddInBDBookingWhenSaveWithoutMock() throws Exception {
+        long identificator = bookingService.saveOrUpdate(bookingsModel);
+        BookingsModel book = bookingService.findById(identificator);
+        assertEquals(book.getTotalPrice(), 2500.00);
+    }
+
+    @Test
     @DisplayName("Test: Get all bookings")
     public void ShouldGetAllBookings() throws Exception {
         var bookingService = Mockito.mock(BookingsService.class);
@@ -110,9 +137,9 @@ public class BookingsServiceImplementationTest {
         assertEquals(1,bookings.size());
     }
 
-
-    @Test                                             /////////////////////////////////   INCOMPLETO
+    @Test
     @DisplayName("Test: Get all reserved dates of a room")
+    @Disabled("finish pending")
     public void ShouldGetAllReservedDatesOfARoom() throws Exception {
         List<Date> reserved = bookingService.getReservedDates(1);
     }
