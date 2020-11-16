@@ -139,9 +139,9 @@ public class BookingsServiceImplementationTest {
 
     @Test
     @DisplayName("Test: Get all reserved dates of a room")
-    @Disabled("finish pending")
     public void ShouldGetAllReservedDatesOfARoom() throws Exception {
         List<Date> reserved = bookingService.getReservedDates(1);
+        assertNotNull(reserved);
     }
 }
 

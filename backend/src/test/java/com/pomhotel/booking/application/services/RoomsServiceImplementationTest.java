@@ -11,6 +11,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -95,6 +97,11 @@ public class RoomsServiceImplementationTest {
     @Test
     @DisplayName("Test: Get filtered room")
     public void ShouldGetAFilteredRoom() throws Exception {
-        RoomsModel room1 = new RoomsModel();
+        List<RoomsModel> models = roomsService.findApplyingFilter(2,50,300,1);
+        for (RoomsModel m: models) {
+            assertTrue(m.getGuests() >= 2);
+            assertTrue(m.getPricePerNight() >= 50 && room.getPricePerNight() <= 300);
+            assertTrue(m.getRoomtypesByFkRoomtypeId().getId() == 1);
+        }
     }
 }

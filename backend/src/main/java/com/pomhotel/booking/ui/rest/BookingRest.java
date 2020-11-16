@@ -59,7 +59,8 @@ public class BookingRest {
 
 
     @RequestMapping(value="/getTotalPrice", method=RequestMethod.POST, produces="application/json")
-    public ResponseEntity<NewPriceDTO> getTotalPrice(@RequestBody @Valid NewCalculTotalDTO dto){
+    //public ResponseEntity<NewPriceDTO> getTotalPrice(@RequestBody @Valid NewCalculTotalDTO dto){
+    public NewPriceDTO getTotalPrice(@RequestBody @Valid NewCalculTotalDTO dto){
         NewPriceDTO newPrice = new NewPriceDTO();
         try{
             RoomsModel model = roomsService.findById(dto.roomId);
@@ -67,7 +68,9 @@ public class BookingRest {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return new ResponseEntity(newPrice, HttpStatus.ACCEPTED);
+        //return new ResponseEntity(newPrice, HttpStatus.ACCEPTED);
+        return newPrice;
+
     }
 
     @PostMapping("/booknow")
