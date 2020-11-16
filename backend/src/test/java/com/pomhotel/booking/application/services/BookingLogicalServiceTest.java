@@ -53,17 +53,25 @@ public class BookingLogicalServiceTest {
         NewPriceDTO lastPrice3 = new NewPriceDTO();
 
         /* Set up first DTO & assert it */
-        Date checkIn = convert(format.parse("15/01/2020"));
-        Date checkOut = convert(format.parse("18/01/2020"));
-        lastPrice1 = bookingLogical.calculateTotalPrice(checkIn,checkOut,300.00,false,false,false,false);
+        Date checkIn1 = convert(format.parse("15/01/2020"));
+        Date checkOut1 = convert(format.parse("18/01/2020"));
+        lastPrice1 = bookingLogical.calculateTotalPrice(checkIn1,checkOut1,300.00,false,false,false,false);
         assertEquals(855, lastPrice1.getLastPrice());
         assertEquals("5% for booking in low season", lastPrice1.getMessage());
 
-        /* Set up first DTO & assert it */
+        /* Set up second DTO & assert it */
+        Date checkIn2 = convert(format.parse("14/11/2020"));
+        Date checkOut2 = convert(format.parse("30/11/2020"));
+        lastPrice2 = bookingLogical.calculateTotalPrice(checkIn2,checkOut2,150.00,true,false,true,false);
+        assertEquals(2514.72, lastPrice2.getLastPrice());
+        assertEquals("7% for booking more than 7 days in low season", lastPrice2.getMessage());
 
-
-
-
+        /* Set up third DTO & assert it */
+        Date checkIn3 = convert(format.parse("29/07/2020"));
+        Date checkOut3 = convert(format.parse("07/08/2020"));
+        lastPrice3 = bookingLogical.calculateTotalPrice(checkIn3,checkOut3,285.00,false,true,true,true);
+        assertEquals(2743.02, lastPrice3.getLastPrice());
+        assertEquals("2% for booking more than 7 days", lastPrice3.getMessage());
     }
 
     @Test
