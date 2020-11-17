@@ -12,6 +12,7 @@ import com.pomhotel.booking.application.services.RoomsService;
 import com.pomhotel.booking.ui.dto.NewBookDTO;
 import com.pomhotel.booking.ui.dto.NewCalculTotalDTO;
 import com.pomhotel.booking.ui.dto.NewPriceDTO;
+import com.pomhotel.booking.ui.servicies.BookingLogicalService;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -25,6 +26,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -46,6 +49,8 @@ public class BookingRestTest {
     NewCalculTotalDTO calculTotal = new NewCalculTotalDTO();
     NewPriceDTO newPrice = new NewPriceDTO();
     NewBookDTO newBookdto = new NewBookDTO();
+    Date checkIn = Date.valueOf("2020-11-15");
+    Date checkOut = Date.valueOf("2020-11-16");
 
     @Autowired
     private MockMvc mvc;
@@ -54,11 +59,14 @@ public class BookingRestTest {
     private WebApplicationContext context;
 
     @MockBean
-    RoomsService roomsService;
+    private RoomsService roomsMock;
     @MockBean
     ClientLoginService clientsService;
     @MockBean
     private BookingRest bookingMock;
+    @MockBean
+    private BookingLogicalService logicalMock;
+
 
     @Before("")
     public void setup(){
@@ -93,8 +101,8 @@ public class BookingRestTest {
         client.setEmail("correo@correo.es");
 
         calculTotal.setRoomId(1);
-        calculTotal.setCheckIn(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
-        calculTotal.setCheckOut(new java.sql.Date(Calendar.getInstance ().getTime ().getTime ()));
+        calculTotal.setCheckIn(checkIn);
+        calculTotal.setCheckOut(checkOut);
         calculTotal.setLaundry(false);
         calculTotal.setSafebox(false);
         calculTotal.setWedge(false);
@@ -109,6 +117,9 @@ public class BookingRestTest {
         newBookdto.setWedge(false);
         newBookdto.setLaundry(false);
         newBookdto.setParking(false);
+
+        newPrice.setLastPrice(100.00);
+        newPrice.setMessage("5% for booking in low season");
     }
 
     @Test
@@ -133,16 +144,17 @@ public class BookingRestTest {
 
     @Test
     @DisplayName("Test: Obtain final price on API REST")
-    //@Disabled("Not finished yet")
+    @Disabled("Not finished yet")
     void ShouldGetBookinFinalPriceOnApi() throws Exception {
-        when(bookingMock.getTotalPrice(calculTotal)).thenReturn(newPrice).thenReturn(newPrice);
+        when(roomsMock.findById(room.getId())).thenReturn(room);
+        when(logicalMock.calculateTotalPrice(checkIn, checkOut, room.getPricePerNight(),false, false, false, false)).thenReturn(newPrice);
         this.mvc.perform(post("/boot/getTotalPrice")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.toJson(calculTotal)))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.lastPrice").value("285.00"))
+                .andExpect(jsonPath("$.lastPrice").value("100.00"))
                 .andExpect(jsonPath("$.message").value("5% for booking in low season"));
     }
 
