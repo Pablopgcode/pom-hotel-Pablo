@@ -107,7 +107,7 @@ class FormConfirmation extends Component {
                             </div>
                             <div className="col-md-4 padding-bottom">
                                 <label>Your e-mail</label>
-                                <input type="text" class="form-control"></input>
+                                <input type="text" class="form-control" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"></input>
                             </div>
                         </div>
                         <div class="form-group col-12"><hr></hr>
