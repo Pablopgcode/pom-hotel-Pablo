@@ -8,11 +8,13 @@ import FormSearch from "components/Forms/FormSearch.js";
 import '../assets/css/various-ui-comp.css';
 import {isDateBetween, now} from '../services/dateservice';
 import { addDays } from 'date-fns';
+import OffersService from '../services/offersService.js';
 let excluded = [];
 class Rooms extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            discountChilds: [],
             rooms: [],
             filter: {startDate: now,
                      endDate:addDays(new Date(),1)}
@@ -23,14 +25,19 @@ class Rooms extends Component {
         RoomService.getRooms().then((res) => {  
             this.setState({ rooms : res.data });
         })
+
+        OffersService.getOffers().then((res) => {     
+            this.setState({ discountChilds : res.data });
+        })
     }  
 
     updateFilter(filter){
-        console.log('updateFilter.filter: ', filter)
-        this.setState ({filter:filter})   
+        this.setState ({filter:filter})
+
     }
     
     render() {
+        
         const roomsFiltered = this.state.rooms.filter((room) => {
             let validPricePerNightFrom = this.state.filter.minprice  
             ? room.pricePerNight >= +this.state.filter.minprice
@@ -54,10 +61,10 @@ class Rooms extends Component {
                 validType && validDates
             );    
         }); 
-        console.log('Objeto filter renderizado: ',this.state.filter);  /* Objeto filter renderizado actual */
-        console.log("roomsFiltered : ", roomsFiltered);
+        
         return (         
             <React.Fragment>
+
                 <Navbar />
                 <Header image={require("assets/img/revato-10251-13112723-111323.jpg")}/>
                 <div className="col-md-9 offset-1 heading2 animate-box fadeInUp animated-fast">
@@ -68,7 +75,7 @@ class Rooms extends Component {
                     {
                         roomsFiltered.map((room) => (
                             <div className="row" key={room.id}> 
-                                <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} guests={room.guests} description={room.description} booked={room.booked} startDate={this.state.filter.startDate} endDate={this.state.filter.endDate} offSeason={this.state.offSeason}/>                           
+                                <Room image={require("assets/img/rooms/"+room.image)} id={room.id} name={room.roomtypesByFkRoomtypeId.name} pricePerNight={room.pricePerNight} guests={room.guests} description={room.description} booked={room.booked} startDate={this.state.filter.startDate} endDate={this.state.filter.endDate} offSeason={this.state.offSeason} offer={this.state.discountChilds}/>                           
                             </div>    
                         ))
                     }

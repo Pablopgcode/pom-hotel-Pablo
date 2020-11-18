@@ -27,3 +27,5 @@ const Room = (props) => {
 }
 
 export default Room
+
+/*  { (this.state.filter.guests >=3) ?  console.log("ofertas para la room.id ",room.id): console.log("No offers") }*/
