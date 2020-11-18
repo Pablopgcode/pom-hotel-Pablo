@@ -6,6 +6,7 @@ import '../../assets/css/various-ui-comp.css'
 import TypeService from '../../services/typeService.js';
 import {now} from '../../services/dateservice';
 import { addDays } from 'date-fns';
+import OfferPopup from 'components/Alerts/OfferPopup.js';
 class FormSearch extends Component {
     /* Props */
     constructor(props) {
@@ -27,6 +28,9 @@ class FormSearch extends Component {
             this.setState({ rtypes: res.data });
         });
     }
+
+    /* in progress */
+
 
     /*Handlers*/
     handleGuests (event){
@@ -148,6 +152,7 @@ class FormSearch extends Component {
                                 <div className="col-md-12">
                                     <input type="submit" name="submit" id="submit" value="Find Room" className="btn btn-primary btn-block"></input>
                                 </div>
+                                <OfferPopup />
                             </div>
                         </form>
                     </div>

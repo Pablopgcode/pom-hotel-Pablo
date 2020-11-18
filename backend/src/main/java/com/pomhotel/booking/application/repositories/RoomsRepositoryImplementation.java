@@ -22,6 +22,9 @@ public class RoomsRepositoryImplementation implements RoomsRepository {
         this.dbConnection = dbConnection;
     }
 
+
+
+
     //--- Functions ----------------------------------------------------
     @Override
     public RoomsEntity findById(long id) {

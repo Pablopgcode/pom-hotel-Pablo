@@ -19,8 +19,13 @@ public class OffersEntity implements Serializable {
     private int  childrens;
 
     @Basic
-    @Column(name = "discountChilds", nullable = true, length = 100)
+    @Column(name = "discountChilds", nullable = true, length = 10)
     private double discountChilds;
+
+    @Basic
+    @Column(name = "description", nullable = false, length = 100)
+    private String description;
+
 
     //--- Getters & Setters ---------------------------------------
     public long getId() {
@@ -45,6 +50,14 @@ public class OffersEntity implements Serializable {
 
     public void setDiscountChilds(double discountChilds) {
         this.discountChilds = discountChilds;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     //--- Some general functions -----------------------------------

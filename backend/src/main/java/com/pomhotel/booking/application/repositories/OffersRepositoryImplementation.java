@@ -5,20 +5,23 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
+//--- Repository -------------------------------------------------------
+@Repository
 public class OffersRepositoryImplementation implements OffersRepository{
 
     //--- Session ------------------------------------------------------
     private static SessionFactory dbConnection;
 
-    public OffersRepositoryImplementation(SessionFactory dbConnection) {
-            this.dbConnection = dbConnection;
-    }
-
     //--- Constructor --------------------------------------------------
     @Autowired
+    public OffersRepositoryImplementation(SessionFactory dbConnection) {
+        this.dbConnection = dbConnection;
+    }
 
     //--- Functions ----------------------------------------------------
     @Override

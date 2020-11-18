@@ -19,6 +19,7 @@ public class OffersFactory {
         entity.setId(model.id);
         entity.setChildrens(model.childrens);
         entity.setDiscountChilds(model.discountChilds);
+        entity.setDescription(model.description);
         return entity;
     }
 
@@ -27,6 +28,7 @@ public class OffersFactory {
         model.id = entity.getId();
         model.childrens = entity.getChildrens();
         model.discountChilds = entity.getDiscountChilds();
+        model.description = entity.getDescription();
         return model;
     }
 }
