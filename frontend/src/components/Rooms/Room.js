@@ -1,6 +1,20 @@
 import React from "react";
 import { Container } from "reactstrap";
 import {Link} from "react-router-dom";
+
+const Mensajes = (props) => {
+    console.log("Mensajes.Offers?", props)
+        
+    return(
+        <>
+        {props.offer[0] && <React.Fragment>            
+            {(props.guests ==3) ?  <p>{props.offer[0].description}</p> : console.log("no offer")}
+            {(props.guests >3) ?  <p>{props.offer[0].description, props.offer[1].description}</p> : console.log("no offer")}
+            {(props.guests >4) ?  <p>{props.offer[0].description, props.offer[1].description, props.offer[2].description}</p> : console.log("no offer")}           
+        </React.Fragment>}
+        </>
+    );
+}
 const Room = (props) => {
     return (
         <Container>       
@@ -13,6 +27,8 @@ const Room = (props) => {
                     <p className="price"><h3>{props.pricePerNight} &#8364;<small>/ night</small></h3></p>
                     <p>{props.description}</p> 
                     <p className="price">for {props.guests} guests</p>
+                    <Mensajes {...props}></Mensajes>
+                    
                     <p><Link className="btn btn-primary" to={{pathname: "/pay/" + props.id,
                                                               state: {
                                                                   data: {
