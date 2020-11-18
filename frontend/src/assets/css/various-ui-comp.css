@@ -1164,10 +1164,8 @@ input[type="checkbox"]{
 }
 
 .lastPrice{
-  color: red;
+  color:  #0a4092;
   font-weight: bold;
-  text-decoration: underline;
-  letter-spacing: 4px;
 }
 
 .discount{
