@@ -13,14 +13,12 @@ class FormSearch extends Component {
         super(props)
         this.state = {
             rtypes: [],
-            reserved: [],
             guests: "1",
             startDate: now,
-            endDate: addDays(new Date(),1),
+            endDate: addDays(now,1),
             type: "",
             minprice: "1",
             maxprice: "1000",
-            discountMsg: "in progress"
         }
     }
     /* obtain types of rooms */
