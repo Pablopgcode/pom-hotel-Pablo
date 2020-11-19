@@ -1150,7 +1150,6 @@ select option {
 }
 
 input[type="checkbox"]{
-  /* display:inline-block; */
   width:19px;
   height:19px;
   margin:-1px 20px 2px 20px;
@@ -1163,9 +1162,18 @@ input[type="checkbox"]{
   color: rgb(8, 8, 93);
 }
 
-.lastPrice{
+.lastPrice {
+  color: red;
+  font-weight: bold;
+  
+}
+
+.childrendisc{
   color:  #0a4092;
   font-weight: bold;
+  background-color:#FFDD00;
+  padding: 14px;
+  border-radius: 10px 10px 10px 10px;
 }
 
 .discount{

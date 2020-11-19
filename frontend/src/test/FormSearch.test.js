@@ -20,6 +20,7 @@ describe('Search form unit test', () => {
     });
 
     test('should run onChange with the new state', () => {
+        const dateTest = new Date();
         const updateFilter = jest.fn();
         const wrapper = shallow(<FormSearch onFilterChange={updateFilter}/>);
         wrapper.find('select[name="guests"]').simulate('change', {target:{name:'guests', value: '3'}});
@@ -31,8 +32,8 @@ describe('Search form unit test', () => {
         expect (updateFilter).toHaveBeenCalledWith({
                 rtypes: [],
                 guests: "3",
-                startDate: now,
-                endDate: now,
+                startDate: dateTest,
+                endDate: dateTest,
                 type: "2",
                 minprice: "50",
                 maxprice: "200"

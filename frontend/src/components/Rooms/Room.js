@@ -6,10 +6,10 @@ const Mensajes = (props) => {
     let notice = "Offer if you come with a child! You have ";      
     return(
         <>
-        {props.offer[0] && <React.Fragment>                  
-            {(props.guests == 3) ?  <p className="lastPrice"> {notice}{ props.offer[0].description}</p> : console.log("no offer")}
-            {(props.guests == 4) ?  <p className="lastPrice"> {notice}{props.offer[0].description} or {props.offer[1].description}</p> : console.log("no offer")}
-            {(props.guests > 4)  ?  <p className="lastPrice"> {notice} {props.offer[0].description} , {props.offer[1].description} or {props.offer[2].description}</p> : console.log("no offer")}           
+        {props.offer[0] && <React.Fragment>              
+            {(props.guests == 3) ?  <p className="childrendisc"> {notice}{ props.offer[0].description}</p> : console.log("no offer")}
+            {(props.guests == 4) ?  <p className="childrendisc"> {notice}{props.offer[0].description} or {props.offer[1].description}</p> : console.log("no offer")}
+            {(props.guests > 4)  ?  <p className="childrendisc"> {notice} {props.offer[0].description} , {props.offer[1].description} or {props.offer[2].description}</p> : console.log("no offer")}           
         </React.Fragment>}
         </>
     );
